@@ -1,3 +1,10 @@
+team:
+
+Anguibell Romero
+Andy Herrera
+Euclides Teran
+Guillermo Obando
+
 # WebApp boilerplate with React JS and Flask API
 
 Build web applications using React.js for the front end and python/flask for your backend API.
