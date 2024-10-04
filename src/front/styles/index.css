@@ -5,6 +5,7 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .container {
@@ -43,6 +44,15 @@ input[type="file"] {
   margin-left: 10%;
   border: none;
   box-shadow: 0 0 20px 3px rgb(176, 172, 172);
+}
+
+ul {
+  width: 80%;
+}
+
+li a {
+  width: 80%;
+  cursor: pointer;
 }
 
 .tArea {

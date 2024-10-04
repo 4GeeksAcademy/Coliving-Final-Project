@@ -1,16 +1,25 @@
 import React from "react";
 
-export default function Publish() {
+export function Btn_linkAD() {
   return (
     <>
-      <h1 class="text-center mt-3">Publicación de Anuncio</h1>
+      <Link to="/publish" className="btn btn-primary">
+        Publicar Anuncio
+      </Link>
+    </>
+  );
+}
+function Publish() {
+  return (
+    <>
+      <h1 class="text-center mt-3 mb-4">Publicación de Anuncio</h1>
       <div class="container">
         <br />
         <br />
         <p class="text-center">Publica tu Alojamiento!</p>
         <form id="anuncioForm">
           <div className="mb-3">
-            <label for="title" class="form-label">
+            <label for="title" class="form-label mt-3">
               Titulo del Anuncio:
             </label>
             <input
@@ -71,24 +80,20 @@ export default function Publish() {
                 Seleccione el tiempo de Estancia Aceptada
               </button>
               <ul
-                class="dropdown-menu w-100 text-center"
+                class="dropdown-menu text-center"
                 aria-labelledby="dropdownMenuButton"
               >
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Estancia Corta
-                  </a>
+                  <a className="dropdown-item">Estancia Corta</a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Estancia Larga
-                  </a>
+                  <a className="dropdown-item">Estancia Larga</a>
                 </li>
               </ul>
             </div>
           </div>
           <div class="mb-3">
-            <label for="description" class="form-label mt-3">
+            <label for="description" class="form-label mt-2">
               Descripcion del Anuncio:
             </label>
             <textarea
@@ -100,7 +105,7 @@ export default function Publish() {
             ></textarea>
           </div>
           <div class="mb-3">
-            <label for="rules" class="form-label">
+            <label for="rules" class="form-label mt-4">
               Reglas a seguir
             </label>
             <textarea
@@ -117,6 +122,11 @@ export default function Publish() {
           </button>
         </form>
       </div>
+      <div className="ejemplo">
+        <h1>ejemplo</h1>
+      </div>
     </>
   );
 }
+
+export default Publish;
