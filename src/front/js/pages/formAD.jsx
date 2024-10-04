@@ -7,10 +7,7 @@ export default function Publish() {
       <div class="container">
         <br />
         <br />
-        <p class="text-center">
-          Bienvenido a la pantalla donde podras ingresar la informacion de tu
-          alojamiento
-        </p>
+        <p class="text-center">Publica tu Alojamiento!</p>
         <form id="anuncioForm">
           <div className="mb-3">
             <label for="title" class="form-label">

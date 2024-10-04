@@ -1,3 +1,80 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background-color: rgb(255, 255, 255) !important;
+  border-radius: 10px !important;
+  height: fit-content;
+  width: 1000px !important;
+  box-shadow: 0 0 10px 3px rgb(176, 172, 172);
+  border: none;
+}
+
+p {
+  font-size: 24px !important;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  margin-left: 10% !important;
+  border: none !important;
+  box-shadow: 0 0 10px 3px rgb(176, 172, 172);
+  width: 80% !important;
+  height: 50px;
+}
+
+input[type="number"] {
+  border: none !important;
+  width: 80%;
+  height: 50px;
+  margin-left: 10%;
+  box-shadow: 0 0 20px 3px rgb(176, 172, 172);
+}
+
+input[type="file"] {
+  width: 80%;
+  height: 50px;
+  margin-left: 10%;
+  border: none;
+  box-shadow: 0 0 20px 3px rgb(176, 172, 172);
+}
+
+.tArea {
+  border: none !important;
+  box-shadow: 0 0 20px 3px rgb(176, 172, 172);
+  width: 80%;
+  height: 150px;
+  margin-left: 10%;
+  resize: none;
+}
+
+.publish {
+  margin-left: 10%;
+  width: 80%;
+  height: 50px;
+  font-size: 20px;
+  background-color: #57cc99 !important;
+  border: none;
+  border-radius: 5px;
+  color: #22577a;
+}
+
+label {
+  margin-left: 10% !important;
+}
+
+button {
+  margin-left: 10%;
+  width: 80%;
+  height: 50px;
+  background-color: white !important;
+  color: #22577a !important;
+  border: none !important;
+  box-shadow: 0 0 20px 3px rgb(176, 172, 172);
+}
