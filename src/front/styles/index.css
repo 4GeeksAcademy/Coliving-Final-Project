@@ -9,6 +9,7 @@ body {
 }
 
 .container {
+  justify-content: center;
   background-color: rgb(255, 255, 255) !important;
   border-radius: 10px !important;
   height: fit-content;
@@ -30,6 +31,21 @@ input[type="text"] {
   height: 50px;
 }
 
+input[type="email"] {
+  margin-left: 10% !important;
+  border: none !important;
+  box-shadow: 0 0 10px 3px rgb(176, 172, 172);
+  width: 80% !important;
+  height: 50px;
+}
+
+input[type="password"] {
+  margin-left: 10% !important;
+  border: none !important;
+  box-shadow: 0 0 10px 3px rgb(176, 172, 172);
+  width: 80% !important;
+  height: 50px;
+}
 input[type="number"] {
   border: none !important;
   width: 80%;
@@ -66,6 +82,19 @@ li a {
 
 .publish {
   margin-left: 10%;
+  width: 80%;
+  height: 50px;
+  font-size: 20px;
+  background-color: #57cc99 !important;
+  border: none;
+  border-radius: 5px;
+  color: #22577a;
+}
+
+.login {
+  margin-left: 10%;
+  margin-top: 4%;
+  margin-bottom: 5%;
   width: 80%;
   height: 50px;
   font-size: 20px;

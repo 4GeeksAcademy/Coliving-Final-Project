@@ -117,7 +117,7 @@ function Publish() {
             ></textarea>
           </div>
 
-          <button type="submit" class="publish mb-3 mt-5 mb-5">
+          <button class="publish mb-3 mt-5 mb-5">
             Publicar Anuncio
           </button>
         </form>
