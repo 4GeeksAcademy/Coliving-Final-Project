@@ -8,6 +8,7 @@ import "../styles/index.css";
 //import your own components
 import Publish from "./pages/formAD.jsx";
 import Login from "./pages/login.jsx";
+import Layout from "./layout.js";
 
 //render your react application
-ReactDOM.render(<Publish />, document.querySelector("#app"));
+ReactDOM.render(<Layout />, document.querySelector("#app"));

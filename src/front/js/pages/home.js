@@ -4,7 +4,7 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import Btn_linkAD from "./formAD.jsx";
 
-Home = () => {
+ const Home = () => {
   const { store, actions } = useContext(Context);
 
   <Btn_linkAD />;
