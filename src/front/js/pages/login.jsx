@@ -6,6 +6,7 @@ export default function Login() {
     return (
         <>
             <div className="container mt-5">
+                <p className="text-center mt-5"><strong>Login</strong></p>
                 <form>
 
                     <div className="mb-3 ">

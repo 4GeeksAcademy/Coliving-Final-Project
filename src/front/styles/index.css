@@ -56,10 +56,11 @@ input[type="number"] {
 
 input[type="file"] {
   width: 80%;
-  height: 50px;
+  height: 40px;
   margin-left: 10%;
   border: none;
   box-shadow: 0 0 20px 3px rgb(176, 172, 172);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 ul {
@@ -102,6 +103,20 @@ li a {
   border: none;
   border-radius: 5px;
   color: #22577a;
+}
+
+.estancia {
+  width: 80%;
+  margin-left: 10%;
+  border: none;
+  box-shadow: 0 0 10px 3px rgb(176, 172, 172);
+  height: 50px;
+  margin-top: 5%;
+  margin-bottom: 4%;
+}
+
+select option {
+  border: none;
 }
 
 label {

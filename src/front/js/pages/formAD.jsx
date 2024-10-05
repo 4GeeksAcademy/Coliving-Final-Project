@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+
+
+
 
 export function Btn_linkAD() {
   return (
@@ -10,6 +13,9 @@ export function Btn_linkAD() {
   );
 }
 function Publish() {
+
+
+
   return (
     <>
       <h1 class="text-center mt-3 mb-4">Publicación de Anuncio</h1>
@@ -60,7 +66,7 @@ function Publish() {
             </label>
             <input
               type="file"
-              className="form-control"
+              className="form-control form-control-lg"
               id="images"
               name="images"
               multiple
@@ -68,7 +74,16 @@ function Publish() {
             />
           </div>
 
-          <div class="mb-3">
+
+          <select class="form-select  estancia" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+
+
+          {/* <div class="mb-3">
             <div class="dropdown mt-3">
               <button
                 className="btn btn-secondary dropdown-toggle mt-5 mb-3"
@@ -77,21 +92,28 @@ function Publish() {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Seleccione el tiempo de Estancia Aceptada
+                {estadia == "" ? "Seleccione la opcion" : estadia}
               </button>
               <ul
                 class="dropdown-menu text-center"
                 aria-labelledby="dropdownMenuButton"
               >
-                <li>
+                <li cnClick={() => {
+                  setEstadia("Estancia Corta");
+                }}>
                   <a className="dropdown-item">Estancia Corta</a>
                 </li>
-                <li>
+                <li onClick={() => {
+                  setEstadia("Estancia Larga");
+                }}>
                   <a className="dropdown-item">Estancia Larga</a>
                 </li>
               </ul>
             </div>
-          </div>
+          </div> */}
+
+
+
           <div class="mb-3">
             <label for="description" class="form-label mt-2">
               Descripcion del Anuncio:
