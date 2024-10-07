@@ -83,37 +83,6 @@ function Publish() {
           </select>
 
 
-          {/* <div class="mb-3">
-            <div class="dropdown mt-3">
-              <button
-                className="btn btn-secondary dropdown-toggle mt-5 mb-3"
-                type="button"
-                id="dropdownMenuButton"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {estadia == "" ? "Seleccione la opcion" : estadia}
-              </button>
-              <ul
-                class="dropdown-menu text-center"
-                aria-labelledby="dropdownMenuButton"
-              >
-                <li cnClick={() => {
-                  setEstadia("Estancia Corta");
-                }}>
-                  <a className="dropdown-item">Estancia Corta</a>
-                </li>
-                <li onClick={() => {
-                  setEstadia("Estancia Larga");
-                }}>
-                  <a className="dropdown-item">Estancia Larga</a>
-                </li>
-              </ul>
-            </div>
-          </div> */}
-
-
-
           <div class="mb-3">
             <label for="description" class="form-label mt-2">
               Descripcion del Anuncio:
