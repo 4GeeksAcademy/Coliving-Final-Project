@@ -2,31 +2,25 @@ import React from "react";
 
 const NavbarLanding = () => {
     return (
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#">Coliiving</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                  </ul>
-                  <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                  </form>
+      <>
+            <nav class="navbar">
+              <h2 className="mx-3">Coliiving</h2>
+              <div className="d-flex">
+                <div className="d-flex gap-2 rounded-pill bg-light p-2 me-3">
+                  <span>Pon tu espacio en Coliiving</span>
+                  <i class="icono fa-solid fa-globe pe-2"></i>
+                </div>
+                <div className="d-flex gap-2 rounded-pill bg-light p-2 me-3">
+                  <span>Filtros</span>
+                  <i class="icono fa-solid fa-arrow-down-wide-short pe-2"></i>
+                </div>
+                <div className="d-flex gap-2 rounded-pill bg-light p-2 me-3">
+                  <i class="icono fa-solid fa-bars px-2"></i>
+                  <i class="icono fa-solid fa-circle-user pe-2"></i>
                 </div>
               </div>
             </nav>
+      </>
     )
 }
 

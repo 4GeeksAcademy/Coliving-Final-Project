@@ -9,6 +9,10 @@ import "../styles/index.css";
 import Publish from "./pages/formAD.jsx";
 import Login from "./pages/login.jsx";
 import Layout from "./layout.js";
+import Registro from "./pages/registro.jsx";
+import LandingPage from "./pages/landingPage.jsx";
+import NavbarLanding from "./pages/navbarLanding.jsx";
+import HeaderLanding from "./pages/headerLanding.jsx";
 
 //render your react application
-ReactDOM.render(<Layout />, document.querySelector("#app"));
+ReactDOM.render(<LandingPage  />, document.querySelector("#app"));

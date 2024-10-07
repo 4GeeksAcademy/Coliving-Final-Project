@@ -115,6 +115,10 @@ li a {
   margin-bottom: 4%;
 }
 
+.icono {
+  font-size: 30px;
+}
+
 select option {
   border: none;
 }
