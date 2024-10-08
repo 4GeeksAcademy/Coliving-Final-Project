@@ -11,4 +11,4 @@ import Login from "./pages/login.jsx";
 import Layout from "./layout.js";
 
 //render your react application
-ReactDOM.render(<publis />, document.querySelector("#app"));
+ReactDOM.render(<Layout />, document.querySelector("#app"));

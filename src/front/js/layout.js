@@ -8,6 +8,7 @@ import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import  Publish  from "./pages/formAD.jsx";
 import injectContext from "./store/appContext";
+import ContactForm from "./pages/ContactForm.jsx";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -34,6 +35,7 @@ const Layout = () => {
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<Publish />} path="/formAD" />
             <Route element={<h1>Not found!</h1>} />
+            <Route element={<ContactForm />} path="/contact" />
           </Routes>
           <Footer />
         </ScrollToTop>
