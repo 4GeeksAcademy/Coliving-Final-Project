@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-
-
-
+import "./../../styles/AdPublish.css";
 
 export function Btn_linkAD() {
   return (
@@ -13,139 +11,69 @@ export function Btn_linkAD() {
   );
 }
 function Publish() {
-
-
-
   return (
     <>
-      <h1 class="text-center mt-3 mb-4">Publicación de Anuncio</h1>
-      <div class="container">
-        <br />
-        <br />
-        <p class="text-center">Publica tu Alojamiento!</p>
-        <form id="anuncioForm">
-          <div className="mb-3">
-            <label for="title" class="form-label mt-3">
-              Titulo del Anuncio:
-            </label>
-            <input
-              type="text"
-              class="form-control"
-              id="title"
-              name="title"
-              required
-            />
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <h1 className="fw-bold py-3">Publica tu anuncio!</h1>
+            <form>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="titulo"
+                  placeholder="Residencia en linda Vista"
+                  required
+                />
+                <label for="titulo">Titulo de la Publicacion</label>
+              </div>
+              <div class="form-floating mb-3 mt-4">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="renta"
+                  placeholder="Monto de Alquiler"
+                  required
+                />
+                <label for="renta">Monto de Alquiler</label>
+              </div>
+              <div class="form-floating mb-3 mt-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="ubicacion"
+                  placeholder="Ubicacion"
+                  required
+                />
+                <label for="ubicacion">Ubicacion Aproximada</label>
+              </div>
+              <div>
+                <input
+                  type="file"
+                  className="upload-box"
+                  accept="image/*"
+                ></input>
+              </div>
+              <div class="form-floating mb-3 ">
+                <select className="form-floating">
+                  <option selected>Seleccione el tiempo de estancia</option>
+                  <option>Estancia Corta</option>
+                  <option>Estancia Larga</option>
+                </select>
+              </div>
+              <div class="form-floating">
+                <textarea class="form-floating" id="descripcion"></textarea>
+                <label for="descripcion">Descripcion</label>
+              </div>
+              <div class="form-floating">
+                <textarea class="form-floating" id="reglas"></textarea>
+                <label for="reglas">Escribe las Reglas por aca</label>
+              </div>
+              <button>Publicar Anuncio</button>
+            </form>
           </div>
-          <div className="mb-3">
-            <label for="rent" class="form-label mt-4">
-              Precio de Alquiler:
-            </label>
-            <input
-              type="number"
-              className="form-control"
-              id="rent"
-              name="rent"
-              required
-            />
-          </div>
-          <div class="mb-3">
-            <label for="location" className="form-label mt-3">
-              Ubicacion aproximada:
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="location"
-              name="location"
-              required
-            />
-          </div>
-          <div class="mb-1">
-            <label for="images" className="form-label mt-3">
-              Imágenes del Anuncio:
-            </label>
-            <input
-              type="file"
-              className="form-control form-control-lg"
-              id="images"
-              name="images"
-              multiple
-              required
-            />
-          </div>
-
-
-          <select class="form-select  estancia" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-
-
-          {/* <div class="mb-3">
-            <div class="dropdown mt-3">
-              <button
-                className="btn btn-secondary dropdown-toggle mt-5 mb-3"
-                type="button"
-                id="dropdownMenuButton"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {estadia == "" ? "Seleccione la opcion" : estadia}
-              </button>
-              <ul
-                class="dropdown-menu text-center"
-                aria-labelledby="dropdownMenuButton"
-              >
-                <li cnClick={() => {
-                  setEstadia("Estancia Corta");
-                }}>
-                  <a className="dropdown-item">Estancia Corta</a>
-                </li>
-                <li onClick={() => {
-                  setEstadia("Estancia Larga");
-                }}>
-                  <a className="dropdown-item">Estancia Larga</a>
-                </li>
-              </ul>
-            </div>
-          </div> */}
-
-
-
-          <div class="mb-3">
-            <label for="description" class="form-label mt-2">
-              Descripcion del Anuncio:
-            </label>
-            <textarea
-              class="form-control tArea"
-              id="description"
-              name="description"
-              rows="3"
-              required
-            ></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="rules" class="form-label mt-4">
-              Reglas a seguir
-            </label>
-            <textarea
-              class="form-control tArea"
-              id="rules"
-              name="rules"
-              rows="3"
-              required
-            ></textarea>
-          </div>
-
-          <button class="publish mb-3 mt-5 mb-5">
-            Publicar Anuncio
-          </button>
-        </form>
-      </div>
-      <div className="ejemplo">
-        <h1>ejemplo</h1>
+        </div>
       </div>
     </>
   );
