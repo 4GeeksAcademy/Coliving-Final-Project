@@ -6,9 +6,11 @@ import { BackendURL } from "./component/backendURL";
 import Home from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
-import  Publish  from "./pages/formAD.jsx";
+
 import injectContext from "./store/appContext";
-import ContactForm from "./pages/ContactForm.jsx";
+import ContactForm from "./component/ContactForm.js";
+import Publish from "./component/formAD.js";
+import Login from "./component/login.js";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -34,6 +36,7 @@ const Layout = () => {
             <Route element={<Perfil />} path="/perfil" />
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<Publish />} path="/formAD" />
+            <Route element={<Login />} path="/login" />
             <Route element={<h1>Not found!</h1>} />
             <Route element={<ContactForm />} path="/contact" />
           </Routes>
