@@ -3,7 +3,7 @@ import React from 'react';
 const Filtros = () => {
 
   return (
-    
+
     <div className="container mt-5 col-6 mx-auto">
       <div className="d-flex justify-content-between align-items-center my-2 mx-2">
         <i class="fa-solid fa-x"></i>
@@ -53,8 +53,8 @@ const Filtros = () => {
       <h2 className="my-4">Rango de Precios</h2>
       <p>Precios por noches sin incluir impuestos y tarifas</p>
       <div className="d-flex justify-content-between">
-        <button type="button" class="btn btn-light">Light</button>
-        <button type="button" class="btn btn-light">Light</button>
+        <button type="button" class="btn btn-primary">Light</button>
+        <button type="button" class="btn btn-primary">Light</button>
       </div>
 
     </div>

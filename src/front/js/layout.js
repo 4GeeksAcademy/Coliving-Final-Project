@@ -6,7 +6,6 @@ import { BackendURL } from "./component/backendURL";
 import Home from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
-import Publish from "./pages/formAD.jsx";
 import injectContext from "./store/appContext";
 import ContactForm from "./component/ContactForm.js";
 import Publish from "./component/formAD.js";
