@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./../../styles/login.css";
 import { Link } from "react-router-dom";
-import {Context} from "./../store/appContext.js";
+import { Context } from "./../store/appContext.js";
 
 const [errors, setErrors] = useState({});
 cons[(submitted, setSubmitted)] = useState(false);
