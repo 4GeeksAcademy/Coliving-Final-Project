@@ -15,5 +15,8 @@
       "addWords": true,
       "scope": "workspace"
     }
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   }
 }
