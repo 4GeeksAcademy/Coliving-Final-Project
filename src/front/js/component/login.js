@@ -1,8 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import "./../../styles/login.css";
 import { Link } from "react-router-dom";
 
+const [errors, setErrors] = useState({});
+cons[(submitted, setSubmitted)] = useState(false);
+
 export default function Login() {
+  // const [formData, setFormData] = useState({
+  //   email: "",
+  //   password: "",
+  // });
+
+  // const validate = () => {
+  //   let errors = {};
+  //   if (!formData.email) {
+  //     errors.email = "Email es obligatorio";
+  //   } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+  //     errors.email = "Email no valido";
+  //   }
+  //   if (!formData.password) {
+  //     errors.phone = "La Contraseña es obligatoria";
+  //   }
+  //   return errors;
+  // };
+
+  // const handleChange = (e) => {
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const validationErrors = validate();
+  //   if (Object.keys(validationErrors).length === 0) {
+  //     setSubmitted(true);
+  //     console.log("Formulario enviado:", formData);
+  //   } else {
+  //     setErrors(validationErrors);
+  //   }
+  // };
+
   return (
     <>
       <div className="container">

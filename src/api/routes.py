@@ -5,6 +5,8 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
+from flask_jwt_extended import create_access_token
+
 
 api = Blueprint('api', __name__)
 
@@ -20,3 +22,15 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+
+@api.route("/login", methods=["POST"])
+def login():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+
+    if email != "i5z0I@example.com" or password != "secret":
+        return jsonify({"msg": "Bad username or password"}), 401
+    
+    acces_token = create_access_token(identity=email)
+    return jsonify(access_token=acces_token), 200
