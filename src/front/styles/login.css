@@ -1,0 +1,22 @@
+/* 
+    General Styles used on every website (Don't Repeat Yourself)
+*/
+
+.submit {
+  background-color: #22577a;
+}
+
+.submit:hover {
+  cursor: pointer;
+  background-color: #57cc99;
+}
+
+.link-register {
+  margin-left: 20%;
+}
+
+.link-register-bground {
+  text-decoration: none;
+  font-size: 18px;
+  color: #22577a;
+}
