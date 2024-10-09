@@ -1,14 +1,17 @@
 import React from "react";
-import NavbarLanding from "./navbarLanding.jsx";
-import HeaderLanding from "./headerLanding.jsx";
-import CardLanding from "./cardLanding.jsx";
+import NavbarLanding from "../component/navbarLanding.jsx";
+import CardsLanding from "../component/cardLanding.jsx";
+import FooterLanding from "../component/footerLanding.jsx";
 
 const LandingPage = () => {
     return (
         <>
             <NavbarLanding />
-            <HeaderLanding />
-            <CardLanding />
+            <CardsLanding />
+            <CardsLanding />
+            <CardsLanding />
+            <CardsLanding /> 
+            <FooterLanding />
         </>
     )
 }

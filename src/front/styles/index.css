@@ -2,6 +2,7 @@
     General Styles used on every website (Don't Repeat Yourself)
 */
 
+/*
 body {
   margin: 0;
   padding: 0;
@@ -115,10 +116,6 @@ li a {
   margin-bottom: 4%;
 }
 
-.icono {
-  font-size: 30px;
-}
-
 select option {
   border: none;
 }
@@ -135,4 +132,14 @@ button {
   color: #22577a !important;
   border: none !important;
   box-shadow: 0 0 20px 3px rgb(176, 172, 172);
+}
+*/
+
+.icono {
+  font-size: 25px;
+  color: #46483e;
+}
+
+.nombre {
+  color: #b64359;
 }

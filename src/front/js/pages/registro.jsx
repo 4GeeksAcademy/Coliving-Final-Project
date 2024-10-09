@@ -3,7 +3,7 @@ import React from "react";
 const Registro = () => {
     return (
       <>
-        <div className="container my-5 ">
+        <div className="container m-5 ">
             <p className="text-center pt-3"><strong>SIGN UP</strong></p>
             <form>
                 <div className="mb-3 ">
