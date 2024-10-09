@@ -1,4 +1,6 @@
 import React from 'react';
+
+
 const Perfil = () => {
   const user = {
     imageUrl:"https://i.pravatar.cc/300",
@@ -9,6 +11,8 @@ const Perfil = () => {
     direccion: "***********",
     contacto: "+58 ****_****90857"
   }
+
+  
   return (
     <form class="container mt-5 col-6 mx-auto">
       <fieldset disabled>
