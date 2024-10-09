@@ -9,7 +9,7 @@ import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 import ContactForm from "./component/ContactForm.js";
 import Publish from "./component/formAD.js";
-import Login from "./component/login.js";
+import Login from "./pages/login";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";

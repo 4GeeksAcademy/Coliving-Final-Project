@@ -7,6 +7,18 @@
   "[javascriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
+<<<<<<< HEAD
+  "cSpell.words": ["acces", "jsonify"],
+  "cSpell.customDictionaries": {
+    "custom-dictionary-workspace": {
+      "name": "custom-dictionary-workspace",
+      "path": "${workspaceFolder:Coliving-Final-Project}/.cspell/custom-dictionary-workspace.txt",
+      "addWords": true,
+      "scope": "workspace"
+    }
+  },
+=======
+>>>>>>> e01e6d417806cfc7a93de4e09c0ac3d317833375
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   }
