@@ -1,6 +1,6 @@
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
-
+// npm install --save react-toastify
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -70,9 +70,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(data);
 
 				if (resp.ok) {
-					toast.success("Login success 🎉")
+					// toast.success("Login success 🎉")
+					console.log("Login success 🎉")
+
 				} else {
-					toast.error("Login failed 🙅🏽")
+					// toast.error("Login failed 🙅🏽")
+					console.log("Login failed 🙅🏽")
 				}
 
 
