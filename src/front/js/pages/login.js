@@ -3,8 +3,7 @@ import "./../../styles/login.css";
 import { Link } from "react-router-dom";
 import { Context } from "./../store/appContext.js";
 
-const [errors, setErrors] = useState({});
-cons[(submitted, setSubmitted)] = useState(false);
+
 
 export default function Login() {
 
