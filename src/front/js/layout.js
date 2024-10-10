@@ -15,6 +15,8 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import Perfil from "./component/Perfil.js";
 import Filtros from "./component/filtros.js"
+import LandingPage from "./pages/landingPage.jsx";
+import Registro from "./pages/registro.jsx";
 
 //create your first component
 const Layout = () => {
@@ -39,6 +41,8 @@ const Layout = () => {
             <Route element={<Login />} path="/login" />
             <Route element={<h1>Not found!</h1>} />
             <Route element={<ContactForm />} path="/contact" />
+            <Route element={<LandingPage />} path="/landingPage" />
+            <Route element={<Registro />} path="/registro" />  
           </Routes>
         </ScrollToTop>
       </BrowserRouter>
