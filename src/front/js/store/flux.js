@@ -1,6 +1,6 @@
-// import { toast } from "react-toastify";
+import toast, { Toaster } from 'react-hot-toast';
 
-// npm install --save react-toastify
+
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -28,7 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getMessage: async () => {
 				try {
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
+					const resp = await fetch(process.env.BACKEND_URL + "api/hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
@@ -55,7 +55,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			login: async (email, password) => {
 
 				// fetching data from the backend
-				const resp = await fetch(process.env.BACKEND_URL + "/api/login", {
+				const resp = await fetch(process.env.BACKEND_URL + "api/login", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json"
@@ -70,12 +70,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(data);
 
 				if (resp.ok) {
-					// toast.success("Login success 🎉")
-					console.log("Login success 🎉")
-
+					toast.success("Login success 🎉")
 				} else {
-					// toast.error("Login failed 🙅🏽")
-					console.log("Login failed 🙅🏽")
+					toast.error("Login failed 🙅🏽")
 				}
 
 
@@ -84,7 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-			}
+			},
 		},
 	};
 };

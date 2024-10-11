@@ -12,7 +12,7 @@
 }
 
 .link-register {
-  margin-left: 20%;
+  margin-left: 25%;
 }
 
 .link-register-bground {
@@ -20,3 +20,13 @@
   font-size: 18px;
   color: #22577a;
 }
+#toggle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  width: 30px;
+  font-size: 22px;
+  cursor: pointer;
+}
+

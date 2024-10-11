@@ -8,6 +8,7 @@ import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 import ContactForm from "./component/ContactForm.js";
+import HostProperty from "./component/HostProperty.jsx";
 import Publish from "./component/formAD.js";
 import Login from "./pages/login";
 
@@ -41,6 +42,7 @@ const Layout = () => {
             <Route element={<Login />} path="/login" />
             <Route element={<h1>Not found!</h1>} />
             <Route element={<ContactForm />} path="/contact" />
+            <Route element={<HostProperty />} path="/hostproperty" />
             <Route element={<LandingPage />} path="/landingPage" />
             <Route element={<Registro />} path="/registro" />  
           </Routes>
