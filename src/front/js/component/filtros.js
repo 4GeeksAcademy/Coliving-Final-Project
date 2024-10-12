@@ -1,32 +1,52 @@
 import React, { useState } from 'react';
-import calendario from './../../img/calendario.png';
+// import calendario from './../../img/calendario.png';
 
 const Habitaciones = (props) => {
-  const[count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   return (
     <div className="d-flex justify-content-between m-5">
-        <p>{props.nombre}</p>
-        <div className='d-flex justify-content-between align-items-center'>
-          <button onClick={() => {
-            if (count > 0 ) {
-              setCount(count-1)
-            }
-          }} className='rounded-circle btn btn-ouline-secondary'>-</button>
-          <p className="my-auto">{count == 0 ? "cualquiera" : count}</p>
-          <button onClick={() => {
-            setCount(count+1)
-          }} className='rounded-circle btn btn-ouline-secondary'>+</button>
-        </div>
+      <p>{props.nombre}</p>
+      <div className='d-flex justify-content-between align-items-center'>
+        <button onClick={() => {
+          if (count > 0) {
+            setCount(count - 1);
+          }
+        }} className='rounded-circle btn btn-outline-secondary custom-button' disabled={count === 0}>-</button>
+        <p className="my-auto mx-4" style={{ width: '80px', texteAling: 'center' }}>{count === 0 ? "cualquiera" : count}</p>
+        <button onClick={() => {
+          setCount(count + 1);
+        }} className='rounded-circle btn btn-outline-secondary custom-button'>+</button>
       </div>
+    </div>
   )
 }
 
 const Filtros = () => {
 
   const [selectedType, selSelectedType] = useState(null);
+  const [minPrice, setMinPrice] = useState('$5200');
+  const [maxPrice, setMaxPrice] = useState('$190000+');
 
   const handleSelection = (type) => {
     selSelectedType(type);
+  };
+
+  const handleMinPriceChange = (e) => {
+    const value = e.target.value;
+    if (value.startsWith('$')) {
+      setMinPrice(value);
+    } else {
+      setMinPrice('$' + value);
+    }
+  };
+
+  const handleMaxPriceChange = (e) => {
+    const value = e.target.value;
+    if (value.endsWith('+')) {
+      setMaxPrice(value);
+    } else {
+      setMaxPrice(value + '+');
+    }
   };
 
   return (
@@ -44,26 +64,26 @@ const Filtros = () => {
         <div className="card-group gap-3">
           <div className="card text-center border-0 bg-transparent">
             <div className="card-body">
-              <i className="fas fa-parking fa-3x border p-3 rounded-circle" style={{ color: 'green' }}></i>
+              <i className="fas fa-parking fa-3x border p-3 rounded-circle" style={{ color: '#26bb2b' }}></i>
               <p className="card=text mt-3">Estacionamiento Gratuito</p>
             </div>
           </div>
 
           <div className="card text-center border-0 bg-transparent">
             <div className="card-body">
-              <i className="fas fa-ban fa-3x border p-3 rounded-circle" style={{ color: 'green' }}></i>
+              <i className="fas fa-ban fa-3x border p-3 rounded-circle" style={{ color: '#26bb2b' }}></i>
               <p className="card-text mt-3">Cancelacion Gratuita</p>
             </div>
           </div>
           <div className="card text-center border-0 bg-transparent">
             <div className="card-body">
-              <i className="fas fa-wind fa-3x border p-3 rounded-circle" style={{ color: 'green' }}></i>
+              <i className="fas fa-wind fa-3x border p-3 rounded-circle" style={{ color: '#26bb2b' }}></i>
               <p className="card-text mt-3">Aire Acondicionado</p>
             </div>
           </div>
           <div className="card text-center border-0 bg-transparent">
             <div className="card-body">
-              <i className="fas fa-tint fa-3x border p-3 rounded-circle" style={{ color: 'green' }}></i>
+              <i className="fas fa-tint fa-3x border p-3 rounded-circle" style={{ color: '#26bb2b' }}></i>
               <p className="card-text mt-3">Lavadora</p>
             </div>
           </div>
@@ -90,16 +110,24 @@ const Filtros = () => {
       <h2 className="my-4">Rango de Precios</h2>
       <p>Precios por noches sin incluir impuestos y tarifas</p>
       <div className="d-flex justify-content-between gap-5">
-        <button className="btn btn-outline-secondary btn-sm" type="button">$5200</button>
-        <button className="btn btn-outline-secondary btn-sm" type="button">$190000+</button>
+        <div className="d-flex flex-column align-items-center">
+          <label htmlFor="minPrice" className="form-label mt-2">Mínimo</label>
+          <input id="minPrice" className="form-control form-control-sm rounded-pill custom-input" type="text" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} />
+          
+        </div>
+        <div className="d-flex flex-column align-items-center">
+          <label htmlFor="maxPrice" className="form-label mt-2">Máximo</label>
+          <input id="maxPrice" className="form-control form-control-sm rounded-pill custom-input" type="text" value={maxPrice} onChange={(e) =>setMaxPrice(e.target.value)} />
+          
+        </div>
       </div>
 
       <hr className="mt-3" />
 
       <h2 className="my-4">Habitaciones y Camas</h2>
-      <Habitaciones nombre="Habitaciones"/>
-      <Habitaciones nombre="Camas"/>
-      <Habitaciones nombre="Banos"/>
+      <Habitaciones nombre="Habitaciones" />
+      <Habitaciones nombre="Camas" />
+      <Habitaciones nombre="Baños" />
 
       <hr className="mt-3" />
 
