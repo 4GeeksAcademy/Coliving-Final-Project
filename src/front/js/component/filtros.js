@@ -4,15 +4,15 @@ import React, { useState } from 'react';
 const Habitaciones = (props) => {
   const [count, setCount] = useState(0);
   return (
-    <div className="d-flex justify-content-between m-5">
+    <div className="d-flex justify-content-between align-items-center m-5">
       <p>{props.nombre}</p>
-      <div className='d-flex justify-content-between align-items-center'>
+      <div className='d-flex justify-content-between align-items-center' style={{ width: '200px' }}>
         <button onClick={() => {
           if (count > 0) {
             setCount(count - 1);
           }
         }} className='rounded-circle btn btn-outline-secondary custom-button' disabled={count === 0}>-</button>
-        <p className="my-auto mx-4" style={{ width: '80px', texteAling: 'center' }}>{count === 0 ? "cualquiera" : count}</p>
+        <p className="my-auto mx-4" style={{ width: '80px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>{count === 0 ? "cualquiera" : count}</p>
         <button onClick={() => {
           setCount(count + 1);
         }} className='rounded-circle btn btn-outline-secondary custom-button'>+</button>
