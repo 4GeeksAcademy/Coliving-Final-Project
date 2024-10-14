@@ -42,8 +42,39 @@ body {
   
   /* form:hover {
     transform: translateY(-5px);
+
   } */
+
   
+
+  .custom-input {
+    width: 100px; /* Ajusta el ancho según sea necesario */
+    height: 40px;
+  }
+
+  
+  .btn-outline-secondary {
+    border: 2px solid #6c757d; /* Ajusta el color del borde según sea necesario */
+    color: #6c757d; /* Ajusta el color del texto según sea necesario */
+  }
+  
+  .btn-outline-secondary:hover {
+    background-color: #4caf50; /* Color al pasar el mouse */
+    border-color: #4caf50; /* Color del borde al pasar el mouse */
+    color: white; /* Color del texto al pasar el mouse */
+  }
+  .btn-outline-secondary:disabled {
+    opacity: 0.5; /* Ajusta la opacidad del botón deshabilitado */
+  }
+  
+  .custom-button {
+    width: 40px; /* Ajusta el ancho del botón */
+    height: 40px; /* Ajusta la altura del botón */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   input, select, textarea {
     width: 100%;
     padding: 15px;

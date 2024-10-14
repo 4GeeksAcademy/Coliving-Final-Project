@@ -17,7 +17,7 @@ const Perfil = () => {
     <form class="container mt-5 col-6 mx-auto">
       <fieldset disabled>
         <legend>Perfil de Usuario</legend>
-        <div class="mb-3">
+        <div class="mb-3 d-flex justify-content-center">
           <img class="rounded-circle" src={user.imageUrl} />
         </div>
         <div class="mb-3">
@@ -86,7 +86,7 @@ const Perfil = () => {
             placeholder={user.contacto}
           />
         </div>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn" style={{backgroundColor: '#4caf50', color: 'white'}}>
           Editar
         </button>
       </fieldset>
