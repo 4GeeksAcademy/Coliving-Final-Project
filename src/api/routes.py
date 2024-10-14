@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token,get_jwt_identity, jwt_required
 
 
 api = Blueprint('api', __name__)
@@ -50,4 +50,10 @@ def login():
     }), 200
         
  
+# @jwt_required()
+# @api.route('/user', methods=['GET'])
+# def get_user_logged():
+#     email = get_jwt_identity()
+#     user = User.query.filter_by(email=email).first()
+#     return jsonify(user.serialize()), 200
 

@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 
 
+
+
 export default function Login() {
 
   const { store, actions } = useContext(Context);
@@ -24,6 +26,7 @@ export default function Login() {
 
   return (
     <>
+
       <div className="container">
         <div className="row">
           <div className="col">
@@ -45,12 +48,12 @@ export default function Login() {
                 <button onClick={() => actions.login(user.email, user.password)}
                   className="submit" type="button">Log In</button>
               </div>
-              <div className="link-register mt-4">
-                <Link to="/registro">
-                  <span className="link-register-bground">
-                    No tienes cuenta? Registrate
-                  </span>
-                </Link>
+              <div className="link-register mx-auto text-center mt-4">
+
+                <span className="register">No tienes cuenta?
+                  <Link to="/registro"> Registrate </Link>
+                </span>
+
               </div>
             </form>
           </div>
