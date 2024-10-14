@@ -81,6 +81,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					toast.error("Login failed 🙅🏽")
 				}
 			},
+
+			logout: () => {
+				localStorage.removeItem("token");
+				setStore({ token: null });
+				toast.success("Logout success 🎉")
+			}
 		}
 	};
 };
