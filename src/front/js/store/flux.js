@@ -5,6 +5,8 @@ import toast, { Toaster } from 'react-hot-toast';
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			user: null,
+			token: localStorage.getItem("token") || null,
 			message: null,
 			demo: [
 				{
@@ -54,7 +56,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			login: async (email, password) => {
 
-				// fetching data from the backend
+				// fetching data from the backend 
 				const resp = await fetch(process.env.BACKEND_URL + "api/login", {
 					method: "POST",
 					headers: {
@@ -67,22 +69,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 
 				const data = await resp.json();
-				console.log(data);
+
+				localStorage.setItem("token", data.token);
+
+				setStore({ token: data.token });
+				setStore({ user: data.user });
 
 				if (resp.ok) {
 					toast.success("Login success 🎉")
 				} else {
 					toast.error("Login failed 🙅🏽")
 				}
-
-
-
-
-
-
-
 			},
-		},
+		}
 	};
 };
 

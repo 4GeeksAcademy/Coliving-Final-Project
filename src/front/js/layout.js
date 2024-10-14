@@ -10,7 +10,7 @@ import injectContext from "./store/appContext";
 import ContactForm from "./component/ContactForm.js";
 import Publish from "./component/formAD.js";
 import Login from "./pages/login";
-
+import { Toaster } from 'react-hot-toast';
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import Perfil from "./component/Perfil.js";
@@ -42,9 +42,10 @@ const Layout = () => {
             <Route element={<h1>Not found!</h1>} />
             <Route element={<ContactForm />} path="/contact" />
             <Route element={<LandingPage />} path="/landingPage" />
-            <Route element={<Registro />} path="/registro" />  
+            <Route element={<Registro />} path="/registro" />
           </Routes>
         </ScrollToTop>
+        <Toaster />
       </BrowserRouter>
     </div>
   );

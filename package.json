@@ -10,6 +10,8 @@
 		"start": "webpack-dev-server --config webpack.dev.js --port 3000",
 		"build": "webpack --config webpack.prod.js"
 	},
+	
+
 	"author": {
 		"name": "Alejandro Sanchez",
 		"url": "http://alesanchezr.com/"
@@ -73,6 +75,7 @@
 		]
 	},
 	"dependencies": {
+		"cors": "^2.8.5",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
 		"react-dom": "^16.8.4",

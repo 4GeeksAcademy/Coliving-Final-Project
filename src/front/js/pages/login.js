@@ -1,7 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./../../styles/login.css";
 import { Link } from "react-router-dom";
 import { Context } from "./../store/appContext.js";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -10,6 +11,15 @@ export default function Login() {
   const { store, actions } = useContext(Context);
   const [user, setUser] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+
+
+  useEffect(() => {
+    if (store.token) {
+      navigate("/landingPage");
+    }
+  }, []);
 
 
   return (
@@ -36,7 +46,7 @@ export default function Login() {
                   className="submit" type="button">Log In</button>
               </div>
               <div className="link-register mt-4">
-                <Link to="/register">
+                <Link to="/registro">
                   <span className="link-register-bground">
                     No tienes cuenta? Registrate
                   </span>

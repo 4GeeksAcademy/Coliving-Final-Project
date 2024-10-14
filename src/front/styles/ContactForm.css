@@ -40,9 +40,9 @@ body {
     transition: transform 0.3s ease;
   }
   
-  form:hover {
+  /* form:hover {
     transform: translateY(-5px);
-  }
+  } */
   
   input, select, textarea {
     width: 100%;

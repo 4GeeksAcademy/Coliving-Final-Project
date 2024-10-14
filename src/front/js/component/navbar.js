@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+
+	const { store, actions } = useContext(Context);
+
 	return (
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
 				<Link to="/">
 					<span className="navbar-brand mb-0 h1">Coliving</span>
 				</Link>
+				{!store.token && <link to="/login">
+					<button className="submit">Login</button>
+				</link>}
+
+
+				{store.token && <button className="btn btn-danger mx-1" onClick={() => actions.logout()}>
+					Logout
+				</button>}
+
+
 				<div className="ml-auto d-flex align-items-center">
 					<button class="btn btn-link p-0 border-0">
 						<i class="fa-solid fa-globe me-2"></i>
