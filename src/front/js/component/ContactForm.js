@@ -103,6 +103,7 @@ const ContactForm = ({ hostName = "John Doe", location = "Monterrey" }) => {
             <label htmlFor="message">Mensaje:</label>
             <textarea
               name="message"
+              className="tArea"
               value={formData.message}
               onChange={handleChange}
               placeholder="Hola, estoy interesado en el espacio que ofreces..."

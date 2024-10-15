@@ -75,7 +75,7 @@ body {
     align-items: center;
   }
 
-  input, select, textarea {
+  input, select, tArea {
     width: 100%;
     padding: 15px;
     margin: 10px 0;
@@ -90,7 +90,7 @@ body {
     border-color: #bbb;
   }
   
-  input:focus, textarea:focus, select:focus {
+  input:focus, tArea:focus, select:focus {
     border-color: #4caf50;
     outline: none;
     box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
