@@ -3,7 +3,7 @@ import "./../../styles/login.css";
 import { Link } from "react-router-dom";
 import { Context } from "./../store/appContext.js";
 import { useNavigate } from "react-router-dom";
-
+import Navbar from "../component/navbar.js";
 
 
 
@@ -17,6 +17,7 @@ export default function Login() {
 
 
 
+
   useEffect(() => {
     if (store.token) {
       navigate("/landingPage");
@@ -26,7 +27,7 @@ export default function Login() {
 
   return (
     <>
-
+      <Navbar />
       <div className="container">
         <div className="row">
           <div className="col">

@@ -28,3 +28,8 @@
   cursor: pointer;
 }
 
+
+a span{
+  text-decoration: none;
+  text-decoration-line: none;
+}

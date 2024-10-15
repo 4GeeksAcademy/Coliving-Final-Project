@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./../../styles/AdPublish.css";
 import toast from "react-hot-toast";
+import Navbar from "./navbar.js";
 
 
 function Publish() {
   return (
     <>
+      <Navbar />
       <div className="container">
         <div className="row">
           <div className="col">
