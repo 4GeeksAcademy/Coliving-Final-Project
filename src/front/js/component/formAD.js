@@ -17,7 +17,7 @@ function Publish() {
                 <input
                   type="text"
                   className="form-control"
-                  id="titulo"
+                  name="title"
                   placeholder="Residencia en linda Vista"
                   required
                 />
@@ -27,7 +27,7 @@ function Publish() {
                 <input
                   type="number"
                   className="form-control"
-                  id="renta"
+                  name="rent"
                   placeholder="Monto de Alquiler"
                   required
                 />
@@ -37,23 +37,24 @@ function Publish() {
                 <input
                   type="text"
                   className="form-control"
-                  id="ubicacion"
+                  name="location"
                   placeholder="Ubicacion"
                   required
                 />
                 <label >Ubicacion Aproximada</label>
               </div>
               <div>
+                <label className="form-label mt-4">Sube las fotos de tu propiedad</label>
                 <input
                   multiple
                   type="file"
-                  id="file"
+                  name="file"
                   className="upload-box"
                   accept="image/*"
                   onChange={(e) => {
-                    const files = e.target.value;
-                    console.log(files);
-                    if (files.length > 5) {
+                    const file = e.target.files;
+
+                    if (file.length >= 6) {
                       toast.error("No se puede subir mas de 5 imagenes");
                       document.getElementById("file").value = "";
                     }
@@ -61,21 +62,23 @@ function Publish() {
                 />
               </div>
               <div className="form-floating mb-3 ">
-                <select className="form-floating">
+                <select className="form-floating" name="time">
                   <option defaultValue={"Select"}>Seleccione el tiempo de estancia</option>
                   <option>Estancia Corta</option>
                   <option>Estancia Larga</option>
                 </select>
               </div>
-              <div className="form-floating ">
-                <textarea className="form-control styleArea" placeholder="Escribe una descripción detallada de tu alojamiento" id="descripcion" ></textarea>
-                <label >Comments</label>
+              <div className="form-floating " >
+                <textarea className="form-control  styleArea" name="description" placeholder="Escribe una descripción detallada de tu alojamiento" id="descripcion" ></textarea>
+                <label >Descripcion</label>
               </div>
-              <div className="form-floating  mt-4">
-                <textarea className="form-control styleArea" placeholder="Enliste sus reglas aqui" id="reglas"></textarea>
+              <div className="form-floating  mt-4" name>
+                <textarea className="form-control styleArea" name="rules" placeholder="Enliste sus reglas aqui" id="reglas"></textarea>
                 <label >Escribe las Reglas por aca</label>
               </div>
-              <button className="submit mt-5">Publicar Anuncio</button>
+              <button className="submit mt-5"
+                onClick={() => toast.success("Anuncio publicado 🎉")}
+              >Publicar Anuncio</button>
             </form>
           </div>
         </div>
@@ -84,4 +87,4 @@ function Publish() {
   );
 }
 
-export default Publish;
+export default Publish; 

@@ -48,9 +48,9 @@ const Layout = () => {
             <Route element={<Registro />} path="/registro" />
             <Route element={<Footer />} path="/footer" />
           </Routes>
-          <div className="container-fluid p-0">
-            <Footer />
-          </div>
+
+          <Footer />
+
 
         </ScrollToTop>
         <Toaster />
