@@ -4,12 +4,16 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import Filtros from "../component/filtros.js"
 import LandingPage from "./landingPage.jsx";
+import Navbar from "./../component/navbar.js";
+
 
 
 const Home = () => {
   const { store, actions } = useContext(Context);
   return (
+
     <LandingPage />
+
   );
 };
 

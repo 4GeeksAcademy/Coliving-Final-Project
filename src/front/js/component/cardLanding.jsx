@@ -23,12 +23,25 @@ const CardLanding = () => {
 const CardsLanding = () => {
   return (
     <>
-      <div className="d-flex gap-4 m-4">
-        <CardLanding />
-        <CardLanding />
-        <CardLanding />
-        <CardLanding />
+      <div className="container mt-5">
+
+        <div className="row">
+          <div className="col-lg">
+            <CardLanding />
+          </div>
+          <div className="col-lg">
+            <CardLanding />
+          </div>
+          <div className="col-lg">
+            <CardLanding />
+          </div>
+          <div className="col-lg">
+            <CardLanding />
+          </div>
+        </div>
+
       </div>
+
     </>
   )
 }

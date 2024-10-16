@@ -4,7 +4,7 @@ import { Context } from "../store/appContext";
 import "./../../styles/navbar.css";
 import ColivingLogo from "./../../img/coliving.png"
 
-const Navbar = () => {
+export const Navbar = () => {
 
 	const { store, actions } = useContext(Context);
 
@@ -49,4 +49,3 @@ const Navbar = () => {
 };
 
 
-export default Navbar;

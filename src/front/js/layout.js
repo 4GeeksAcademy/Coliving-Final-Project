@@ -12,7 +12,7 @@ import HostProperty from "./component/HostProperty.jsx";
 import Publish from "./component/formAD.js";
 import Login from "./pages/login";
 import { Toaster } from 'react-hot-toast';
-import { Navbar } from "./component/navbar";
+import { Navbar } from "./component/navbar.js";
 import { Footer } from "./component/footer";
 import Perfil from "./component/Perfil.js";
 import Filtros from "./component/filtros.js"
@@ -32,6 +32,7 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
+          <Navbar />
           <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<Demo />} path="/demo" />
@@ -45,7 +46,12 @@ const Layout = () => {
             <Route element={<HostProperty />} path="/hostproperty" />
             <Route element={<LandingPage />} path="/landingPage" />
             <Route element={<Registro />} path="/registro" />
+            <Route element={<Footer />} path="/footer" />
           </Routes>
+          <div className="container-fluid p-0">
+            <Footer />
+          </div>
+
         </ScrollToTop>
         <Toaster />
       </BrowserRouter>
