@@ -1,0 +1,13 @@
+.icono {
+    font-size: 25px;
+    color: #46483e;
+  }
+  
+.nombre {
+    color: #b64359;
+    text-align: center;
+}
+
+button {
+    background-color: #b64359;
+}
