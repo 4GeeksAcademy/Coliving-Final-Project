@@ -21,6 +21,20 @@ import Registro from "./pages/registro.jsx";
 
 //create your first component
 const Layout = () => {
+  const property = {
+    title: "Departamento en el centro de Monterrey",
+    images: [
+      "https://via.placeholder.com/150",
+      "https://via.placeholder.com/150",
+      "https://via.placeholder.com/150"
+    ],
+    location: "Centro, Monterrey, Nuevo León",
+    description: "Amplio departamento con 2 habitaciones y 1 baño, ideal para compartir.",
+    rent: 8000,
+    availability: true,
+    rules: ["No mascotas", "No fiestas", "Convivencia respetuosa"],
+    hostName: "Carlos López"
+  };
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
@@ -43,7 +57,7 @@ const Layout = () => {
             <Route element={<Login />} path="/login" />
             <Route element={<h1>Not found!</h1>} />
             <Route element={<ContactForm />} path="/contact" />
-            <Route element={<HostProperty />} path="/hostproperty" />
+            <Route element={<HostProperty property={property} />} path="/hostProperty" />
             <Route element={<LandingPage />} path="/landingPage" />
             <Route element={<Registro />} path="/registro" />
             <Route element={<Footer />} path="/footer" />
