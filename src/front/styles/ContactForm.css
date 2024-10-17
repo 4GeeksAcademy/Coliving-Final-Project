@@ -1,23 +1,24 @@
 /* Estilos específicos para ContactForm */
 .contact-form-container {
   max-width: 600px;
-  margin: 50px auto;
-  padding: 25px;
+  margin: 30px auto;
+  padding: 20px;
   background-color: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e6e6e6;
 }
 
 .contact-form-container h2 {
   text-align: center;
-  font-size: 2em;
-  margin-bottom: 20px;
+  font-size: 1.8em;
+  margin-bottom: 15px;
   color: #333;
 }
 
 .contact-form-container label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   font-size: 1.1em;
   color: #333;
 }
@@ -31,6 +32,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1em;
+  background-color: #f9f9f9;
 }
 
 .contact-form-container .tArea {
@@ -46,16 +48,16 @@
 
 .contact-form-container .success-message {
   text-align: center;
-  padding: 20px;
+  padding: 15px;
   background-color: #d4edda;
   color: #155724;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .contact-form-container button {
   width: 100%;
   padding: 10px 0;
-  background-color: #28a745;
+  background-color: #007bff; /* Color azul similar al botón de Login */
   color: white;
   border: none;
   border-radius: 5px;
@@ -65,5 +67,5 @@
 }
 
 .contact-form-container button:hover {
-  background-color: #218838;
+  background-color: #0056b3;
 }

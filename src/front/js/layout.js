@@ -24,9 +24,9 @@ const Layout = () => {
   const property = {
     title: "Departamento en el centro de Monterrey",
     images: [
-      "https://via.placeholder.com/150",
-      "https://via.placeholder.com/150",
-      "https://via.placeholder.com/150"
+      "https://a0.muscache.com/im/pictures/miso/Hosting-984660069055099617/original/52ae844e-4928-4664-b962-7a13bf009f0d.jpeg?im_w=720",
+      "https://a0.muscache.com/im/pictures/miso/Hosting-984660069055099617/original/52ae844e-4928-4664-b962-7a13bf009f0d.jpeg?im_w=720",
+      "https://a0.muscache.com/im/pictures/miso/Hosting-984660069055099617/original/52ae844e-4928-4664-b962-7a13bf009f0d.jpeg?im_w=720",
     ],
     location: "Centro, Monterrey, Nuevo León",
     description: "Amplio departamento con 2 habitaciones y 1 baño, ideal para compartir.",
