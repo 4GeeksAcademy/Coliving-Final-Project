@@ -1,100 +1,99 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f2f5;
-    /* padding: 20px; */
-  }
-  
-  .property-container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 25px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    text-align: left;
-  }
-  
-  .property-title {
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    color: #333;
-    text-align: center;
-    font-weight: bold;
-  }
-  
-  .property-gallery {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 25px;
-  }
-  
-  .property-image {
-    width: 100%;
-    max-width: 200px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  .property-image:hover {
-    transform: scale(1.05);
-  }
-  
-  .property-info p {
-    margin: 15px 0;
-    font-size: 1.2em;
-    color: #555;
-  }
-  
-  .property-info strong {
-    color: #333;
-  }
-  
-  .property-rules h2 {
-    margin-top: 30px;
-    font-size: 1.8em;
-    color: #333;
-  }
-  
-  .property-rules ul {
-    list-style-type: disc;
-    margin-left: 20px;
-    color: #666;
-  }
-  
-  .property-rules ul li {
-    margin-bottom: 12px;
-    font-size: 1.1em;
-  }
-  
-  .contact-host {
-    text-align: center;
-    margin-top: 40px;
-  }
-  
-  .contact-host button {
-    padding: 15px 30px;
-    background-color: #28a745; /* Color verde */
-    color: white;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.3em;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .contact-host button:hover {
-    background-color: #218838; /* Color verde más oscuro en hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  }
-  
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f2f5;
+}
+
+/* Estilos específicos para HostProperty */
+.host-property {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.host-property-title {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  color: #333;
+  text-align: center;
+  font-weight: bold;
+}
+
+.host-property-gallery {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.host-property-image {
+  width: 100%;
+  max-width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.host-property-image:hover {
+  transform: scale(1.05);
+}
+
+.host-property-info p {
+  margin: 15px 0;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.host-property-info strong {
+  color: #333;
+}
+
+.host-property-rules h2 {
+  margin-top: 30px;
+  font-size: 1.8em;
+  color: #333;
+}
+
+.host-property-rules ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  color: #666;
+}
+
+.host-property-rules ul li {
+  margin-bottom: 12px;
+  font-size: 1.1em;
+}
+
+.host-contact-host {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.host-contact-host button {
+  padding: 15px 30px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.3em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.host-contact-host button:hover {
+  background-color: #218838;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}

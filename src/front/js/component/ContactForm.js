@@ -1,6 +1,5 @@
-// src/ContactForm.jsx
 import React, { useState } from 'react';
-import "./../../styles/ContactForm.css"
+import "./../../styles/ContactForm.css";
 
 const ContactForm = ({ hostName = "John Doe", location = "Monterrey" }) => {
   const [formData, setFormData] = useState({
@@ -49,7 +48,7 @@ const ContactForm = ({ hostName = "John Doe", location = "Monterrey" }) => {
   };
 
   return (
-    <div>
+    <div className="contact-form-container">
       <h2>Contactar al Host</h2>
       {submitted ? (
         <div className="success-message">
