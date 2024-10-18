@@ -1,0 +1,10 @@
+.C-living {
+    text-size-adjust: 20px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.C-living:hover {
+    color: #22577a;
+    text-decoration: underline #22577a;
+}

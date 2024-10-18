@@ -1,7 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./../../styles/login.css";
 import { Link } from "react-router-dom";
 import { Context } from "./../store/appContext.js";
+import { useNavigate } from "react-router-dom";
+
+
 
 
 
@@ -9,13 +12,26 @@ export default function Login() {
 
   const { store, actions } = useContext(Context);
   const [user, setUser] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+
+
+
+  useEffect(() => {
+    if (store.token) {
+      navigate("/landingPage");
+    }
+  }, []);
+
 
   return (
     <>
+
       <div className="container">
         <div className="row">
           <div className="col">
-            <h1 className="fw-bold py-5">Bienvenido al sistema!</h1>
+            <h1 className="fw-bold py-5">Coliving Login!</h1>
 
             {/* LOGIN */}
             <form>
@@ -23,22 +39,22 @@ export default function Login() {
                 <input type="email" className="form-control" onChange={(e) => setUser({ ...user, email: e.target.value })} placeholder="name@example.com" required />
                 <label>Email address</label>
               </div>
+
               <div className="form-floating">
-                <input type="password" className="form-control" onChange={(e) => setUser({ ...user, password: e.target.value })} placeholder="Password" required />
+                <input type={showPassword ? "text" : "password"} id="password" className="form-control" onChange={(e) => setUser({ ...user, password: e.target.value })} placeholder="Password" required />
                 <label>Password</label>
+                <div id="toggle" onClick={() => setShowPassword(!showPassword)}>{showPassword ? "🫣" : "👁️"}</div>
               </div>
               <div>
-                <button onClick={() => actions.login({
-                  email: user.email,
-                  password: user.password
-                })} className="submit">Log In</button>
+                <button onClick={() => actions.login(user.email, user.password)}
+                  className="submit" type="button">Log In</button>
               </div>
-              <div className="link-register mt-4 ">
-                <Link to="/register">
-                  <a className="link-register-bground">
-                    No tienes cuenta? Registrate
-                  </a>
-                </Link>
+              <div className="link-register mx-auto text-center mt-4">
+
+                <span className="register">No tienes cuenta?
+                  <Link to="/registro"> Registrate </Link>
+                </span>
+
               </div>
             </form>
           </div>
@@ -47,3 +63,5 @@ export default function Login() {
     </>
   );
 }
+
+

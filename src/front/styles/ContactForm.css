@@ -1,165 +1,71 @@
-/* Estructura general */
-body {
-    background-color: #f0f2f5;
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  h1 {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: #333;
-  }
-  
-  h2 {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #4caf50;
-    font-weight: 600;
-  }
-  
-  .App {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-  }
-  
-  /* Estilo del formulario */
-  form {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    max-width: 500px;
-    width: 100%;
-    margin: 20px auto;
-    transition: transform 0.3s ease;
-  }
-  
-  form:hover {
-    transform: translateY(-5px);
-  }
-  
-  input, select, textarea {
-    width: 100%;
-    padding: 15px;
-    margin: 10px 0;
-    box-sizing: border-box;
-    border: 2px solid #ddd;
-    border-radius: 6px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  input:hover, select:hover, textarea:hover {
-    border-color: #bbb;
-  }
-  
-  input:focus, textarea:focus, select:focus {
-    border-color: #4caf50;
-    outline: none;
-    box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
-  }
-  
-  /* Estilo para etiquetas */
-  label {
-    font-weight: 500;
-    margin-bottom: 5px;
-    display: block;
-    color: #444;
-  }
-  
-  /* Botón de enviar */
-  button {
-    background-color: #4caf50;
-    color: white;
-    padding: 15px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 20px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  button:active {
-    transform: scale(0.98);
-  }
-  
-  /* Mensaje de éxito */
-  .success-message {
-    background-color: #e8f5e9;
-    color: #388e3c;
-    border: 1px solid #4caf50;
-    border-radius: 5px;
-    padding: 20px;
-    text-align: center;
-    font-weight: bold;
-  }
-  
-  /* Estilo para errores */
-  .error {
-    color: red;
-    font-size: 0.9rem;
-  }
-  
-  /* Estilo para el select personalizado */
-  select {
-    appearance: none; /* Eliminar la flecha predeterminada */
-    background-color: #fff;
-    border: 2px solid #ddd;
-    border-radius: 6px;
-    padding: 15px;
-    font-size: 1rem;
-    color: #444;
-    width: 100%;
-    box-sizing: border-box;
-    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><polygon fill="%23444" points="0,0 10,0 5,5"/></svg>');
-    background-repeat: no-repeat;
-    background-position-x: 95%; /* Ajustar la posición horizontal de la flecha */
-    background-position-y: 50%; /* Centrar la flecha verticalmente */
-    padding-right: 30px; /* Espacio para la flecha */
-  }
-  
-  select:focus {
-    border-color: #4caf50;
-    box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
-    outline: none;
-  }
-  
-  /* Ajuste para campos en pantallas más pequeñas */
-  @media (max-width: 600px) {
-    form {
-      padding: 20px;
-    }
-  
-    h1 {
-      font-size: 2.2rem;
-    }
-  
-    h2 {
-      font-size: 1.6rem;
-    }
-  
-    input, select, textarea {
-      padding: 12px;
-      font-size: 0.95rem;
-    }
-  
-    button {
-      font-size: 1rem;
-      padding: 12px;
-    }
-  }
-  
+/* Estilos específicos para ContactForm */
+.contact-form-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e6e6e6;
+}
+
+.contact-form-container h2 {
+  text-align: center;
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.contact-form-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.contact-form-container input,
+.contact-form-container select,
+.contact-form-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  background-color: #f9f9f9;
+}
+
+.contact-form-container .tArea {
+  resize: none;
+}
+
+.contact-form-container .error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.contact-form-container .success-message {
+  text-align: center;
+  padding: 15px;
+  background-color: #d4edda;
+  color: #155724;
+  border-radius: 5px;
+}
+
+.contact-form-container button {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #007bff; /* Color azul similar al botón de Login */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form-container button:hover {
+  background-color: #0056b3;
+}

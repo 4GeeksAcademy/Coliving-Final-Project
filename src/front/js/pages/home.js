@@ -3,14 +3,18 @@ import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import Filtros from "../component/filtros.js"
+import LandingPage from "./landingPage.jsx";
+import Navbar from "./../component/navbar.js";
+
 
 
 const Home = () => {
   const { store, actions } = useContext(Context);
+  return (
 
-  return <div className="text-center mt-5">
+    <LandingPage />
 
-  </div>;
+  );
 };
 
 export default Home;
