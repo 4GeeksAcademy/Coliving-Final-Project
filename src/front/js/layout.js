@@ -9,7 +9,7 @@ import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 import ContactForm from "./component/ContactForm.js";
 import HostProperty from "./component/HostProperty.jsx";
-import Publish from "./component/formAD.js";
+import Publish from "./component/PublishProperty.js";
 import Login from "./pages/login";
 import { Toaster } from 'react-hot-toast';
 import { Navbar } from "./component/navbar.js";
@@ -39,7 +39,7 @@ const Layout = () => {
             <Route element={<Perfil />} path="/perfil" />
             <Route element={<Filtros />} path="/filtros" />
             <Route element={<Single />} path="/single/:theid" />
-            <Route element={<Publish />} path="/formAD" />
+            <Route element={<Publish />} path="/property" />
             <Route element={<Login />} path="/login" />
             <Route element={<h1>Not found!</h1>} />
             <Route element={<ContactForm />} path="/contact" />

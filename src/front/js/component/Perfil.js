@@ -12,7 +12,7 @@ const Perfil = () => {
     contacto: "+58 ****_****90857"
   }
 
-  
+
   return (
     <form class="container mt-5 col-6 mx-auto">
       <fieldset disabled>
@@ -86,7 +86,7 @@ const Perfil = () => {
             placeholder={user.contacto}
           />
         </div>
-        <button type="submit" class="btn" style={{backgroundColor: '#4caf50', color: 'white'}}>
+        <button type="submit" class="btn" style={{ backgroundColor: '#4caf50', color: 'white' }}>
           Editar
         </button>
       </fieldset>

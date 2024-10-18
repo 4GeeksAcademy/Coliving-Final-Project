@@ -37,7 +37,7 @@ export default function Login() {
             <form>
               <div className="form-floating mb-3">
                 <input type="email" className="form-control" onChange={(e) => setUser({ ...user, email: e.target.value })} placeholder="name@example.com" required />
-                <label>Email address</label>
+                <label>Email</label>
               </div>
 
               <div className="form-floating">
