@@ -1,24 +1,28 @@
 import React from 'react';
-import "./../../styles/HostProperty.css"
-const HostProperty = ({ property }) => {
-  return (
-    <div className="property-container">
-      <h1 className="property-title">{property.title}</h1>
+import { useNavigate } from 'react-router-dom';
+import "./../../styles/HostProperty.css";
 
-      <div className="property-gallery">
+const HostProperty = ({ property }) => {
+  const navigate = useNavigate(); // Utiliza el hook de navegación
+
+  return (
+    <div className="host-property">
+      <h1 className="host-property-title">{property.title}</h1>
+
+      <div className="host-property-gallery">
         {property.images.map((img, index) => (
-          <img key={index} src={img} alt={`Imagen ${index}`} className="property-image" />
+          <img key={index} src={img} alt={`Imagen ${index}`} className="host-property-image" />
         ))}
       </div>
 
-      <div className="property-info">
+      <div className="host-property-info">
         <p><strong>Ubicación:</strong> {property.location}</p>
         <p><strong>Descripción:</strong> {property.description}</p>
         <p><strong>Renta Mensual:</strong> ${property.rent} MXN</p>
         <p><strong>Disponibilidad:</strong> {property.availability ? 'Disponible' : 'No disponible'}</p>
       </div>
 
-      <div className="property-rules">
+      <div className="host-property-rules">
         <h2>Reglas de convivencia</h2>
         <ul>
           {property.rules.map((rule, index) => (
@@ -27,8 +31,8 @@ const HostProperty = ({ property }) => {
         </ul>
       </div>
 
-      <div className="contact-host">
-        <button onClick={() => alert(`Contactar a ${property.hostName}`)}>
+      <div className="host-contact-host">
+        <button onClick={() => navigate('/contact')}>
           Contactar Host
         </button>
       </div>
