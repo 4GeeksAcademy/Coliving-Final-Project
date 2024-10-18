@@ -93,16 +93,17 @@ const Filtros = () => {
       <hr className="mt-3" />
 
       <h2 className="my-4">Tipo de Alojamiento</h2>
+      <div className='d-flex justify-content-center'>
+        <div className="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+          <input type="checkbox" className="btn-check" id="btncheck1" autoComplete="off" onChange={() => handleSelection('any')} checked={selectedType === 'any'} />
+          <label className={`btn btn-outline-success ${selectedType === 'any' ? 'active' : ''}`} htmlFor="btncheck1">Cualquier Tipo</label>
 
-      <div className="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-        <input type="checkbox" className="btn-check" id="btncheck1" autoComplete="off" onChange={() => handleSelection('any')} checked={selectedType === 'any'} />
-        <label className={"btn btn-outline-Success ${selectedType === 'any' ? 'active' : ''}"} htmlFor="btncheck1">Cualquier Tipo</label>
+          <input type="checkbox" className="btn-check" id="btncheck2" autoComplete="off" onChange={() => handleSelection('room')} checked={selectedType === 'room'} />
+          <label className={`btn btn-outline-success ${selectedType === 'room' ? 'active' : ''}`} htmlFor="btncheck2">Habitacion</label>
 
-        <input type="checkbox" className="btn-check" id="btncheck2" autoComplete="off" onChange={() => handleSelection('room')} checked={selectedType === 'room'} />
-        <label className={"btn btn-outline-Success ${selectedType === 'room' ? 'active' : ''}"} htmlFor="btncheck2">Habitacion</label>
-
-        <input type="checkbox" className="btn-check" id="btncheck3" autoComplete="off" onChange={() => handleSelection('entire')} checked={selectedType === 'entire'} />
-        <label className={"btn btn-outline-Success ${selectedType === 'entire' ? 'active' : ''}"} htmlFor="btncheck3">alojamiento entero</label>
+          <input type="checkbox" className="btn-check" id="btncheck3" autoComplete="off" onChange={() => handleSelection('entire')} checked={selectedType === 'entire'} />
+          <label className={`btn btn-outline-success ${selectedType === 'entire' ? 'active' : ''}`} htmlFor="btncheck3">alojamiento entero</label>
+        </div>
       </div>
 
       <hr className="mt-3" />

@@ -104,14 +104,15 @@ body {
   button {
     background-color: #4caf50;
     color: white;
-    padding: 15px;
+    padding: 10px 20px;
     font-size: 1.2rem;
     font-weight: bold;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    width: 100%;
-    margin-top: 20px;
+    width: fit-content;
+    margin: 20px auto;
+    display: block;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
   
