@@ -28,10 +28,10 @@ export default function Login() {
   return (
     <>
 
-      <div className="container">
+      <div className="container-login-form">
         <div className="row">
           <div className="col">
-            <h1 className="fw-bold py-5">Coliving Login!</h1>
+            <h1 className="fw-bold py-3 text-center">Coliving Login!</h1>
 
             {/* LOGIN */}
             <form>
@@ -47,7 +47,7 @@ export default function Login() {
               </div>
               <div>
                 <button onClick={() => actions.login(user.email, user.password)}
-                  className="submit" type="button">Log In</button>
+                  className="submit mt-4" type="button">Log In</button>
               </div>
               <div className="link-register mx-auto text-center mt-4">
 
