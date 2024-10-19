@@ -72,6 +72,17 @@ class Property(db.Model):
             "files": self.files,
             "stay": self.stay,
             "description": self.description,
-            "rules": self.rules
+            "rules": self.rules,
+            "laundry": self.laundry,
+            "parcking": self.parcking,
+            "air_conditioning": self.air_conditioning,
+            "is_cancelable": self.is_cancelable,
+            "floor_type": self.floor_type,
+            "rooms_number": self.rooms_number,
+            "restrooms": self.restrooms,
+            "beds": self.beds
+
+
+
         }
     

@@ -85,8 +85,11 @@ def create_property():
     db.session.commit()
     return jsonify(new_property.serialize()), 200
       
-
-        
+@api.route('/property', methods=['GET'])
+def get_properties():
+    properties = Property.query.all()
+    properties = [ property.serialize() for property in properties ]
+    return jsonify(properties), 200   
  
 # @jwt_required()
 # @api.route('/user', methods=['GET'])
