@@ -1,9 +1,26 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
-*/
+    */
+    
+  .container-login-form {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e6e6e6;
+    }
 
 .submit {
+  width: 100%;
+  height: 60px;
+  border: none;
+  border-radius: 10px;
+  color: white;
   background-color: #22577a;
+  font-size: large;
+  font-weight: bold;
 }
 
 .submit:hover {
@@ -11,15 +28,13 @@
   background-color: #57cc99;
 }
 
-.link-register {
-  margin-left: 25%;
+
+.register {
+  font-size: 18px;
 }
 
-.link-register-bground {
-  text-decoration: none;
-  font-size: 18px;
-  color: #22577a;
-}
+
+
 #toggle {
   position: absolute;
   top: 50%;
@@ -30,3 +45,8 @@
   cursor: pointer;
 }
 
+
+a span{
+  text-decoration: none;
+  text-decoration-line: none;
+}

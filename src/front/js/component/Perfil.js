@@ -12,13 +12,13 @@ const Perfil = () => {
     contacto: "+58 ****_****90857"
   }
 
-  
+
   return (
     <form className="container mt-5 col-6 mx-auto">
       <fieldset disabled>
         <legend>Perfil de Usuario</legend>
         <div className="mb-3 d-flex justify-content-center">
-          <img className="rounded-circle img-fluid" src={user.imageUrl} alt='Foto' style={{width: '150px', height: '150px'}} />
+          <img className="rounded-circle img-fluid" src={user.imageUrl} alt='Foto' style={{width: '130px', height: '130px'}} />
         </div>
         <div className="mb-3">
           <label for="disabledTextInput" className="form-label">

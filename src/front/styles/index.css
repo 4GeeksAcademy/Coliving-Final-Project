@@ -1,6 +1,10 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+body {
+    margin: 0;
+    padding: 0;
+}
 
 .icono {
     font-size: 25px;
