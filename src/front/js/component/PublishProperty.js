@@ -8,16 +8,16 @@ function Publish() {
   return (
     <>
 
-      <div className="container">
+      <div className="container-property-form">
         <div className="row">
           <div className="col">
-            <h1 className="fw-bold py-3">Publica tu anuncio!</h1>
+            <h1 className="fw-bold py-4 mb-3 text-center">Publica tu anuncio!</h1>
             <form>
               <div className="form-floating mb-3">
                 <input
                   type="text"
                   className="form-control"
-                  name="title"
+
                   placeholder="Residencia en linda Vista"
                   required
                 />
@@ -27,7 +27,7 @@ function Publish() {
                 <input
                   type="number"
                   className="form-control"
-                  name="rent"
+
                   placeholder="Monto de Alquiler"
                   required
                 />
@@ -37,18 +37,18 @@ function Publish() {
                 <input
                   type="text"
                   className="form-control"
-                  name="location"
+
                   placeholder="Ubicacion"
                   required
                 />
                 <label >Ubicacion Aproximada</label>
               </div>
               <div>
-                <label className="form-label mt-4">Sube las fotos de tu propiedad</label>
+                <label className="form-label mt-4">Sube las fotos de tu propiedad</label><br />
                 <input
                   multiple
                   type="file"
-                  name="file"
+                  id="file"
                   className="upload-box"
                   accept="image/*"
                   onChange={(e) => {
@@ -61,22 +61,23 @@ function Publish() {
                   }}
                 />
               </div>
-              <div className="form-floating mb-3 ">
-                <select className="form-floating" name="time">
+              <div className="form-floating my-4">
+                <select className="form-select">
                   <option defaultValue={"Select"}>Seleccione el tiempo de estancia</option>
-                  <option>Estancia Corta</option>
-                  <option>Estancia Larga</option>
+                  <option value="1">Estancia Corta</option>
+                  <option value="2">Estancia Larga</option>
+                  <option value="3">Sin preferencias</option>
                 </select>
               </div>
               <div className="form-floating " >
-                <textarea className="form-control  styleArea" name="description" placeholder="Escribe una descripción detallada de tu alojamiento" id="descripcion" ></textarea>
+                <textarea className="form-control  styleArea" placeholder="Escribe una descripción detallada de tu alojamiento" id="descripcion" ></textarea>
                 <label >Descripcion</label>
               </div>
-              <div className="form-floating  mt-4" name>
-                <textarea className="form-control styleArea" name="rules" placeholder="Enliste sus reglas aqui" id="reglas"></textarea>
+              <div className="form-floating  mt-4" >
+                <textarea className="form-control styleArea" placeholder="Enliste sus reglas aqui" id="reglas"></textarea>
                 <label >Escribe las Reglas por aca</label>
               </div>
-              <button className="submit mt-5"
+              <button className="my-5"
                 onClick={() => toast.success("Anuncio publicado 🎉")}
               >Publicar Anuncio</button>
             </form>

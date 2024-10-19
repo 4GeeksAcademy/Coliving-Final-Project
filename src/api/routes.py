@@ -28,6 +28,7 @@ def handle_hello():
 
 @api.route("/login", methods=["POST"])
 def login():
+
     email = request.json.get("email", None)
     password = request.json.get("password", None)
 
@@ -35,9 +36,9 @@ def login():
         return jsonify({"msg": "Houston we've got a problem, it seems that you forgot to enter your email or password"}), 401
 
     user = User.query.filter_by(email=email).first()
-
+    
     if user is None:
-        return jsonify({"msg": "We couldn't find your username, but we've got a feeling it's out there having a good time. Join us and create your own adventure!"}), 404
+        return jsonify({"msg": "We couldn't find your email, but we've got a feeling it's out there having a good time. Join us and create your own adventure!"}), 404
 
     if user.password != password:
         return jsonify({"msg": "This key (password) doesn't open the door, please try again"}), 401
@@ -48,6 +49,7 @@ def login():
         "token": acces_token,
         "user": user.serialize()
     }), 200
+
 
 @api.route('/property', methods=['POST'])
 def create_property():
