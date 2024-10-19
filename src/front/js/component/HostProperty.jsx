@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./../../styles/HostProperty.css";
 
 const HostProperty = ({ property }) => {
+  const navigate = useNavigate(); // Utiliza el hook de navegación
+
   return (
     <div className="host-property">
       <h1 className="host-property-title">{property.title}</h1>
@@ -29,7 +32,7 @@ const HostProperty = ({ property }) => {
       </div>
 
       <div className="host-contact-host">
-        <button onClick={() => alert(`Contactar a ${property.hostName}`)}>
+        <button onClick={() => navigate('/contact')}>
           Contactar Host
         </button>
       </div>
