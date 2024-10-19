@@ -33,9 +33,16 @@ class Property(db.Model):
     stay = db.Column(db.String(80), unique=False, nullable=False)
     description = db.Column(db.String(80), unique=False, nullable=False)
     rules = db.Column(db.String(80), unique=False, nullable=False)
+    laundry = db.Column(db.Boolean(),unique=False, nullable=False)
+    parcking = db.Column(db.Boolean(),unique=False, nullable=False)
+    air_conditioning = db.Column(db.Boolean(),unique=False, nullable=False)
+    is_cancelable = db.Column(db.Boolean(),unique=False, nullable=False)
+    floor_type = db.Column(db.String(80), unique=False, nullable=False)
+    rooms_number = db.Column(db.Integer, unique=False, nullable=False)
+    restrooms = db.Column(db.Integer, unique=False, nullable=False)
+    beds = db.Column(db.Integer, unique=False, nullable=False)
 
-
-    def __init__(self, name, price, address, files, stay, description, rules):
+    def __init__(self, name, price, address, files, stay, description, rules, laundry, parcking, air_conditioning, is_cancelable, floor_type, rooms_number, restrooms, beds):
         self.name = name
         self.price = price
         self.address = address
@@ -43,6 +50,15 @@ class Property(db.Model):
         self.stay = stay
         self.description = description
         self.rules = rules
+        self.laundry = laundry
+        self.parcking = parcking
+        self.air_conditioning = air_conditioning
+        self.is_cancelable = is_cancelable
+        self.floor_type = floor_type
+        self.rooms_number = rooms_number
+        self.restrooms = restrooms
+        self.beds = beds
+
 
     def __repr__(self):
         return f'<Property {self.name}>'
