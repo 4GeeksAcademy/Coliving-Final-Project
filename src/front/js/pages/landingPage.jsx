@@ -7,11 +7,6 @@ import FooterLanding from "../component/footerLanding.jsx";
 const LandingPage = () => {
     return (
         <>
-
-
-            <CardsLanding />
-            <CardsLanding />
-            <CardsLanding />
             <CardsLanding />
             <FooterLanding />
         </>
