@@ -5,7 +5,7 @@
 
 ::-webkit-file-upload-button {
   color: #c7f9cc;
-  background-color: #22577a;
+  background-color: #b64359;
   padding: 15px;
   border: none;
   border-radius: 5px;
@@ -35,7 +35,7 @@ styleArea {
   border: none;
   border-radius: 10px;
   color: white;
-  background-color: #22577a;
+  background-color: #b64359;
   font-size: large;
   font-weight: bold;
   
@@ -43,5 +43,5 @@ styleArea {
 
 .container-property-form button:hover{
   cursor :pointer;
-  background-color: #57cc99;
+  background-color: #f7838d;
 }

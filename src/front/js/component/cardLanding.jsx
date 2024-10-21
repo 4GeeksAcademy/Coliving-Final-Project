@@ -86,16 +86,13 @@ const CardsLanding = () => {
 
   return (
     <>
-      <div className="container mt-5">
-
-        <div className="row">
-          <div className="col-lg">
+      <div className="m-5">
+        <div className="card-container">
             {
               properties.map((item, index) => {
                 return <CardLanding property={item} key={index} />
               })
             }
-          </div>
         </div>
       </div>
 

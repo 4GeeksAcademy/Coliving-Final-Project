@@ -13,20 +13,18 @@ export const Navbar = () => {
 			<div className="container">
 
 				<a href="/" className="C-living">
-					<span className="navbar-brand mb-0 ">Home</span>
+					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
 				</a>
-
-
 				<div className="ml-auto d-flex align-items-center">
 					<button className="btn btn-link p-0 border-0 my-2 mx-3">
 						<i className="fa-solid fa-globe me-2"></i>
 					</button>
 					{!store.token && <Link to="/login">
-						<button className="btn btn-primary my-auto " style={{ backgroundColor: "#22577a" }}>Login</button>
+						<button className="btn my-auto text-white" style={{ backgroundColor: "#b64359" }}>Login</button>
 					</Link>}
 
 
-					{store.token && <button className="btn btn-danger my-auto mx-1" onClick={() => actions.logout()}>
+					{store.token && <button className="btn my-auto mx-1" onClick={() => actions.logout()}>
 						Logout
 					</button>}
 					<div className="dropdown rounded custom-rounded">

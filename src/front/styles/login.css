@@ -18,14 +18,14 @@
   border: none;
   border-radius: 10px;
   color: white;
-  background-color: #22577a;
+  background-color: #b64359;
   font-size: large;
   font-weight: bold;
 }
 
 .submit:hover {
   cursor: pointer;
-  background-color: #57cc99;
+  background-color: #f7838d;
 }
 
 

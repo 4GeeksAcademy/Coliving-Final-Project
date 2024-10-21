@@ -61,10 +61,7 @@ const Layout = () => {
             <Route element={<LandingPage />} path="/landingPage" />
             <Route element={<Registro />} path="/registro" />
           </Routes>
-
           <Footer />
-
-
         </ScrollToTop>
         <Toaster />
       </BrowserRouter>
