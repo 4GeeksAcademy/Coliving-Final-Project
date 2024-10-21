@@ -3,18 +3,18 @@ import React, { useState } from 'react';
 const Habitaciones = (props) => {
   const [count, setCount] = useState(0);
   return (
-    <div className="d-flex justify-content-between align-items-center m-5">
-      <p className='filter-label'>{props.nombre}</p>
-      <div className='d-flex justify-content-between align-items-center' style={{ width: '200px' }}>
-        <button onClick={() => {
+    <div className="d-flex justify-content-between align-items-center my-4" style={{ width: '100%' }}>
+      <p className='filter-label'  style={{ flex: 1, textAlign: 'left' }}>{props.nombre}</p>
+      <div className='d-flex justify-content-between align-items-center' style={{ flex: 1, maxWidth: '200px' }}>
+        <button onClick={() => {  
           if (count > 0) {
             setCount(count - 1);
           }
-        }} className='rounded-circle btn btn-outline-secondary custom-button' disabled={count === 0}>-</button>
+        }} className='rounded-circle btn btn-outline-secondary custom-button' disabled={count === 0} style={{ width: '40px', height: '40px' }}>-</button>
         <p className="my-auto mx-4 filter-value" style={{ width: '80px', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>{count === 0 ? "cualquiera" : count}</p>
         <button onClick={() => {
           setCount(count + 1);
-        }} className='rounded-circle btn btn-outline-secondary custom-button'>+</button>
+        }} className='rounded-circle btn btn-outline-secondary custom-button' style={{ width: '40px', height: '40px' }}>+</button>
       </div>
     </div>
   )
@@ -50,7 +50,7 @@ const Filtros = () => {
 
   return (
 
-    <div className="container mt-5 col-6 mx-auto p-3">
+    <div className="container mt-5 col-6 mx-auto p-3" style={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', padding: '20px', borderRadius: '10px', backgroundColor: '#fff'}} >
       <div className="d-flex justify-content-center align-items-center my-2 mx-2 position-relative">
         <h3 className="mx-auto">Filtros</h3>
         <i className="fa-solid fa-x position-absolute start-0 ms-2"></i>
@@ -95,13 +95,13 @@ const Filtros = () => {
       <div className='d-flex justify-content-center'>
         <div className="btn-group" role="group" aria-label="Basic checkbox toggle button group">
           <input type="checkbox" className="btn-check" id="btncheck1" autoComplete="off" onChange={() => handleSelection('any')} checked={selectedType === 'any'} />
-          <label className={`btn btn-outline-success ${selectedType === 'any' ? 'active' : ''}`} htmlFor="btncheck1">Cualquier Tipo</label>
+          <label className={`btn custom-border ${selectedType === 'any' ? 'active' : ''}`} htmlFor="btncheck1">Cualquier Tipo</label>
 
           <input type="checkbox" className="btn-check" id="btncheck2" autoComplete="off" onChange={() => handleSelection('room')} checked={selectedType === 'room'} />
-          <label className={`btn btn-outline-success ${selectedType === 'room' ? 'active' : ''}`} htmlFor="btncheck2">Habitacion</label>
+          <label className={`btn custom-border ${selectedType === 'room' ? 'active' : ''}`} htmlFor="btncheck2">Habitacion</label>
 
           <input type="checkbox" className="btn-check" id="btncheck3" autoComplete="off" onChange={() => handleSelection('entire')} checked={selectedType === 'entire'} />
-          <label className={`btn btn-outline-success ${selectedType === 'entire' ? 'active' : ''}`} htmlFor="btncheck3">alojamiento entero</label>
+          <label className={`btn custom-border ${selectedType === 'entire' ? 'active' : ''}`} htmlFor="btncheck3">alojamiento entero</label>
         </div>
       </div>
 

@@ -33,10 +33,10 @@ class Property(db.Model):
     stay = db.Column(db.String(80), unique=False, nullable=False)
     description = db.Column(db.String(80), unique=False, nullable=False)
     rules = db.Column(db.String(80), unique=False, nullable=False)
-    laundry = db.Column(db.Boolean(),unique=False, nullable=False)
-    parcking = db.Column(db.Boolean(),unique=False, nullable=False)
-    air_conditioning = db.Column(db.Boolean(),unique=False, nullable=False)
-    is_cancelable = db.Column(db.Boolean(),unique=False, nullable=False)
+    laundry = db.Column(db.Boolean(), unique=False, nullable=False)
+    parcking = db.Column(db.Boolean(), unique=False, nullable=False)
+    air_conditioning = db.Column(db.Boolean(), unique=False, nullable=False)
+    is_cancelable = db.Column(db.Boolean(), unique=False, nullable=False)
     floor_type = db.Column(db.String(80), unique=False, nullable=False)
     rooms_number = db.Column(db.Integer, unique=False, nullable=False)
     restrooms = db.Column(db.Integer, unique=False, nullable=False)
@@ -81,8 +81,6 @@ class Property(db.Model):
             "rooms_number": self.rooms_number,
             "restrooms": self.restrooms,
             "beds": self.beds
-
-
 
         }
     

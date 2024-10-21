@@ -6,7 +6,7 @@ from api.models import Property, db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token,get_jwt_identity, jwt_required
-
+from werkzeug.security import check_password_hash, generate_password_hash
 
 api = Blueprint('api', __name__)
 
@@ -53,38 +53,41 @@ def login():
 
 @api.route('/property', methods=['POST'])
 def create_property():
-    body = request.get_json()
+    try:
+        body = request.get_json()
 
-    if body is None:    
-        return jsonify({"msg": "Please send a request body"}), 400
+        if body is None:    
+            return jsonify({"msg": "Please send a request body"}), 400
     
-    required_fields = ['name', 'price', 'address', 'files', 'stay', 'description', 'rules', 'laundry', 'parcking', 'air_conditioning', 'is_cancelable', 'floor_type', 'rooms_number', 'restrooms', 'beds']
-    for field in required_fields:
-        if field not in body:
-            return jsonify({"msg": f"Please provide the {field} field"}), 400
+        required_fields = ['name', 'price', 'address', 'files', 'stay', 'description', 'rules', 'laundry', 'parcking', 'air_conditioning', 'is_cancelable', 'floor_type', 'rooms_number', 'restrooms', 'beds']
+        for field in required_fields:
+            if field not in body:
+             return jsonify({"msg": f"Please provide the {field} field"}), 400
 
-    new_property = Property(
-        name=body['name'],
-        price=body['price'],
-        address=body['address'],
-        files=body['files'],
-        stay=body['stay'],
-        description=body['description'],
-        rules=body['rules'],
-        laundry=body['laundry'],
-        parcking=body['parching'],
-        air_conditioning=body['air_conditioning'],
-        is_cancelable=body['is_cancelable'],
-        floor_type=body['floor_type'],
-        rooms_number=body['rooms_number'],
-        restrooms=body['restrooms'],
-        beds=body['beds']
-    )
+        new_property = Property(
+            name=body['name'],
+            price=body['price'],
+            address=body['address'],
+            files=body['files'],
+            stay=body['stay'],
+            description=body['description'],
+            rules=body['rules'],
+            laundry=body['laundry'],
+            parcking=body['parcking'],
+            air_conditioning=body['air_conditioning'],
+            is_cancelable=body['is_cancelable'],
+            floor_type=body['floor_type'],
+            rooms_number=body['rooms_number'],
+            restrooms=body['restrooms'],
+            beds=body['beds']
+        )
     
-    db.session.add(new_property)
-    db.session.commit()
-    return jsonify(new_property.serialize()), 200
-      
+        db.session.add(new_property)
+        db.session.commit()
+        return jsonify(new_property.serialize()), 200
+    except Exception as e:
+        return jsonify({"msg": str(e)}), 500
+    
 @api.route('/property', methods=['GET'])
 def get_properties():
     properties = Property.query.all()
