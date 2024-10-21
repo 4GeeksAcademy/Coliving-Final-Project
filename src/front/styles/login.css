@@ -2,7 +2,7 @@
     General Styles used on every website (Don't Repeat Yourself)
     */
     
-  .container-login-form {
+.container-login-form {
       max-width: 600px;
       margin: 30px auto;
       padding: 20px;

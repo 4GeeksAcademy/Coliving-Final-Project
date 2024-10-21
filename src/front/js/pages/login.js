@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Context } from "./../store/appContext.js";
 import { useNavigate } from "react-router-dom";
 
+import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
+
 
 
 
@@ -43,7 +45,7 @@ export default function Login() {
               <div className="form-floating">
                 <input type={showPassword ? "text" : "password"} id="password" className="form-control" onChange={(e) => setUser({ ...user, password: e.target.value })} placeholder="Password" required />
                 <label>Password</label>
-                <div id="toggle" onClick={() => setShowPassword(!showPassword)}>{showPassword ? "🫣" : "👁️"}</div>
+                <div id="toggle" onClick={() => setShowPassword(!showPassword)}>{showPassword ? "😵" : "👀"}</div>
               </div>
               <div>
                 <button onClick={() => actions.login(user.email, user.password)}
