@@ -12,6 +12,10 @@ button {
     background-color: #b64359;
 }
 
+button:hover {
+    background-color: #f7838d;
+}
+
 .small-radio {
     transform: scale(0.6); /* Ajusta el tamaño */
     margin-right: 5px; /* Espacio entre el radio y la etiqueta */
@@ -22,17 +26,35 @@ button {
     background-color: #b64359;
 }
 
+#mostrar:hover {
+    background-color: #f7838d;
+}
+
 .lado-derecho {
-    background-color: #fcc0c5;
+    background-color: #ffe4e6;
     padding: 50px 100px;
+    width: 60%;
 }
 
 .lado-izquierdo {
     background-image: url('../img/registro.jpg');
+    padding: 50px 100px;
+    width: 40%;
+}
+
+.banner {
+    background-image: url('https://guiauniversitaria.mx/wp-content/uploads/2020/04/Gu%C3%ADa-para-sobrevivir-a-los-problemas-de-convivencia.jpg');
     background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
     background-position: center; /* Centra la imagen en el contenedor */
-    height: 100vh; /* Altura del contenedor */
-    margin: 0; /* Elimina márgenes predeterminados */
-    padding: 50px 100px;
-    width: 70%;
+    height: 100vh;
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    color: white;
+}
+
+.card-container {
+    display: grid; /* Activa CSS Grid */
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual tamaño */
+    gap: 10px; /* Espaciado entre tarjetas */
 }

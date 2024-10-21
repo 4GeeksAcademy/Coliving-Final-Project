@@ -32,7 +32,7 @@
   }
   
   input:focus, textarea:focus, select:focus {
-    border-color: #4caf50;
+    border-color: #b64359;
     outline: none;
     box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
   }
@@ -66,13 +66,13 @@
   /* Clase personalizada para aplicar el color a los botones */
 .btn-custom {
   color: white;
-  background-color: #4caf50;
-  border-color: #4caf50;
+  background-color: #b64359;
+  border-color: #b64359;
 }
 
 .btn-custom.active, .btn-custom:active {
-  background-color: #45a049;
-  border-color: #45a049;
+  background-color: #f7838d;
+  border-color: #f7838d;
 }
 
 .btn-outline-secondary {
@@ -81,8 +81,8 @@
 }
 
 .btn-outline-secondary:hover {
-  background-color: #4caf50; /* Color al pasar el mouse */
-  border-color: #4caf50; /* Color del borde al pasar el mouse */
+  background-color: #b64359; /* Color al pasar el mouse */
+  border-color: #b64359; /* Color del borde al pasar el mouse */
   color: white; /* Color del texto al pasar el mouse */
 }
 
@@ -109,7 +109,7 @@
   
   /* Botón de enviar */
   button {
-    background-color: #4caf50;
+    background-color: #b64359;
     color: white;
     padding: 10px 20px;
     font-size: 1.2rem;
@@ -124,7 +124,7 @@
   }
   
   button:hover {
-    background-color: #45a049;
+    background-color: #f7838d;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   }
   
@@ -135,8 +135,8 @@
   /* Mensaje de éxito */
   .success-message {
     background-color: #e8f5e9;
-    color: #388e3c;
-    border: 1px solid #4caf50;
+    color: #f7838d;
+    border: 1px solid #b64359;
     border-radius: 5px;
     padding: 20px;
     text-align: center;
@@ -168,7 +168,7 @@
   }
   
   select:focus {
-    border-color: #4caf50;
+    border-color: #b64359;
     box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
     outline: none;
   }
