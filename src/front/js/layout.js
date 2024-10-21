@@ -60,7 +60,6 @@ const Layout = () => {
             <Route element={<HostProperty property={property} />} path="/hostProperty" />
             <Route element={<LandingPage />} path="/landingPage" />
             <Route element={<Registro />} path="/registro" />
-            <Route element={<Footer />} path="/footer" />
           </Routes>
 
           <Footer />
