@@ -11,3 +11,28 @@
 button {
     background-color: #b64359;
 }
+
+.small-radio {
+    transform: scale(0.6); /* Ajusta el tamaño */
+    margin-right: 5px; /* Espacio entre el radio y la etiqueta */
+}
+
+#mostrar {
+    cursor: pointer;
+    background-color: #b64359;
+}
+
+.lado-derecho {
+    background-color: #fcc0c5;
+    padding: 50px 100px;
+}
+
+.lado-izquierdo {
+    background-image: url('../img/registro.jpg');
+    background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+    background-position: center; /* Centra la imagen en el contenedor */
+    height: 100vh; /* Altura del contenedor */
+    margin: 0; /* Elimina márgenes predeterminados */
+    padding: 50px 100px;
+    width: 70%;
+}
