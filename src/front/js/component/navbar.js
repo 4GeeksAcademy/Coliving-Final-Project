@@ -34,7 +34,7 @@ export const Navbar = () => {
 						</button>
 						<ul className="dropdown-menu">
 							<li><a className="dropdown-item" href="/registro">Registrate</a></li>
-							<li><a className="dropdown-item" href="/formAD">Espacio en Coliving</a></li>
+							<li><a className="dropdown-item" href="/property">Espacio en Coliving</a></li>
 							<li><a className="dropdown-item" href="#">Experiencia</a></li>
 							<li><a className="dropdown-item" href="#">Centro de Ayuda</a></li>
 						</ul>

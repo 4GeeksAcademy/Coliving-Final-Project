@@ -6,9 +6,19 @@
 ::-webkit-file-upload-button {
   color: #c7f9cc;
   background-color: #b64359;
+  margin-top: 0px;
   padding: 15px;
   border: none;
   border-radius: 5px;
+}
+
+.upload-label {
+  
+  font-size: 24px;
+  font-weight: bold;
+
+  margin-bottom : 15px;
+  
 }
 
 
@@ -20,7 +30,7 @@ styleArea {
 
 .container-property-form{
   max-width: 600px;
-  height: 870px;
+  height: 100%;
   margin: 30px auto;
   padding: 20px;
   background-color: #ffffff;

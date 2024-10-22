@@ -1,10 +1,38 @@
 import React, { useState } from "react";
 import "./../../styles/AdPublish.css";
 import toast from "react-hot-toast";
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+}
+
+const firebaseApp = initializeApp(firebaseConfig);
+
+const uploadImage = async (image) => {
+
+  const storage = firebaseApp.storage();
+  const storageRef = storage.ref();
+  const imageRef = storageRef.child(`property_images/${image.name}`);
+  await imageRef.put(image);
+  const imageUrl = await getDownloadURL(imageRef);
+  return imageUrl;
+}
 
 
 
 function Publish() {
+
+  const [position, setPosition] = useState('');
+  const [cuartos, setCuartos] = useState('');
+  const [banios, setBanios] = useState('');
+  const [camas, setCamas] = useState('');
+  const [images, setImages] = useState('');
   return (
     <>
 
@@ -13,7 +41,7 @@ function Publish() {
           <div className="col">
             <h1 className="fw-bold py-4 mb-3 text-center">Publica tu anuncio!</h1>
             <form>
-              <div className="form-floating mb-3">
+              <div className="form-floating">
                 <input
                   type="text"
                   className="form-control"
@@ -43,21 +71,24 @@ function Publish() {
                 />
                 <label >Ubicacion Aproximada</label>
               </div>
-              <div>
-                <label className="form-label mt-4">Sube las fotos de tu propiedad</label><br />
+              <div className="form-floating  mt-4">
+                <label className="upload-label mb-3">Sube las fotos de tu propiedad</label><br />
                 <input
                   multiple
                   type="file"
                   id="file"
-                  className="upload-box"
+                  className="upload-box mt-4"
                   accept="image/*"
+
                   onChange={(e) => {
                     const file = e.target.files;
+                    const images = file;
 
                     if (file.length >= 6) {
                       toast.error("No se puede subir mas de 5 imagenes");
                       document.getElementById("file").value = "";
                     }
+                    setImages(images);
                   }}
                 />
               </div>
@@ -68,6 +99,149 @@ function Publish() {
                   <option value="2">Estancia Larga</option>
                   <option value="3">Sin preferencias</option>
                 </select>
+              </div>
+              <div className="mb-3 d-flex justify-content-between align-items-center">
+                <label className="form-label text-black"><strong>Incluye servicio de lavandería:</strong></label>
+                <div className="d-flex gap-3">
+                  <div className="form-check d-flex align-items-center">
+                    <input
+                      type="radio"
+                      className="form-check-input small-radio shadow"
+                      id="guest"
+                      name="position"
+                      value="guest"
+                      checked={position === 'Si'}
+                      onChange={() => setPosition('Si')}
+                    />
+                    <label className="form-check-label" htmlFor="guest">Si</label>
+                  </div>
+                  <div className="form-check d-flex align-items-center">
+                    <input
+                      type="radio"
+                      className="form-check-input small-radio shadow"
+                      id="host"
+                      name="position"
+                      value="host"
+                      checked={position === 'No'}
+                      onChange={() => setPosition('No')}
+                    />
+                    <label className="form-check-label" htmlFor="host">No</label>
+                  </div>
+                </div>
+              </div>
+              <div className="mb-3 d-flex justify-content-between align-items-center">
+                <label className="form-label text-black"><strong>Incluye parqueo:</strong></label>
+                <div className="d-flex gap-3">
+                  <div className="form-check d-flex align-items-center">
+                    <input
+                      type="radio"
+                      className="form-check-input small-radio shadow"
+                      id="guest"
+                      name="position"
+                      value="guest"
+                      checked={position === 'Si'}
+                      onChange={() => setPosition('Si')}
+                    />
+                    <label className="form-check-label" htmlFor="guest">Si</label>
+                  </div>
+                  <div className="form-check d-flex align-items-center">
+                    <input
+                      type="radio"
+                      className="form-check-input small-radio shadow"
+                      id="host"
+                      name="position"
+                      value="host"
+                      checked={position === 'No'}
+                      onChange={() => setPosition('No')}
+                    />
+                    <label className="form-check-label" htmlFor="host">No</label>
+                  </div>
+                </div>
+              </div>
+              <div className="mb-3 d-flex justify-content-between align-items-center">
+                <label className="form-label text-black"><strong>Tiene aire acondicionado:</strong></label>
+                <div className="d-flex gap-3">
+                  <div className="form-check d-flex align-items-center">
+                    <input
+                      type="radio"
+                      className="form-check-input small-radio shadow"
+                      id="guest"
+                      name="position"
+                      value="guest"
+                      checked={position === 'Si'}
+                      onChange={() => setPosition('Si')}
+                    />
+                    <label className="form-check-label" htmlFor="guest">Si</label>
+                  </div>
+                  <div className="form-check d-flex align-items-center">
+                    <input
+                      type="radio"
+                      className="form-check-input small-radio shadow"
+                      id="host"
+                      name="position"
+                      value="host"
+                      checked={position === 'No'}
+                      onChange={() => setPosition('No')}
+                    />
+                    <label className="form-check-label" htmlFor="host">No</label>
+                  </div>
+                </div>
+              </div>
+              <div className="mb-3 d-flex justify-content-between align-items-center">
+                <label className="form-label text-black"><strong>Se puede cancelar:</strong></label>
+                <div className="d-flex gap-3">
+                  <div className="form-check d-flex align-items-center">
+                    <input
+                      type="radio"
+                      className="form-check-input small-radio shadow"
+                      id="guest"
+                      name="position"
+                      value="guest"
+                      checked={position === 'Si'}
+                      onChange={() => setPosition('Si')}
+                    />
+                    <label className="form-check-label" htmlFor="guest">Si</label>
+                  </div>
+                  <div className="form-check d-flex align-items-center">
+                    <input
+                      type="radio"
+                      className="form-check-input small-radio shadow"
+                      id="host"
+                      name="position"
+                      value="host"
+                      checked={position === 'No'}
+                      onChange={() => setPosition('No')}
+                    />
+                    <label className="form-check-label" htmlFor="host">No</label>
+                  </div>
+                </div>
+              </div>
+              <div className="d-flex justify-content-between row">
+                <div className="mb-3 col-4">
+                  <label class="form-label text-black"><strong>Cuartos</strong></label>
+                  <input type="number" placeholder="2" class="form-control" required onChange={(event) => setCuartos({
+                    ...user,
+                    cuartos: event.target.value
+                  })} />
+                </div>
+                <div className="mb-3 col-4">
+                  <label class="form-label text-black"><strong>Baños</strong></label>
+                  <input type="number" aria-label="Last name" placeholder="3" class="form-control" required onChange={(event) => setBanios({
+                    ...user,
+                    banios: event.target.value
+                  })} />
+                </div>
+                <div className="mb-3 col-4">
+                  <label class="form-label text-black"><strong>Camas</strong></label>
+                  <input type="number" aria-label="Last name" placeholder="5" class="form-control" required onChange={(event) => setCamas({
+                    ...user,
+                    camas: event.target.value
+                  })} />
+                </div>
+              </div>
+              <div className="form-floating mb-4" >
+                <input className="form-control  styleArea" placeholder="Escribe una descripción detallada de tu alojamiento" id="descripcion" />
+                <label >Tipo de Piso</label>
               </div>
               <div className="form-floating " >
                 <textarea className="form-control  styleArea" placeholder="Escribe una descripción detallada de tu alojamiento" id="descripcion" ></textarea>
