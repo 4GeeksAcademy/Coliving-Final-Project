@@ -51,38 +51,38 @@ const Filtros = () => {
   return (
 
     <div className="container mt-5 col-6 mx-auto p-3" style={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', padding: '20px', borderRadius: '10px', backgroundColor: '#fff'}} >
-      <div className="d-flex justify-content-center align-items-center my-2 mx-2 position-relative">
+      <div className="d-flex justify-content-center align-items-center my-2 mx-2 position-relative" style={{ position: 'fixed', top: 0, width: '100%', backgroundColor: '#fff', zIndex: 1 }}>
         <h3 className="mx-auto">Filtros</h3>
-        <i className="fa-solid fa-x position-absolute start-0 ms-2"></i>
+        <i className="fa-solid fa-x position-absolute start-0 ms-2" style={{ cursor: 'pointer' }}></i>
       </div>
 
-      <hr className="mt-3" />
+      <hr className="mt-3" style={{ marginTop: '60px' }} />
 
       <h2 className="my-4">Recomendado para ti</h2>
       <div className="d-flex justify-content-center">
         <div className="card-group gap-3">
           <div className="card text-center border-0 bg-transparent">
             <div className="card-body">
-              <i className="fas fa-parking fa-3x border p-3 rounded-circle" style={{ color: '#26bb2b' }}></i>
+              <i className="fas fa-parking fa-3x border p-3 rounded-circle" style={{ color: '#f7838d' }}></i>
               <p className="card=text mt-3">Estacionamiento Gratuito</p>
             </div>
           </div>
 
           <div className="card text-center border-0 bg-transparent">
             <div className="card-body">
-              <i className="fas fa-ban fa-3x border p-3 rounded-circle" style={{ color: '#26bb2b' }}></i>
+              <i className="fas fa-ban fa-3x border p-3 rounded-circle" style={{ color: '#f7838d' }}></i>
               <p className="card-text mt-3">Cancelacion Gratuita</p>
             </div>
           </div>
           <div className="card text-center border-0 bg-transparent">
             <div className="card-body">
-              <i className="fas fa-wind fa-3x border p-3 rounded-circle" style={{ color: '#26bb2b' }}></i>
+              <i className="fas fa-wind fa-3x border p-3 rounded-circle" style={{ color: '#f7838d' }}></i>
               <p className="card-text mt-3">Aire Acondicionado</p>
             </div>
           </div>
           <div className="card text-center border-0 bg-transparent">
             <div className="card-body">
-              <i className="fas fa-tint fa-3x border p-3 rounded-circle" style={{ color: '#26bb2b' }}></i>
+              <i className="fas fa-tint fa-3x border p-3 rounded-circle" style={{ color: '#f7838d' }}></i>
               <p className="card-text mt-3">Lavadora</p>
             </div>
           </div>
@@ -130,6 +130,8 @@ const Filtros = () => {
       <Habitaciones nombre="Baños" />
 
       <hr className="mt-3" />
+
+      
 
     </div>
   );

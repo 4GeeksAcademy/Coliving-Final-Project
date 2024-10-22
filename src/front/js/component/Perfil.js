@@ -5,7 +5,7 @@ const Perfil = () => {
   const user = {
     imageUrl: "https://i.pravatar.cc/300",
     nombre: "Ramon Duarte",
-    email: "ramon@example,com",
+    email: "ramon@example.com",
     telefono: "+58 1234 8979",
     documento: "V-392834729",
     direccion: "Calle Real 4321, Caracas",
@@ -93,7 +93,7 @@ const Perfil = () => {
           />
         </div>
         <div className="text-center">
-          <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#007bff', borderColor: '#007bff', borderRadius: '50px', padding: '10px 20px' }}>
+          <button type="submit" className="btn" style={{ backgroundColor: '#b64359', borderColor: '#b64359',  color: 'white', borderRadius: '50px', padding: '10px 20px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
             Editar
           </button>
         </div>
