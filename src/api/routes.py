@@ -59,7 +59,7 @@ def create_property():
         if body is None:    
             return jsonify({"msg": "Please send a request body"}), 400
     
-        required_fields = ['name', 'price', 'address', 'files', 'stay', 'description', 'rules', 'laundry', 'parcking', 'air_conditioning', 'is_cancelable', 'floor_type', 'rooms_number', 'restrooms', 'beds']
+        required_fields = ['name', 'price', 'address', 'files', 'stay', 'description', 'rules', 'laundry', 'parking', 'air_conditioning', 'is_cancelable', 'floor_type', 'rooms_number', 'restrooms', 'beds']
         for field in required_fields:
             if field not in body:
              return jsonify({"msg": f"Please provide the {field} field"}), 400
@@ -73,7 +73,7 @@ def create_property():
             description=body['description'],
             rules=body['rules'],
             laundry=body['laundry'],
-            parcking=body['parcking'],
+            parking=body['parking'],
             air_conditioning=body['air_conditioning'],
             is_cancelable=body['is_cancelable'],
             floor_type=body['floor_type'],

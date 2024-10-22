@@ -36,7 +36,7 @@ class Property(db.Model):
     description = db.Column(db.String(80), unique=False, nullable=False)
     rules = db.Column(db.String(80), unique=False, nullable=False)
     laundry = db.Column(db.Boolean(), unique=False, nullable=False)
-    parcking = db.Column(db.Boolean(), unique=False, nullable=False)
+    parking = db.Column(db.Boolean(), unique=False, nullable=False)
     air_conditioning = db.Column(db.Boolean(), unique=False, nullable=False)
     is_cancelable = db.Column(db.Boolean(), unique=False, nullable=False)
     floor_type = db.Column(db.String(80), unique=False, nullable=False)
@@ -47,7 +47,7 @@ class Property(db.Model):
 
    
 
-    def __init__(self, name, price, address, files, stay, description, rules, laundry, parcking, air_conditioning, is_cancelable, floor_type, rooms_number, restrooms, beds):
+    def __init__(self, name, price, address, files, stay, description, rules, laundry, parking, air_conditioning, is_cancelable, floor_type, rooms_number, restrooms, beds):
         self.name = name
         self.price = price
         self.address = address
@@ -56,7 +56,7 @@ class Property(db.Model):
         self.description = description
         self.rules = rules
         self.laundry = laundry
-        self.parcking = parcking
+        self.parking = parking
         self.air_conditioning = air_conditioning
         self.is_cancelable = is_cancelable
         self.floor_type = floor_type
@@ -79,7 +79,7 @@ class Property(db.Model):
             "description": self.description,
             "rules": self.rules,
             "laundry": self.laundry,
-            "parcking": self.parcking,
+            "parking": self.parking,
             "air_conditioning": self.air_conditioning,
             "is_cancelable": self.is_cancelable,
             "floor_type": self.floor_type,
