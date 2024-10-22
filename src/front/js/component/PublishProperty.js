@@ -1,7 +1,28 @@
 import React, { useState } from "react";
 import "./../../styles/AdPublish.css";
 import toast from "react-hot-toast";
+import { initializeApp } from "firebase/app";
 
+const firebaseConfig = {
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+}
+
+const firebaseApp = initializeApp(firebaseConfig);
+
+const uploadImage = async (image) => {
+
+  const storage = firebaseApp.storage();
+  const storageRef = storage.ref();
+  const imageRef = storageRef.child(`property_images/${image.name}`);
+  await imageRef.put(image);
+  const imageUrl = await getDownloadURL(imageRef);
+  return imageUrl;
+}
 
 
 
@@ -11,7 +32,7 @@ function Publish() {
   const [cuartos, setCuartos] = useState('');
   const [banios, setBanios] = useState('');
   const [camas, setCamas] = useState('');
-
+  const [images, setImages] = useState('');
   return (
     <>
 
@@ -58,13 +79,16 @@ function Publish() {
                   id="file"
                   className="upload-box mt-4"
                   accept="image/*"
+
                   onChange={(e) => {
                     const file = e.target.files;
+                    const images = file;
 
                     if (file.length >= 6) {
                       toast.error("No se puede subir mas de 5 imagenes");
                       document.getElementById("file").value = "";
                     }
+                    setImages(images);
                   }}
                 />
               </div>
