@@ -89,3 +89,33 @@ class Property(db.Model):
 
         }
     
+class ContactMessage(db.Model):
+    __tablename__ = 'contact_message'
+
+    id = db.Column(db.Integer, primary_key=True)
+    guest_name = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    phone = db.Column(db.String(20), nullable=True)
+    message = db.Column(db.Text, nullable=False)
+    budget = db.Column(db.String(50), nullable=True)
+    host_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)  # Clave foránea hacia la tabla `user`
+    host = db.relationship('User', backref='messages')
+
+    def __init__(self, guest_name, email, phone, message, budget, host_id):
+        self.guest_name = guest_name
+        self.email = email
+        self.phone = phone
+        self.message = message
+        self.budget = budget
+        self.host_id = host_id
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "guest_name": self.guest_name,
+            "email": self.email,
+            "phone": self.phone,
+            "message": self.message,
+            "budget": self.budget,
+            "host_id": self.host_id
+        }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./../../styles/ContactForm.css";
 
-const ContactForm = ({ hostName = "John Doe", location = "Monterrey" }) => {
+const ContactForm = ({ hostName = "John Doe", hostId = 1, location = "Monterrey" }) => {
   const [formData, setFormData] = useState({
     guestName: '',
     email: '',
@@ -13,6 +13,7 @@ const ContactForm = ({ hostName = "John Doe", location = "Monterrey" }) => {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
+  // Validación de los campos del formulario
   const validate = () => {
     let errors = {};
     if (!formData.guestName) {
@@ -29,6 +30,7 @@ const ContactForm = ({ hostName = "John Doe", location = "Monterrey" }) => {
     return errors;
   };
 
+  // Manejar cambios en el formulario
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -36,12 +38,34 @@ const ContactForm = ({ hostName = "John Doe", location = "Monterrey" }) => {
     });
   };
 
+  // Manejar el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
-      setSubmitted(true);
-      console.log('Formulario enviado:', formData);
+      // Si no hay errores, enviamos el formulario
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          guestName: formData.guestName,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          budget: formData.budget,
+          host_id: hostId, // Usar el ID real del host
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        setSubmitted(true);
+        console.log('Formulario enviado:', data);
+      })
+      .catch(error => {
+        console.error('Error al enviar el formulario:', error);
+      });
     } else {
       setErrors(validationErrors);
     }
