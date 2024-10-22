@@ -94,18 +94,7 @@ def get_properties():
     properties = Property.query.all()
     properties = [ property.serialize() for property in properties ]
     return jsonify(properties), 200   
-@api.route('/contact', methods=['POST'])
-def contact_host():
-    try:
-        body = request.get_json()
 
-        if body is None:
-            return jsonify({"msg": "Please send a request body"}), 400
-
-        required_fields = ['guestName', 'email', 'message', 'budget', 'host_id']
-        for field in required_fields:
-            if field not in body:
-                return jsonify({"msg": f"Please provide the {field} field"}), 400
 
 @api.route('/contact', methods=['POST'])
 def contact_host():
@@ -136,6 +125,7 @@ def contact_host():
 
     except Exception as e:
         return jsonify({"msg": str(e)}), 500
+
 
  
 # @jwt_required()
