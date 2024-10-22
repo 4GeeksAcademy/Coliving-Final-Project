@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Context } from "./../store/appContext.js";
 import { useNavigate } from "react-router-dom";
 
-import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
+//import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 
 
 

@@ -2,6 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
+from api.models import Property, db, User, ContactMessage
 from api.models import Property, db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
@@ -59,7 +60,7 @@ def create_property():
         if body is None:    
             return jsonify({"msg": "Please send a request body"}), 400
     
-        required_fields = ['name', 'price', 'address', 'files', 'stay', 'description', 'rules', 'laundry', 'parcking', 'air_conditioning', 'is_cancelable', 'floor_type', 'rooms_number', 'restrooms', 'beds']
+        required_fields = ['name', 'price', 'address', 'files', 'stay', 'description', 'rules', 'laundry', 'parking', 'air_conditioning', 'is_cancelable', 'floor_type', 'rooms_number', 'restrooms', 'beds']
         for field in required_fields:
             if field not in body:
              return jsonify({"msg": f"Please provide the {field} field"}), 400
@@ -73,7 +74,7 @@ def create_property():
             description=body['description'],
             rules=body['rules'],
             laundry=body['laundry'],
-            parcking=body['parcking'],
+            parking=body['parking'],
             air_conditioning=body['air_conditioning'],
             is_cancelable=body['is_cancelable'],
             floor_type=body['floor_type'],
@@ -93,6 +94,39 @@ def get_properties():
     properties = Property.query.all()
     properties = [ property.serialize() for property in properties ]
     return jsonify(properties), 200   
+
+
+@api.route('/contact', methods=['POST'])
+def contact_host():
+    try:
+        body = request.get_json()
+
+        if body is None:
+            return jsonify({"msg": "Please send a request body"}), 400
+
+        required_fields = ['guestName', 'email', 'message', 'budget', 'host_id']
+        for field in required_fields:
+            if field not in body:
+                return jsonify({"msg": f"Please provide the {field} field"}), 400
+
+        new_message = ContactMessage(
+            guest_name=body['guestName'],
+            email=body['email'],
+            phone=body.get('phone', None),  # El teléfono es opcional
+            message=body['message'],
+            budget=body['budget'],
+            host_id=body['host_id']  # Asegúrate de recibir el `host_id`
+        )
+
+        db.session.add(new_message)
+        db.session.commit()
+
+        return jsonify(new_message.serialize()), 200
+
+    except Exception as e:
+        return jsonify({"msg": str(e)}), 500
+
+
  
 # @jwt_required()
 # @api.route('/user', methods=['GET'])
