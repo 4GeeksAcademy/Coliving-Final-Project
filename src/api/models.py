@@ -11,7 +11,8 @@ class User(db.Model):
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     first_name = db.Column(db.String(80), unique=False, nullable=False)
     last_name = db.Column(db.String(80), unique=False, nullable=False)
-    
+    type_user = db.Column(db.String(80), unique=False, nullable=False)
+ 
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -42,6 +43,9 @@ class Property(db.Model):
     rooms_number = db.Column(db.Integer, unique=False, nullable=False)
     restrooms = db.Column(db.Integer, unique=False, nullable=False)
     beds = db.Column(db.Integer, unique=False, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+   
 
     def __init__(self, name, price, address, files, stay, description, rules, laundry, parcking, air_conditioning, is_cancelable, floor_type, rooms_number, restrooms, beds):
         self.name = name
