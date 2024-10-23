@@ -125,13 +125,36 @@ def contact_host():
 
     except Exception as e:
         return jsonify({"msg": str(e)}), 500
+    
+
+@api.route('/user', methods=['POST'])
+def post_user():
+    body = request.get_json()
+    exist_user = User.query.filter_by(email=body["email"]).first()
+    if exist_user:
+        return jsonify({"msg":"Ya existe el usuario"}), 404
+
+    new_user=User(
+        email=body["email"],
+        password=body["password"],
+        first_name=body["first_name"],
+        last_name=body["last_name"],
+        type_user=body["type_user"],
+        phone=body["phone"],
+        identity_document=body["identity_document"],
+        address=body["address"],
+        emergency_phone=body["emergency_phone"]
+    ) 
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify({"msg":"El usuario fue creado"}), 201
 
 
  
-# @jwt_required()
-# @api.route('/user', methods=['GET'])
-# def get_user_logged():
-#     email = get_jwt_identity()
-#     user = User.query.filter_by(email=email).first()
-#     return jsonify(user.serialize()), 200
+@api.route('/user', methods=['GET'])
+@jwt_required()
+def get_user_logged():
+    email = get_jwt_identity()
+    user = User.query.filter_by(email=email).first()
+    return jsonify(user.serialize()), 200
 
