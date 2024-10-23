@@ -17,8 +17,12 @@ const Registro = () => {
     if (store.token) {
       navigate("/");
     }
-  }, []);
+  }, [store.token]);
 
+  const handlePositionChange = (value) => {
+    setPosition(value);
+    setUser ({ ...user, type_user: value }); // Actualiza el type_user en el estado
+  };
 
   return (
     <>
@@ -60,26 +64,26 @@ const Registro = () => {
               <div className="d-flex gap-3">
                 <div className="form-check d-flex align-items-center">
                   <input
-                    type="radio"
-                    className="form-check-input small-radio"
-                    id="guest"
-                    name="position"
-                    value="guest"
-                    checked={position === 'guest'}
-                    onChange={() => setPosition('guest')}
-                  />
+                      type="radio"
+                      className="form-check-input small-radio"
+                      id="guest"
+                      name="position"
+                      value="guest"
+                      checked={position === 'guest'}
+                      onChange={() => handlePositionChange('guest')}
+                    />
                   <label className="form-check-label" htmlFor="guest">Guest</label>
                 </div>
                 <div className="form-check d-flex align-items-center">
                   <input
-                    type="radio"
-                    className="form-check-input small-radio"
-                    id="host"
-                    name="position"
-                    value="host"
-                    checked={position === 'host'}
-                    onChange={() => setPosition('host')}
-                  />
+                      type="radio"
+                      className="form-check-input small-radio"
+                      id="host"
+                      name="position"
+                      value="host"
+                      checked={position === 'host'}
+                      onChange={() => handlePositionChange('host')}
+                    />
                   <label className="form-check-label" htmlFor="host">Host</label>
                 </div>
               </div>
@@ -93,7 +97,7 @@ const Registro = () => {
                   id="exampleInputPassword1"
                   placeholder="Password"
                   required
-                  onChange={(event) => setUser({ ...user, password: event.target.value })}
+                  onChange={(event) => setUser ({ ...user, password: event.target.value })} // Actualiza el estado de user.password
                 />
                 <span
                   className="input-group-text"
@@ -113,7 +117,7 @@ const Registro = () => {
                   id="exampleInputPassword2"
                   placeholder="Confirm Password"
                   required
-                  onChange={(event) => setConfirmPassword(event.target.value)}
+                  onChange={(event) => setConfirmPassword(event.target.value)} // Actualiza el estado de confirmPassword
                 />
                 <span
                   className="input-group-text"
@@ -128,9 +132,17 @@ const Registro = () => {
               )}
             </div>
             <button type="submit" className="registro w-100 mt-2"
-              onClick={() => {
+              onClick={async (event) => {
+                event.preventDefault(); // Evita el comportamiento por defecto del formulario
                 if (user.password === confirmPassword) {
-                  actions.registro(user.email, user.password);
+                  try {
+                    await actions.registro(user.email, user.password, user.first_name, user.last_name, user.type_user);
+                    // Redirigir o mostrar un mensaje de éxito si el registro es exitoso
+                    navigate("/"); // O la ruta que desees
+                  } catch (error) {
+                    // Manejo de errores
+                    alert(error.message || 'Ocurrió un error al registrarse. Inténtalo de nuevo.'); // Muestra el mensaje de error
+                  }
                 } else {
                   alert('Las contraseñas no coinciden');
                 }

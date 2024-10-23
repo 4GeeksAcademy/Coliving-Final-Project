@@ -25,6 +25,41 @@ def handle_hello():
     return jsonify(response_body), 200
 
 
+# Register ENDPOINT
+
+@api.route("/register", methods=["POST"])
+def register():
+    first_name = request.json.get("first_name", None)
+    last_name = request.json.get("last_name", None)
+    type_user = request.json.get("type_user", None)
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+
+    # Validar que todos los campos requeridos estén presentes
+    if not all([first_name, last_name, type_user, email, password]):
+        return jsonify({"msg": "Todos los campos son obligatorios."}), 400
+
+    # Verificar si el usuario ya existe
+    existing_user = User.query.filter_by(email=email).first()
+    if existing_user:
+        return jsonify({"msg": "El correo electrónico ya está en uso."}), 409
+
+    # Crear un nuevo usuario
+    new_user = User(
+        first_name=first_name,
+        last_name=last_name,
+        type_user=type_user,
+        email=email,
+        password=generate_password_hash(password),  # Hash de la contraseña
+        is_active=True  # Por defecto, el usuario está activo
+    )
+
+    # Agregar el nuevo usuario a la base de datos
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({"msg": "Usuario creado exitosamente.", "user_id": new_user.id}), 201
+
 # Login ENDPOINT
 
 @api.route("/login", methods=["POST"])
