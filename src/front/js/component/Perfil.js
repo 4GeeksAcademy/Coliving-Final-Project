@@ -4,7 +4,8 @@ import React from 'react';
 const Perfil = () => {
   const user = {
     imageUrl: "https://i.pravatar.cc/300",
-    nombre: "Ramon Duarte",
+    nombre: "Ramon",
+    apellido:"Duarte",
     email: "ramon@example.com",
     telefono: "+58 1234 8979",
     documento: "V-392834729",
@@ -18,19 +19,32 @@ const Perfil = () => {
       <fieldset disabled>
         <legend style={{ textAlign: 'center', marginBottom: '20px' }}>Perfil de Usuario</legend>
         <div className="mb-3 d-flex justify-content-center">
-          <img className="rounded-circle img-fluid" src={user.imageUrl} alt='Foto' style={{width: '130px', height: '130px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.2'}} />
+          <img className="rounded-circle img-fluid" src={user.imageUrl} alt='Foto' style={{ width: '130px', height: '130px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.2' }} />
         </div>
         <div className="mb-3">
           <label htmlfor="disabledTextInput" className="form-label">
             Nombre Completo
           </label>
-          <input
-            type="text"
-            id="disabledTextInput"
-            className="form-control"
-            placeholder={user.nombre}
-            // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
-          />
+          <div className='row'>
+            <div className='col'>
+              <input
+                type="text"
+                id="disabledTextInput"
+                className="form-control"
+                placeholder={user.nombre}
+              // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
+              />
+            </div>
+            <div className='col'>
+              <input
+                type="text"
+                id="disabledTextInput"
+                className="form-control"
+                placeholder={user.apellido}
+              // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
+              />
+            </div>
+          </div>
         </div>
         <div className="mb-3">
           <label htmlfor="disabledTextInput" className="form-label">
@@ -41,7 +55,7 @@ const Perfil = () => {
             id="disabledTextInput"
             className="form-control"
             placeholder={user.email}
-            // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
+          // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
           />
         </div>
         <div className="mb-3">
@@ -53,7 +67,7 @@ const Perfil = () => {
             id="disabledTextInput"
             className="form-control"
             placeholder={user.telefono}
-            // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
+          // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
           />
         </div>
         <div className="mb-3">
@@ -65,7 +79,7 @@ const Perfil = () => {
             id="disabledTextInput"
             className="form-control"
             placeholder={user.documento}
-            // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
+          // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
           />
         </div>
         <div className="mb-3">
@@ -77,7 +91,7 @@ const Perfil = () => {
             id="disabledTextInput"
             className="form-control"
             placeholder={user.direccion}
-            // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
+          // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
           />
         </div>
         <div className="mb-3">
@@ -89,11 +103,11 @@ const Perfil = () => {
             id="disabledTextInput"
             className="form-control"
             placeholder={user.contacto}
-            // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
+          // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
           />
         </div>
         <div className="text-center">
-          <button type="submit" className="btn" style={{ backgroundColor: '#b64359', borderColor: '#b64359',  color: 'white', borderRadius: '50px', padding: '10px 20px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
+          <button type="submit" className="btn" style={{ backgroundColor: '#b64359', borderColor: '#b64359', color: 'white', borderRadius: '50px', padding: '10px 20px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
             Editar
           </button>
         </div>

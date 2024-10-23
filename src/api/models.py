@@ -7,10 +7,13 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     first_name = db.Column(db.String(80), unique=False, nullable=False)
     last_name = db.Column(db.String(80), unique=False, nullable=False)
     type_user = db.Column(db.String(80), unique=False, nullable=False)
+    phone = db.Column(db.String(20), unique=False)
+    identity_document = db.Column(db.String(20), unique=False)
+    address = db.Column(db.String(80), unique=False)
+    emergency_phone = db.Column(db.String(20), unique=False)
  
 
     def __repr__(self):
@@ -22,6 +25,12 @@ class User(db.Model):
             "first_name": self.first_name,
             "last_name": self.last_name,
             "email": self.email,
+            "type_user": self.type_user,
+            "phone": self.phone,
+            "identity_document": self.identity_document,
+            "address": self.address,
+            "emergency_phone": self.emergency_phone
+
             # do not serialize the password, its a security breach
         }
     
