@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 const Habitaciones = (props) => {
   const [count, setCount] = useState(0);
   return (
-    <div className="d-flex justify-content-between align-items-center my-4" style={{ width: '100%' }}>
+    <div className="d-flex justify-content-between align-items-center" style={{ width: '100%' }}>
       <p className='filter-label'  style={{ flex: 1, textAlign: 'left' }}>{props.nombre}</p>
-      <div className='d-flex justify-content-between align-items-center' style={{ flex: 1, maxWidth: '200px' }}>
+      <div className="mb-3 d-flex justify-content-between align-items-center" style={{ flex: 1, maxWidth: '200px' }}>
         <button onClick={() => {  
           if (count > 0) {
             setCount(count - 1);

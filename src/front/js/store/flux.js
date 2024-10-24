@@ -19,7 +19,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			properties: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -84,6 +85,42 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+
+			registro: async (first_name, last_name, type_user, email, password) => {
+				// Enviando datos al backend para el registro
+				const resp = await fetch(process.env.BACKEND_URL + "api/register", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						first_name: first_name,
+						last_name: last_name,
+						type_user: type_user,
+						email: email,
+						password: password
+					})
+				});
+			
+				const data = await resp.json();
+			
+				// Manejo de la respuesta
+				if (resp.ok) {
+					localStorage.setItem("token", data.token); // Si el backend devuelve un token
+					setStore({ user: data.user }); // Si el backend devuelve información del usuario
+					toast.success("Registro exitoso 🎉");
+				} else {
+					toast.error(data.msg || "Registro fallido 🙅🏽");
+				}
+			},
+
+			loadProperties: async () => {
+				const response = await fetch(process.env.BACKEND_URL + 'api/property')
+				const data = await response.json()
+				setStore({
+					properties: data
+				})
 			},
 
 			login: async (email, password) => {
