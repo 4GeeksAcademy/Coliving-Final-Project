@@ -17,8 +17,6 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 
 
-
-
 function Publish() {
 
   const [property, setProperty] = useState({});
@@ -35,7 +33,7 @@ function Publish() {
     const metadata = {
       contentType: 'image/*'
     }
-    const uploadTask = uploadBytes(storageRef, image, metadata);
+    const uploadTask = uploadBytesResumable(storageRef, image, metadata);
     uploadTask.on(
       'state_changed',
       (snapshot) => {
@@ -56,17 +54,13 @@ function Publish() {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log('File available at', downloadURL);
-        });
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log('Files available at', downloadURL);
           setProperty({
             ...property,
             imageUrl: downloadURL
           });
         });
       });
+
 
   }
   return (
@@ -109,10 +103,13 @@ function Publish() {
                 <label >Ubicacion Aproximada</label>
               </div>
               <div className="form-floating  mt-4">
-                <label className="upload-label mb-3">Sube las fotos de tu propiedad</label><br />
+                <label className="upload-label mb-5">Sube las fotos de tu propiedad</label><br />
                 {
                   property.files && <button className="submit"
-                    onClick={() => uploadImage(property.files)}> Upload Image</button>}
+                    onClick={() => {
+                      uploadImage(property.files)
+                      document.getElementById("file").value = ""
+                    }}> Upload Image </button>}
                 <input
                   multiple
                   type="file"
