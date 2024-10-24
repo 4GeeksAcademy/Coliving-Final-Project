@@ -28,6 +28,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 
+			contactHost: async (guest_name, email, phone, message, budget, hostId) => {
+				console.log(hostId)
+				try {
+					const resp = await fetch(process.env.BACKEND_URL + "api/contact", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": "Bearer " + getStore().token // Incluir token si es necesario
+						},
+						body: JSON.stringify({
+							guest_name: guest_name,
+							email: email,
+							phone: phone,
+							message: message,
+							budget: budget,
+							host_id: hostId // ID del host
+						})
+					});
+
+					if (resp.ok) {
+						const data = await resp.json();
+						toast.success("Mensaje enviado al host 🎉");
+						return data;
+					} else {
+						toast.error("No se pudo enviar el mensaje 🙅🏽");
+					}
+				} catch (error) {
+					console.error("Error al enviar mensaje al host:", error);
+					toast.error("Error al enviar el mensaje 🙅🏽");
+				}
+			},
+
 			getMessage: async () => {
 				try {
 					// fetching data from the backend
