@@ -102,9 +102,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						password: password
 					})
 				});
-			
+
 				const data = await resp.json();
-			
+
 				// Manejo de la respuesta
 				if (resp.ok) {
 					localStorage.setItem("token", data.token); // Si el backend devuelve un token
@@ -113,6 +113,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} else {
 					toast.error(data.msg || "Registro fallido 🙅🏽");
 				}
+			},
+
+			publishProperty: async (name, price, address, files, stay, description, rules, laundry, parking, air_conditioning, is_cancelable, floor_type, rooms_number, restrooms, beds) => {
+				const response = await fetch(process.env.BACKEND_URL + 'api/property', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer ' + getStore().token
+					},
+					body: JSON.stringify({
+						name: name,
+						price: price,
+						address: address,
+						files: property.imageUrl,
+						stay: stay,
+						description: description,
+						rules: rules,
+						laundry: laundry,
+						parking: parking,
+						air_conditioning: air_conditioning,
+						is_cancelable: is_cancelable,
+						floor_type: floor_type,
+						rooms_number: rooms_number,
+						restrooms: restrooms,
+						beds: beds
+					})
+				})
+				const data = await response.json()
+				toast.success("Publicación exitosa 🎉")
+				return data
 			},
 
 			loadProperties: async () => {
