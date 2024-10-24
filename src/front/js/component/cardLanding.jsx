@@ -8,12 +8,12 @@ const CardLanding = ({property}) => {
       <Link to={'/single/' + property.id} className="text-decoration-none text-black">
         <div>
           <div className="card shadow-sm">
-            <img src={property.files} className="card-img-top" alt="..." />
+            <img src={property.files} className="card-img-top" alt="Imagen de la propiedad" />
             <div className="card-body">
               <h5 className="card-title">{property.name}</h5>
               <p className="card-text">{property.description}</p>
               <p>{property.rooms_number} habitaciones - {property.beds} camas - {property.restrooms} baños</p>
-              <p><strong>{property.price}</strong></p>
+              <p><strong>${property.price}</strong></p>
             </div>
           </div>
         </div>

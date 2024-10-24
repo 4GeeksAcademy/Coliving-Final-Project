@@ -51,7 +51,6 @@ def register():
         type_user=type_user,
         email=email,
         password=generate_password_hash(password),  # Hash de la contraseña
-        is_active=True  # Por defecto, el usuario está activo
     )
 
     # Agregar el nuevo usuario a la base de datos
@@ -76,15 +75,14 @@ def login():
     if user is None:
         return jsonify({"msg": "We couldn't find your email, but we've got a feeling it's out there having a good time. Join us and create your own adventure!"}), 404
 
-    if user.password != password:
-        return jsonify({"msg": "This key (password) doesn't open the door, please try again"}), 401
-    
-    acces_token = create_access_token(identity=email)
-
-    return jsonify({
-        "token": acces_token,
-        "user": user.serialize()
-    }), 200
+    if check_password_hash(user.password, password):
+        acces_token = create_access_token(identity=email)
+        return jsonify({
+            "token": acces_token,
+            "user": user.serialize()
+        }), 200
+    else:
+        return jsonify({"msg": "Houston we've got a problem, it seems that your password is incorrect"}), 401
 
 
 @api.route('/property', methods=['POST'])
