@@ -98,3 +98,18 @@ body {
   background-color: #b64359;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
+.loading-spinner {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.loading-spinner i {
+  font-size: 3rem;
+  color: #b64359;
+}
+
+.loading-spinner p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
