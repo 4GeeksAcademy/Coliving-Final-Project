@@ -155,15 +155,15 @@ def contact_host():
         body = request.get_json()
 
         if body is None:
-            return jsonify({"msg": "Please send a request body"}), 400
+            return jsonify({"msg": "Please send a request body"}), 401
 
-        required_fields = ['guestName', 'email', 'message', 'budget', 'host_id']
+        required_fields = ['guest_name', 'email', 'message', 'budget', 'host_id']
         for field in required_fields:
             if field not in body:
-                return jsonify({"msg": f"Please provide the {field} field"}), 400
+                return jsonify({"msg": f"Please provide the {field} field"}), 402
 
         new_message = ContactMessage(
-            guest_name=body['guestName'],
+            guest_name=body['guest_name'],
             email=body['email'],
             phone=body.get('phone', None),  # El teléfono es opcional
             message=body['message'],

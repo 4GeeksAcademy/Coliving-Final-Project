@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { Context } from '../store/appContext'; // Importar el contexto del flux
 import "./../../styles/ContactForm.css";
 
 const ContactForm = ({ hostName = "John Doe", hostId = 1, location = "Monterrey" }) => {
+  const [contact, setContact] = useState({});
+  const { actions } = useContext(Context); // Obtener las acciones del flux
   const [formData, setFormData] = useState({
-    guestName: '',
+    guest_name: '',
     email: '',
     phone: '',
     message: '',
@@ -16,8 +19,8 @@ const ContactForm = ({ hostName = "John Doe", hostId = 1, location = "Monterrey"
   // Validación de los campos del formulario
   const validate = () => {
     let errors = {};
-    if (!formData.guestName) {
-      errors.guestName = 'Nombre es obligatorio';
+    if (!formData.guest_name) {
+      errors.guest_name = 'Nombre es obligatorio';
     }
     if (!formData.email) {
       errors.email = 'Correo es obligatorio';
@@ -37,39 +40,30 @@ const ContactForm = ({ hostName = "John Doe", hostId = 1, location = "Monterrey"
       [e.target.name]: e.target.value,
     });
   };
-
+console.log(formData)
   // Manejar el envío del formulario
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
-      // Si no hay errores, enviamos el formulario
-      fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          guestName: formData.guestName,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-          budget: formData.budget,
-          host_id: hostId, // Usar el ID real del host
-        }),
-      })
-      .then(response => response.json())
-      .then(data => {
-        setSubmitted(true);
-        console.log('Formulario enviado:', data);
-      })
-      .catch(error => {
-        console.error('Error al enviar el formulario:', error);
-      });
+      // Si no hay errores, llamamos a la acción contactHost del flux
+      await actions.contactHost(
+        formData.guest_name,
+        formData.email,
+        formData.phone,
+        formData.message,
+        formData.budget,
+        hostId // Pasar el ID del host como parámetro
+      );
+      setSubmitted(true);
     } else {
       setErrors(validationErrors);
     }
   };
+  const pactions = (name, email, phone, message, budget, hostId) => {
+    actions.contactHost(name, email, phone, message, budget, hostId)
+
+  }
 
   return (
     <div className="contact-form-container">
@@ -88,15 +82,15 @@ const ContactForm = ({ hostName = "John Doe", hostId = 1, location = "Monterrey"
           </div>
 
           <div>
-            <label htmlFor="guestName">Nombre Completo:</label>
+            <label htmlFor="guest_name">Nombre Completo:</label>
             <input
               type="text"
-              name="guestName"
-              value={formData.guestName}
+              name="guest_name"
+              value={formData.guest_name}
               onChange={handleChange}
               required
             />
-            {errors.guestName && <p className="error">{errors.guestName}</p>}
+            {errors.guest_name && <p className="error">{errors.guest_name}</p>}
           </div>
 
           <div>
@@ -150,7 +144,7 @@ const ContactForm = ({ hostName = "John Doe", hostId = 1, location = "Monterrey"
             </select>
           </div>
 
-          <button type="submit">Contactar al Host</button>
+          <button onClick={() => pactions(formData.guest_name, formData.email, formData.phone, formData.message, formData.budget, hostId)} type="submit">Contactar al Host</button>
         </form>
       )}
     </div>
