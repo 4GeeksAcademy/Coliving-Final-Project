@@ -130,6 +130,24 @@ def get_properties():
     properties = [ property.serialize() for property in properties ]
     return jsonify(properties), 200   
 
+# Endpoint para obtener una propiedad específica por ID
+@api.route('/property/<int:property_id>', methods=['GET'])
+def get_property(property_id):
+    try:
+        # Busca la propiedad por su ID
+        property = Property.query.get(property_id)
+        
+        # Si no se encuentra, devuelve un error 404
+        if property is None:
+            return jsonify({"msg": "Property not found"}), 404
+
+        # Devuelve la propiedad serializada en formato JSON
+        return jsonify(property.serialize()), 200
+
+    except Exception as e:
+        return jsonify({"msg": str(e)}), 500
+
+
 
 @api.route('/contact', methods=['POST'])
 def contact_host():
