@@ -19,7 +19,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			properties: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -80,6 +81,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} else {
 					toast.error(data.msg || "Registro fallido 🙅🏽");
 				}
+			},
+
+			loadProperties: async () => {
+				const response = await fetch(process.env.BACKEND_URL + 'api/property')
+				const data = await response.json()
+				setStore({
+					properties: data
+				})
 			},
 
 			login: async (email, password) => {
