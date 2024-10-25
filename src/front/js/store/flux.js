@@ -7,6 +7,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			user: null,
 			token: localStorage.getItem("token") || null,
+			type_user: null,
+
 			message: null,
 			demo: [
 				{
@@ -105,6 +107,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				const data = await resp.json();
 
+
 				// Manejo de la respuesta
 				if (resp.ok) {
 					localStorage.setItem("token", data.token); // Si el backend devuelve un token
@@ -153,7 +156,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-			login: async (email, password) => {
+			login: async (email, password, type_user) => {
 
 				// fetching data from the backend 
 				const resp = await fetch(process.env.BACKEND_URL + "api/login", {
@@ -163,7 +166,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body: JSON.stringify({
 						email: email,
-						password: password
+						password: password,
+						type_user: type_user
 					})
 				});
 
@@ -171,14 +175,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				localStorage.setItem("token", data.token);
 
-				setStore({ token: data.token });
-				setStore({ user: data.user });
+
+				setStore({
+					token: data.token,
+					user: data.user,
+
+				});
 
 				if (resp.ok) {
 					toast.success("Login success 🎉")
 				} else {
 					toast.error("Login failed 🙅🏽")
 				}
+
+				const repsUser = await fetch(process.env.BACKEND_URL + "api/typeuser", {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": "Bearer " + getStore().token
+					},
+					body: JSON.stringify({
+
+						type_user: type_user
+					})
+
+				});
+
+				const dataUser = await repsUser.json();
+
+				setStore({
+					type_user: dataUser.type_user
+				});
+
 			},
 
 			logout: () => {
