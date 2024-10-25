@@ -1,10 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../store/appContext'; // Importar el contexto del flux
+import { useLocation } from 'react-router-dom'; // Importar para recibir estado de la navegación
 import "./../../styles/ContactForm.css";
 
-const ContactForm = ({ hostName = "John Doe", hostId = 1, location = "Monterrey" }) => {
+const ContactForm = () => {
+  const { state } = useLocation();
+  const { hostId, hostName = "John Doe", location = "Monterrey" } = state || {};  // Valores por defecto si no se pasan desde la navegación
   const [contact, setContact] = useState({});
-  const { actions } = useContext(Context); // Obtener las acciones del flux
+  const { actions } = useContext(Context); 
   const [formData, setFormData] = useState({
     guest_name: '',
     email: '',
@@ -16,7 +19,6 @@ const ContactForm = ({ hostName = "John Doe", hostId = 1, location = "Monterrey"
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
-  // Validación de los campos del formulario
   const validate = () => {
     let errors = {};
     if (!formData.guest_name) {
@@ -33,37 +35,30 @@ const ContactForm = ({ hostName = "John Doe", hostId = 1, location = "Monterrey"
     return errors;
   };
 
-  // Manejar cambios en el formulario
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
-console.log(formData)
-  // Manejar el envío del formulario
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
-      // Si no hay errores, llamamos a la acción contactHost del flux
       await actions.contactHost(
         formData.guest_name,
         formData.email,
         formData.phone,
         formData.message,
         formData.budget,
-        hostId // Pasar el ID del host como parámetro
+        hostId 
       );
       setSubmitted(true);
     } else {
       setErrors(validationErrors);
     }
   };
-  const pactions = (name, email, phone, message, budget, hostId) => {
-    actions.contactHost(name, email, phone, message, budget, hostId)
-
-  }
 
   return (
     <div className="contact-form-container">
@@ -144,7 +139,7 @@ console.log(formData)
             </select>
           </div>
 
-          <button onClick={() => pactions(formData.guest_name, formData.email, formData.phone, formData.message, formData.budget, hostId)} type="submit">Contactar al Host</button>
+          <button type="submit">Contactar al Host</button>
         </form>
       )}
     </div>
