@@ -12,7 +12,8 @@ const HostProperty = () => {
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        const response = await fetch(`https://refactored-space-potato-7g799ppw57xhpjvv-3001.app.github.dev/api/property/${id}`);
+        // Cambiar la URL directamente para que use el backend preestablecido
+        const response = await fetch(`https://orange-pancake-q7vj49q4jrjc9776-3001.app.github.dev/api/property/${id}`);
         
         if (!response.ok) {
           throw new Error('Error al obtener la propiedad, posiblemente no se encuentre o la URL es incorrecta.');
@@ -27,7 +28,7 @@ const HostProperty = () => {
         setLoading(false);  // Terminamos la carga
       }
     };
-
+    
     fetchProperty();
   }, [id]);
 
