@@ -57,7 +57,7 @@ const Layout = () => {
             <Route element={<Login />} path="/login" />
             <Route element={<h1>Not found!</h1>} />
             <Route element={<ContactForm />} path="/contact" />
-            <Route element={<HostProperty property={property} />} path="/hostProperty" />
+            <Route element={<HostProperty />} path="/hostProperty/:id" />
             <Route element={<LandingPage />} path="/landingPage" />
             <Route element={<Registro />} path="/registro" />
           </Routes>

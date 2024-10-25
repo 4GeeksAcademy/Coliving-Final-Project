@@ -78,7 +78,7 @@ const CardsLanding = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default CardsLanding;

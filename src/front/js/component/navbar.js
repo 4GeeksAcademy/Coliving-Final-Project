@@ -8,7 +8,24 @@ export const Navbar = () => {
 
 	const { store, actions } = useContext(Context);
 
+	// return (
+	// 	<NavbarHost />
+	// );
+
+	// Verifica el rol del usuario si la progra esta correcta
+	if (store.type_user === "Host") {
+		return <NavbarHost />
+	} else {
+		return <NavbarGuest />
+	}
+
+};
+
+
+const NavbarHost = () => {
+	const { store, actions } = useContext(Context);
 	return (
+
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
 
@@ -16,13 +33,12 @@ export const Navbar = () => {
 					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
 				</a>
 				<div className="ml-auto d-flex align-items-center">
-					<button className="btn btn-link p-0 border-0 my-2 mx-3">
+					{/* <button className="btn btn-link p-0 border-0 my-2 mx-3">
 						<i className="fa-solid fa-globe me-2"></i>
-					</button>
+					</button> */}
 					{!store.token && <Link to="/login">
 						<button className="btn my-auto text-white" style={{ backgroundColor: "#b64359" }}>Login</button>
 					</Link>}
-
 
 					{store.token && <button className="btn my-auto mx-1" onClick={() => actions.logout()}>
 						Logout
@@ -37,13 +53,61 @@ export const Navbar = () => {
 							<li><a className="dropdown-item" href="/property">Espacio en Coliving</a></li>
 							<li><a className="dropdown-item" href="/perfil">Perfil</a></li>
 							<li><a className="dropdown-item" href="/filtros">Filtros</a></li>
+							<li><a className="dropdown-item" href="#">Centro de Ayuda</a></li>
+							<li><a className="dropdown-item" href="#">Quienes Somos</a></li>
 						</ul>
 					</div>
 
 				</div>
 			</div>
 		</nav>
+
 	);
-};
+
+}
+
+
+
+const NavbarGuest = () => {
+	const { store, actions } = useContext(Context);
+	return (
+
+		<nav className="navbar navbar-light bg-light">
+			<div className="container">
+
+				<a href="/" className="C-living">
+					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
+				</a>
+				<div className="ml-auto d-flex align-items-center">
+					{/* <button className="btn btn-link p-0 border-0 my-2 mx-3">
+						<i className="fa-solid fa-globe me-2"></i>
+					</button> */}
+					{!store.token && <Link to="/login">
+						<button className="btn my-auto text-white" style={{ backgroundColor: "#b64359" }}>Login</button>
+					</Link>}
+
+					{store.token && <button className="btn my-auto mx-1" onClick={() => actions.logout()}>
+						Logout
+					</button>}
+					<div className="dropdown rounded custom-rounded">
+						<button className="btn btn-secondary dropdown-toggle m-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i className="fa-solid fa-bars me-2"></i>
+							<i className="fa-solid fa-user"></i>
+						</button>
+						<ul className="dropdown-menu">
+							<li><a className="dropdown-item" href="/registro">Registrate</a></li>
+							<li><a className="dropdown-item" href="#">Filtros</a></li>
+							<li><a className="dropdown-item" href="/perfil">Centro de Ayuda</a></li>
+							<li><a className="dropdown-item" href="#">Quienes Somos</a></li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</nav>
+
+	);
+
+}
 
 

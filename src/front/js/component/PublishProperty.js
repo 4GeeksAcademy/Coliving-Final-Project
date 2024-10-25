@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./../../styles/AdPublish.css";
 import toast from "react-hot-toast";
 import { initializeApp } from "firebase/app";
+import { Context } from "../store/appContext";
+
 
 import { getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable } from "firebase/storage";
 
@@ -19,6 +21,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 function Publish() {
 
+  const { store, actions } = useContext(Context);
   const [property, setProperty] = useState({});
   const [images, setImages] = useState(null);
   const [laundrys, setLaundrys] = useState('');
@@ -29,11 +32,15 @@ function Publish() {
   const uploadImage = async (image) => {
 
     const storage = getStorage(firebaseApp);
-    const storageRef = ref(storage, `property_images/${image.name}`);
+
     const metadata = {
-      contentType: 'image/*'
+      contentType: image.type
     }
+    const storageRef = ref(storage, `property_images/${image.name}`);
     const uploadTask = uploadBytesResumable(storageRef, image, metadata);
+
+
+
     uploadTask.on(
       'state_changed',
       (snapshot) => {
@@ -49,20 +56,52 @@ function Publish() {
         }
       },
       (error) => {
-        console.log(error);
+        switch (error.code) {
+          case 'storage/unauthorized':
+            console.log('User doesn\'t have permission to access the object');
+            break;
+          case 'storage/canceled':
+            console.log('User canceled the upload');
+            break;
+        }
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log('File available at', downloadURL);
+          toast.success("Imagen cargada con exito 👏🏾");
           setProperty({
             ...property,
             imageUrl: downloadURL
+
           });
         });
       });
 
 
   }
+
+  const publishProperty = async (property) => {
+    const imageUrl = await uploadImage(property.image);
+    await actions.publishProperty(
+      property.name,
+      property.price,
+      property.address,
+      property.stay,
+      property.description,
+      property.rules,
+      property.laundry,
+      property.parking,
+      property.air_conditioning,
+      property.is_cancelable,
+      property.floor_type,
+      property.rooms_number,
+      property.restrooms,
+      property.beds,
+      imageUrl
+    )
+  };
+
+
   return (
     <>
 
@@ -105,11 +144,20 @@ function Publish() {
               <div className="form-floating  mt-4">
                 <label className="upload-label mb-5">Sube las fotos de tu propiedad</label><br />
                 {
-                  property.files && <button className="submit"
+                  property && property.files && property.files.map((file, index) => {
+                    return <img key={index} src={URL.createObjectURL(file)} style={{ width: '100px' }} alt="imagen" className="img-preview" />
+                  })
+                }
+                {
+                  property && property.files && <button className="submit"
                     onClick={() => {
-                      uploadImage(property.files)
-                      document.getElementById("file").value = ""
-                    }}> Upload Image </button>}
+
+                      property.files.forEach((file) => {
+                        uploadImage(file)
+                      })
+
+                    }}> Upload Image </button>
+                }
                 <input
                   multiple
                   type="file"
@@ -118,9 +166,8 @@ function Publish() {
                   accept="image/*"
 
                   onChange={(e) => {
-                    setProperty({ ...property, files: e.target.files })
-                    // setImages([]);
-                    // setImages({ ...images, files: e.target.files });
+                    setProperty({ ...property, files: [...e.target.files] })
+
                     const file = e.target.files;
 
                     if (file.length >= 6) {
@@ -302,7 +349,10 @@ function Publish() {
                 <label >Escribe las Reglas por aca</label>
               </div>
               <button className="my-5"
-                onClick={() => toast.success("Anuncio publicado 🎉")}
+                onClick={() => {
+                  publishProperty(publish);
+                  toast.success("Anuncio publicado 🎉")
+                }}
               >Publicar Anuncio</button>
             </form>
           </div>

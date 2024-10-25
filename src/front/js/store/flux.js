@@ -7,6 +7,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			user: null,
 			token: localStorage.getItem("token") || null,
+			type_user: null,
+
 			message: null,
 			demo: [
 				{
@@ -102,9 +104,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						password: password
 					})
 				});
-			
+
 				const data = await resp.json();
-			
+
+
 				// Manejo de la respuesta
 				if (resp.ok) {
 					localStorage.setItem("token", data.token); // Si el backend devuelve un token
@@ -115,6 +118,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			publishProperty: async (name, price, address, files, stay, description, rules, laundry, parking, air_conditioning, is_cancelable, floor_type, rooms_number, restrooms, beds) => {
+				const response = await fetch(process.env.BACKEND_URL + 'api/property', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer ' + getStore().token
+					},
+					body: JSON.stringify({
+						name: name,
+						price: price,
+						address: address,
+						files: property.imageUrl,
+						stay: stay,
+						description: description,
+						rules: rules,
+						laundry: laundry,
+						parking: parking,
+						air_conditioning: air_conditioning,
+						is_cancelable: is_cancelable,
+						floor_type: floor_type,
+						rooms_number: rooms_number,
+						restrooms: restrooms,
+						beds: beds
+					})
+				})
+				const data = await response.json()
+				toast.success("Publicación exitosa 🎉")
+				return data
+			},
+
 			loadProperties: async () => {
 				const response = await fetch(process.env.BACKEND_URL + 'api/property')
 				const data = await response.json()
@@ -123,7 +156,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-			login: async (email, password) => {
+			login: async (email, password, type_user) => {
 
 				// fetching data from the backend 
 				const resp = await fetch(process.env.BACKEND_URL + "api/login", {
@@ -133,7 +166,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body: JSON.stringify({
 						email: email,
-						password: password
+						password: password,
+						type_user: type_user
 					})
 				});
 
@@ -141,14 +175,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				localStorage.setItem("token", data.token);
 
-				setStore({ token: data.token });
-				setStore({ user: data.user });
+
+				setStore({
+					token: data.token,
+					user: data.user,
+
+				});
 
 				if (resp.ok) {
 					toast.success("Login success 🎉")
 				} else {
 					toast.error("Login failed 🙅🏽")
 				}
+
+				const repsUser = await fetch(process.env.BACKEND_URL + "api/typeuser", {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": "Bearer " + getStore().token
+					},
+					body: JSON.stringify({
+
+						type_user: type_user
+					})
+
+				});
+
+				const dataUser = await repsUser.json();
+
+				setStore({
+					type_user: dataUser.type_user
+				});
+
 			},
 
 			logout: () => {
@@ -157,24 +215,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				toast.success("Logout success 🎉")
 			},
 
-			// getUserLogged: async () => {
-			// 	const resp = await fetch(process.env.BACKEND_URL + "api/user", {
-			// 		headers: {
-			// 			"Authorization": "Bearer " + getStore().token
-			// 		}
-			// 	});
+		 getUserLogged: async () => {
+			try{
+		 	const resp = await fetch(process.env.BACKEND_URL + "api/user", {
+		 		headers: {
+		 			"Authorization": "Bearer " + getStore().token
+					}
+		 	});
 
-			// 	if (!resp.ok) {
-			// 		localStorage.removeItem("token");
-			// 		setStore({ token: null });
-			// 	} else {
-			// 		toast.success("User logged 🎉")
-			// 	}
 
-			// 	const data = await resp.json();
-			// 	setStore({ user: data.user });
-
-			// }
+			 	const data = await resp.json();
+				console.log(data)
+			 	setStore({ user: data });
+				return true
+		}catch(error){
+			console.log(error)
+			return false
+		}
+			 }
 		}
 	};
 };

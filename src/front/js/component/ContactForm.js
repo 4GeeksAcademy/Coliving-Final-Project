@@ -1,8 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../store/appContext'; // Importar el contexto del flux
+import { useLocation } from 'react-router-dom'; // Importar para recibir estado de la navegación
 import "./../../styles/ContactForm.css";
 
-const ContactForm = ({ hostName = "John Doe", hostId = 1, location = "Monterrey" }) => {
+const ContactForm = () => {
+  const { state } = useLocation(); // Obtener el estado pasado por navigate
+  const { hostName = "John Doe", hostId = 1, location = "Monterrey" } = state || {};  // Valores por defecto si no se pasan desde la navegación
   const [contact, setContact] = useState({});
   const { actions } = useContext(Context); // Obtener las acciones del flux
   const [formData, setFormData] = useState({
@@ -40,7 +43,7 @@ const ContactForm = ({ hostName = "John Doe", hostId = 1, location = "Monterrey"
       [e.target.name]: e.target.value,
     });
   };
-console.log(formData)
+
   // Manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,10 +63,10 @@ console.log(formData)
       setErrors(validationErrors);
     }
   };
-  const pactions = (name, email, phone, message, budget, hostId) => {
-    actions.contactHost(name, email, phone, message, budget, hostId)
 
-  }
+  const pactions = (name, email, phone, message, budget, hostId) => {
+    actions.contactHost(name, email, phone, message, budget, hostId);
+  };
 
   return (
     <div className="contact-form-container">

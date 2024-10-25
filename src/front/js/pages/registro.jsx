@@ -23,6 +23,7 @@ const Registro = () => {
 
   const handlePositionChange = (value) => {
     setPosition(value);
+    console.log(value)
     setUser ({ ...user, type_user: value }); // Actualiza el type_user en el estado
   };
 

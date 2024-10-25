@@ -38,7 +38,7 @@ export default function Login() {
             {/* LOGIN */}
             <form>
               <div className="form-floating mb-3">
-                <input type="email" className="form-control" onChange={(e) => setUser({ ...user, email: e.target.value })} placeholder="name@example.com" required />
+                <input id="email" type="email" className="form-control" onChange={(e) => setUser({ ...user, email: e.target.value })} placeholder="name@example.com" required />
                 <label>Email</label>
               </div>
 
@@ -48,7 +48,12 @@ export default function Login() {
                 <div id="toggle" onClick={() => setShowPassword(!showPassword)}>{showPassword ? "😵" : "👀"}</div>
               </div>
               <div>
-                <button onClick={() => actions.login(user.email, user.password)}
+                <button onClick={() => {
+                  actions.login(user.email, user.password)
+                  navigate("/landingPage")
+                  document.getElementById("password").value = "";
+                  document.getElementById("email").value = "";
+                }}
                   className="submit mt-4" type="button">Log In</button>
               </div>
               <div className="link-register mx-auto text-center mt-4">

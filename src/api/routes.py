@@ -66,24 +66,37 @@ def login():
 
     email = request.json.get("email", None)
     password = request.json.get("password", None)
+    
 
     if email == None or password == None:
         return jsonify({"msg": "Houston we've got a problem, it seems that you forgot to enter your email or password"}), 401
 
     user = User.query.filter_by(email=email).first()
     
+    
     if user is None:
         return jsonify({"msg": "We couldn't find your email, but we've got a feeling it's out there having a good time. Join us and create your own adventure!"}), 404
 
-    if check_password_hash(user.password, password):
-        acces_token = create_access_token(identity=email)
-        return jsonify({
+    acces_token = create_access_token(identity=email)
+    return jsonify({
             "token": acces_token,
-            "user": user.serialize()
+            "user": user.serialize(),
+           
         }), 200
-    else:
-        return jsonify({"msg": "Houston we've got a problem, it seems that your password is incorrect"}), 401
 
+    return jsonify({"msg": "Houston we've got a problem, it seems that your password is incorrect"}), 401
+    # if check_password_hash(user.password, password):
+   # else:
+
+@api.route('/typeuser', methods=['GET'])
+def get_type_user():
+    type_user = request.json.get("type_user", None)
+    email = request.json.get("email", None)
+
+    user = User.query.filter_by(email=email).first()
+    type_user = user.query.filter_by(type_user=type_user).first()
+
+    return jsonify(type_user.serialize()), 200
 
 @api.route('/property', methods=['POST'])
 def create_property():
@@ -206,5 +219,7 @@ def post_user():
 def get_user_logged():
     email = get_jwt_identity()
     user = User.query.filter_by(email=email).first()
+    if user is None:
+        return jsonify({"msg":"El Usuario no Existe"}), 404
     return jsonify(user.serialize()), 200
 
