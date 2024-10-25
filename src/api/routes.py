@@ -220,5 +220,7 @@ def post_user():
 def get_user_logged():
     email = get_jwt_identity()
     user = User.query.filter_by(email=email).first()
+    if user is None:
+        return jsonify({"msg":"El Usuario no Existe"}), 404
     return jsonify(user.serialize()), 200
 
