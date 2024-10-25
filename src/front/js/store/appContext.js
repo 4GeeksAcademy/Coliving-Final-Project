@@ -32,7 +32,7 @@ const injectContext = PassedComponent => {
 			// state.actions.getUserLogged();
 
 			state.actions.loadProperties();
-			state.actions.registro();
+			//state.actions.registro();
 
 
 		}, []);

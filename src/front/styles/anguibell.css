@@ -37,13 +37,18 @@ button:hover {
 }
 
 .lado-izquierdo {
-    background-image: url('../img/registro.jpg');
+    background-image: url('https://github.com/4GeeksAcademy/Coliving-Final-Project/blob/main/src/front/img/registro.jpg?raw=true');
+    filter: brightness(50%);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
     padding: 50px 100px;
     width: 40%;
 }
 
 .banner {
     background-image: url('https://guiauniversitaria.mx/wp-content/uploads/2020/04/Gu%C3%ADa-para-sobrevivir-a-los-problemas-de-convivencia.jpg');
+    filter: brightness(50%);
     background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
     background-position: center; /* Centra la imagen en el contenedor */
     height: 100vh;
@@ -53,8 +58,10 @@ button:hover {
     color: white;
 }
 
-.card-container {
-    display: grid; /* Activa CSS Grid */
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual tamaño */
-    gap: 10px; /* Espaciado entre tarjetas */
+.text-banner {
+    margin-top: -100px;
+    color: white;
+    z-index: 50;
+    position: relative;
+    padding-left: 25px;
 }

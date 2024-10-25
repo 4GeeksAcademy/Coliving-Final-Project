@@ -126,6 +126,7 @@ def create_property():
 def get_properties():
     properties = Property.query.all()
     properties = [ property.serialize() for property in properties ]
+
     return jsonify(properties), 200   
 
 # Endpoint para obtener una propiedad específica por ID
@@ -144,8 +145,6 @@ def get_property(property_id):
 
     except Exception as e:
         return jsonify({"msg": str(e)}), 500
-
-
 
 @api.route('/contact', methods=['POST'])
 def contact_host():

@@ -2,6 +2,7 @@ import "./../../styles/anguibell.css";
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
+import img from "../../img/registro.jpg";
 
 const Registro = () => {
 
@@ -12,6 +13,7 @@ const Registro = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [position, setPosition] = useState('');
   const navigate = useNavigate();
+  const [oculto, setOculto] = useState('visually-hidden');
 
   useEffect(() => {
     if (store.token) {
@@ -127,9 +129,10 @@ const Registro = () => {
                   {showConfirmPassword ? "🔒" : "👀"}
                 </span>
               </div>
-              {user.password !== confirmPassword && (
+              {/* {user.password !== confirmPassword && (
                 <div className="text-danger">Las contraseñas no coinciden</div>
-              )}
+              )} */}
+              <div className={`text-danger ${oculto}`}>Las contraseñas no coinciden</div>
             </div>
             <button type="submit" className="registro w-100 mt-2"
               onClick={async (event) => {
@@ -144,7 +147,7 @@ const Registro = () => {
                     alert(error.message || 'Ocurrió un error al registrarse. Inténtalo de nuevo.'); // Muestra el mensaje de error
                   }
                 } else {
-                  alert('Las contraseñas no coinciden');
+                  setOculto('')
                 }
               }}
             >
