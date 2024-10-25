@@ -21,6 +21,22 @@ import Registro from "./pages/registro.jsx";
 
 //create your first component
 const Layout = () => {
+  const property = {
+    title: "Departamento en el centro de Monterrey",
+    images: [
+      "https://a0.muscache.com/im/pictures/miso/Hosting-984660069055099617/original/52ae844e-4928-4664-b962-7a13bf009f0d.jpeg?im_w=720",
+      "https://a0.muscache.com/im/pictures/miso/Hosting-984660069055099617/original/52ae844e-4928-4664-b962-7a13bf009f0d.jpeg?im_w=720",
+      "https://a0.muscache.com/im/pictures/miso/Hosting-984660069055099617/original/52ae844e-4928-4664-b962-7a13bf009f0d.jpeg?im_w=720",
+    ],
+    location: "Centro, Monterrey, Nuevo León",
+    description: "Amplio departamento con 2 habitaciones y 1 baño, ideal para compartir.",
+    rent: 8000,
+    availability: true,
+    rules: ["No mascotas", "No fiestas", "Convivencia respetuosa"],
+    hostName: "Carlos López"
+  };
+  //the basename is used when your project is published in a subdirectory and not in the root of the domain
+  // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
 
   if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "")
