@@ -4,10 +4,10 @@ import { useLocation } from 'react-router-dom'; // Importar para recibir estado 
 import "./../../styles/ContactForm.css";
 
 const ContactForm = () => {
-  const { state } = useLocation();
-  const { hostId, hostName = "John Doe", location = "Monterrey" } = state || {};  // Valores por defecto si no se pasan desde la navegación
+  const { state } = useLocation(); // Obtener el estado pasado por navigate
+  const { hostName = "John Doe", hostId = 1, location = "Monterrey" } = state || {};  // Valores por defecto si no se pasan desde la navegación
   const [contact, setContact] = useState({});
-  const { actions } = useContext(Context); 
+  const { actions } = useContext(Context); // Obtener las acciones del flux
   const [formData, setFormData] = useState({
     guest_name: '',
     email: '',
@@ -19,6 +19,7 @@ const ContactForm = () => {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
+  // Validación de los campos del formulario
   const validate = () => {
     let errors = {};
     if (!formData.guest_name) {
@@ -35,6 +36,7 @@ const ContactForm = () => {
     return errors;
   };
 
+  // Manejar cambios en el formulario
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -42,22 +44,28 @@ const ContactForm = () => {
     });
   };
 
+  // Manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
+      // Si no hay errores, llamamos a la acción contactHost del flux
       await actions.contactHost(
         formData.guest_name,
         formData.email,
         formData.phone,
         formData.message,
         formData.budget,
-        hostId 
+        hostId // Pasar el ID del host como parámetro
       );
       setSubmitted(true);
     } else {
       setErrors(validationErrors);
     }
+  };
+
+  const pactions = (name, email, phone, message, budget, hostId) => {
+    actions.contactHost(name, email, phone, message, budget, hostId);
   };
 
   return (
@@ -139,7 +147,7 @@ const ContactForm = () => {
             </select>
           </div>
 
-          <button type="submit">Contactar al Host</button>
+          <button onClick={() => pactions(formData.guest_name, formData.email, formData.phone, formData.message, formData.budget, hostId)} type="submit">Contactar al Host</button>
         </form>
       )}
     </div>
