@@ -40,7 +40,7 @@ class Property(db.Model):
     name = db.Column(db.String(120), unique=True, nullable=False)
     price = db.Column(db.String(80), unique=False, nullable=False)
     address = db.Column(db.String(80), unique=False, nullable=False)
-    files = db.Column(db.String(400), unique=False, nullable=False)
+    files = db.Column(db.String(1000), unique=False, nullable=False)
     stay = db.Column(db.String(80), unique=False, nullable=False)
     description = db.Column(db.String(80), unique=False, nullable=False)
     rules = db.Column(db.String(80), unique=False, nullable=False)
