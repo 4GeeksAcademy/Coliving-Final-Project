@@ -77,16 +77,16 @@ def login():
     if user is None:
         return jsonify({"msg": "We couldn't find your email, but we've got a feeling it's out there having a good time. Join us and create your own adventure!"}), 404
 
-    acces_token = create_access_token(identity=email)
-    return jsonify({
-            "token": acces_token,
-            "user": user.serialize(),
-           
-        }), 200
+    if check_password_hash(user.password, password):
+        acces_token = create_access_token(identity=email)
+        return jsonify({
+                "token": acces_token,
+                "user": user.serialize(),
+            
+            }), 200
 
-    return jsonify({"msg": "Houston we've got a problem, it seems that your password is incorrect"}), 401
-    # if check_password_hash(user.password, password):
-   # else:
+    else:
+        return jsonify({"msg": "Houston we've got a problem, it seems that your password is incorrect"}), 401
 
 @api.route('/typeuser', methods=['GET'])
 def get_type_user():
