@@ -107,12 +107,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 
 				const data = await resp.json();
-
-
+				
 				// Manejo de la respuesta
 				if (resp.ok) {
-					localStorage.setItem("token", data.token); // Si el backend devuelve un token
-					setStore({ user: data.user }); // Si el backend devuelve información del usuario
+					
+					localStorage.setItem("token", data.token);
+					localStorage.setItem("type_user", data.user.type_user);
+					setStore({
+						token: data.token,
+						user: data.user,
+						type_user: data.user.type_user
+	
+					});
+					
 					toast.success("Registro exitoso 🎉");
 				} else {
 					toast.error(data.msg || "Registro fallido 🙅🏽");

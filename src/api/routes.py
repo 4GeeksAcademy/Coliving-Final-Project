@@ -57,7 +57,9 @@ def register():
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({"msg": "Usuario creado exitosamente.", "user_id": new_user.id}), 201
+    acces_token = create_access_token(identity=email)
+
+    return jsonify({"msg": "Usuario creado exitosamente.", "user_id": new_user.id, "token": acces_token, "user": new_user.serialize()}), 201
 
 # Login ENDPOINT
 
