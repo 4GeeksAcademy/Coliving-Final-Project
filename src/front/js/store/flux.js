@@ -89,7 +89,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ demo: demo });
 			},
 
-			registro: async (first_name, last_name, type_user, email, password) => {
+			registro: async (first_name, last_name, email, type_user, password) => {
 				// Enviando datos al backend para el registro
 				const resp = await fetch(process.env.BACKEND_URL + "api/register", {
 					method: "POST",
@@ -99,8 +99,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify({
 						first_name: first_name,
 						last_name: last_name,
-						type_user: type_user,
 						email: email,
+						type_user: type_user,
 						password: password
 					})
 				});

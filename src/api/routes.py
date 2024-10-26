@@ -31,12 +31,12 @@ def handle_hello():
 def register():
     first_name = request.json.get("first_name", None)
     last_name = request.json.get("last_name", None)
-    type_user = request.json.get("type_user", None)
     email = request.json.get("email", None)
+    type_user = request.json.get("type_user", None)
     password = request.json.get("password", None)
 
     # Validar que todos los campos requeridos estén presentes
-    if not all([first_name, last_name, type_user, email, password]):
+    if not all([first_name, last_name, email, type_user, password]):
         return jsonify({"msg": "Todos los campos son obligatorios."}), 400
 
     # Verificar si el usuario ya existe
