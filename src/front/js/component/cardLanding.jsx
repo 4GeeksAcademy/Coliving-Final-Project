@@ -4,13 +4,12 @@ import { Context } from "../store/appContext";
 
 const PropertyCard = ({ property }) => {
   return (
-//    <Link to={'/single/' + property.id} className="text-decoration-none text-black">
       <div className="p-2 col-3 col-md-4 col-lg-3 col-sm-12 col-12"
         style={{
           minHeight: "400px",
         }}
       >
-        <Link to={'/single/' + property.id} className="text-decoration-none text-black">
+        <Link to={'/hostProperty/' + property.id} className="text-decoration-none text-black">
           <div className="card border border-success flex flex-column h-100">
             <img src={property.files} style={{
               minHeight: "200px",
