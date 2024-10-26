@@ -130,17 +130,15 @@ const Registro = () => {
                   {showConfirmPassword ? "🔒" : "👀"}
                 </span>
               </div>
-              {/* {user.password !== confirmPassword && (
-                <div className="text-danger">Las contraseñas no coinciden</div>
-              )} */}
               <div className={`text-danger ${oculto}`}>Las contraseñas no coinciden</div>
             </div>
             <button type="submit" className="registro w-100 mt-2"
               onClick={async (event) => {
+                console.log(user)
                 event.preventDefault(); // Evita el comportamiento por defecto del formulario
                 if (user.password === confirmPassword) {
                   try {
-                    await actions.registro(user.email, user.password, user.first_name, user.last_name, user.type_user);
+                    await actions.registro(user.first_name, user.last_name, user.email, user.type_user, user.password);
                     // Redirigir o mostrar un mensaje de éxito si el registro es exitoso
                     navigate("/"); // O la ruta que desees
                   } catch (error) {

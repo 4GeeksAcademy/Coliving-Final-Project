@@ -5,22 +5,40 @@ import "./../../styles/navbar.css";
 import ColivingLogo from "./../../img/coliving.png"
 
 export const Navbar = () => {
-
 	const { store, actions } = useContext(Context);
-
-	// return (
-	// 	<NavbarHost />
-	// );
-
+	console.log(store.type_user)
 	// Verifica el rol del usuario si la progra esta correcta
-	if (store.type_user === "Host") {
+	if (store.type_user === "host" && store.token) {
 		return <NavbarHost />
-	} else {
+	} else if (store.type_user === "guest" && store.token) {
 		return <NavbarGuest />
+	} else {
+		return <NavbarPublic />
 	}
-
 };
 
+const NavbarPublic = () => {
+	const { store, actions } = useContext(Context);
+	return (
+		<nav className="navbar navbar-light bg-light">
+			<div className="container">
+				<a href="/" className="C-living">
+					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
+				</a>
+				<div className="ml-auto d-flex align-items-center gap-3">
+					{!store.token &&
+						<Link to="/login">
+							<button className="btn my-auto text-white" style={{ backgroundColor: "#b64359" }}>Login</button>
+						</Link>
+					}
+					{!store.token && <Link to="/registro">
+						<button className="btn my-auto text-white" style={{ backgroundColor: "#b64359" }}>Registro</button>
+					</Link>}
+				</div>
+			</div>
+		</nav>
+	);
+}
 
 const NavbarHost = () => {
 	const { store, actions } = useContext(Context);
@@ -33,13 +51,6 @@ const NavbarHost = () => {
 					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
 				</Link>
 				<div className="ml-auto d-flex align-items-center">
-					{/* <button className="btn btn-link p-0 border-0 my-2 mx-3">
-						<i className="fa-solid fa-globe me-2"></i>
-					</button> */}
-					{!store.token && <Link to="/login">
-						<button className="btn my-auto text-white" style={{ backgroundColor: "#b64359" }}>Login</button>
-					</Link>}
-
 					{store.token && <button className="btn my-auto mx-1" onClick={() => actions.logout()}>
 						Logout
 					</button>}
@@ -49,24 +60,16 @@ const NavbarHost = () => {
 							<i className="fa-solid fa-user"></i>
 						</button>
 						<ul className="dropdown-menu">
-							<li><a className="dropdown-item" href="/registro">Registrate</a></li>
-							<li><a className="dropdown-item" href="/property">Espacio en Coliving</a></li>
-							<li><a className="dropdown-item" href="/perfil">Perfil</a></li>
-							<li><Link className="dropdown-item" to="/filtros">Filtros</Link></li>
-							<li><a className="dropdown-item" href="#">Centro de Ayuda</a></li>
-							<li><a className="dropdown-item" href="#">Quienes Somos</a></li>
+							<li><a className="dropdown-item" href="/property">Pon tu espacio en Coliving</a></li>
+							<li><a className="dropdown-item" href="/filtros">Filtros</a></li>
+							<li><a className="dropdown-item" href="/perfil">Ver Perfil</a></li>
 						</ul>
 					</div>
-
 				</div>
 			</div>
 		</nav>
-
 	);
-
 }
-
-
 
 const NavbarGuest = () => {
 	const { store, actions } = useContext(Context);
@@ -79,13 +82,6 @@ const NavbarGuest = () => {
 					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
 				</Link>
 				<div className="ml-auto d-flex align-items-center">
-					{/* <button className="btn btn-link p-0 border-0 my-2 mx-3">
-						<i className="fa-solid fa-globe me-2"></i>
-					</button> */}
-					{!store.token && <Link to="/login">
-						<button className="btn my-auto text-white" style={{ backgroundColor: "#b64359" }}>Login</button>
-					</Link>}
-
 					{store.token && <button className="btn my-auto mx-1" onClick={() => actions.logout()}>
 						Logout
 					</button>}
@@ -95,19 +91,12 @@ const NavbarGuest = () => {
 							<i className="fa-solid fa-user"></i>
 						</button>
 						<ul className="dropdown-menu">
-							<li><a className="dropdown-item" href="/registro">Registrate</a></li>
-							<li><Link className="dropdown-item" to={"/filtros"}>Filtros</Link></li>
-							<li><a className="dropdown-item" href="/perfil">Centro de Ayuda</a></li>
-							<li><a className="dropdown-item" href="#">Quienes Somos</a></li>
+							<li><a className="dropdown-item" href="/filtros">Filtros</a></li>
+							<li><a className="dropdown-item" href="/perfil">Ver Perfil</a></li>
 						</ul>
 					</div>
-
 				</div>
 			</div>
 		</nav>
-
 	);
-
 }
-
-
