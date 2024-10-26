@@ -253,6 +253,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				const actions = getActions();
 
+				const cleanFilter = (key, value, defaultValue) => {
+					if (value === defaultValue) {
+						delete filtros[key];
+					} else {
+						filtros[key] = value;
+					}
+				};
+
 				if (filtros.minPrice) {
 					filtros.minPrice = filtros.minPrice.replace('$', '');
 				} else {
@@ -265,36 +273,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					delete filtros.maxPrice;
 				}
 
-				if (filtros.rooms_number === 0) {
-					delete filtros.rooms_number;
-				} else {
-					filtros.rooms_number = filtros.rooms_number;
-				}
-
-				if (filtros.beds === 0) {
-					delete filtros.beds;
-				}
-
-				if (filtros.restrooms === 0) {
-
-					delete filtros.restrooms;
-				}
-
-				if (filtros.laundry === false) {
-					delete filtros.laundry;
-				}
-
-				if (filtros.parking === false) {
-					delete filtros.parking;
-				}
-
-				if (filtros.air_condition === false) {
-					delete filtros.air_condition;
-				}
-
-				if (filtros.is_cancelable === false) {
-					delete filtros.is_cancelable;
-				}
+				cleanFilter('rooms_number', filtros.rooms_number, 0);
+				cleanFilter('beds', filtros.beds, 0);
+				cleanFilter('restrooms', filtros.restrooms, 0);
+				cleanFilter('laundry', filtros.laundry, false);
+				cleanFilter('parking', filtros.parking, false);
+				cleanFilter('air_condition', filtros.air_condition, false);
+				cleanFilter('is_cancelable', filtros.is_cancelable, false);
 
 				setStore({ filtros: filtros });
 
