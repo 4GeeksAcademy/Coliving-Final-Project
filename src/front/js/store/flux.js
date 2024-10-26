@@ -22,7 +22,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			properties: []
+			properties: [],
+			filtros: null
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -118,7 +119,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			publishProperty: async (name, price, address, files, stay, description, rules, laundry, parking, air_condition, is_cancelable, floor_type, rooms_number, restrooms, beds) => {
+			publishProperty: async (name, price, address, files, stay, description, rules, laundry,
+				parking, air_condition, is_cancelable, floor_type, rooms_number, restrooms, beds, imageUrl
+			) => {
 
 				const response = await fetch(process.env.BACKEND_URL + 'api/property', {
 					method: 'POST',
@@ -130,7 +133,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						name: name,
 						price: price,
 						address: address,
-						files: files,
+						files: imageUrl,
 						stay: stay,
 						description: description,
 						rules: rules,
@@ -141,7 +144,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						floor_type: floor_type,
 						rooms_number: rooms_number,
 						restrooms: restrooms,
-						beds: beds
+						beds: beds,
+						imageUrl
 					})
 				})
 				const data = await response.json()
@@ -162,6 +166,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			loadProperties: async () => {
+
+				const store = getStore();
+
+				if (store.filtros) {
+					const query = new URLSearchParams(store.filtros).toString();
+					const response = await fetch(process.env.BACKEND_URL + 'api/property?' + query)
+					const data = await response.json()
+					setStore({
+						properties: data
+					})
+					return
+				}
+
 				const response = await fetch(process.env.BACKEND_URL + 'api/property')
 				const data = await response.json()
 				setStore({
@@ -230,6 +247,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 					return false
 				}
+			},
+
+			setFiltros: async (filtros) => {
+
+				const actions = getActions();
+
+				const cleanFilter = (key, value, defaultValue) => {
+					if (value === defaultValue) {
+						delete filtros[key];
+					} else {
+						filtros[key] = value;
+					}
+				};
+
+				if (filtros.minPrice) {
+					filtros.minPrice = filtros.minPrice.replace('$', '');
+				} else {
+					delete filtros.minPrice;
+				}
+
+				if (filtros.maxPrice) {
+					filtros.maxPrice = filtros.maxPrice.replace('$', '');
+				} else {
+					delete filtros.maxPrice;
+				}
+
+				cleanFilter('rooms_number', filtros.rooms_number, 0);
+				cleanFilter('beds', filtros.beds, 0);
+				cleanFilter('restrooms', filtros.restrooms, 0);
+				cleanFilter('laundry', filtros.laundry, false);
+				cleanFilter('parking', filtros.parking, false);
+				cleanFilter('air_condition', filtros.air_condition, false);
+				cleanFilter('is_cancelable', filtros.is_cancelable, false);
+
+				setStore({ filtros: filtros });
+
+				await actions.loadProperties();
+			},
+
+			cleanFiltros: () => {
+				setStore({ filtros: null });
 			}
 		}
 	};

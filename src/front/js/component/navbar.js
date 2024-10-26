@@ -26,10 +26,10 @@ const NavbarPublic = () => {
 					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
 				</a>
 				<div className="ml-auto d-flex align-items-center gap-3">
-					{!store.token && 
-					<Link to="/login">
-						<button className="btn my-auto text-white" style={{ backgroundColor: "#b64359" }}>Login</button>
-					</Link>
+					{!store.token &&
+						<Link to="/login">
+							<button className="btn my-auto text-white" style={{ backgroundColor: "#b64359" }}>Login</button>
+						</Link>
 					}
 					{!store.token && <Link to="/registro">
 						<button className="btn my-auto text-white" style={{ backgroundColor: "#b64359" }}>Registro</button>
@@ -46,9 +46,10 @@ const NavbarHost = () => {
 
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
-				<a href="/" className="C-living">
+
+				<Link to={"/"} className="C-living">
 					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
-				</a>
+				</Link>
 				<div className="ml-auto d-flex align-items-center">
 					{store.token && <button className="btn my-auto mx-1" onClick={() => actions.logout()}>
 						Logout
@@ -76,9 +77,10 @@ const NavbarGuest = () => {
 
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
-				<a href="/" className="C-living">
+
+				<Link to={"/"} className="C-living">
 					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
-				</a>
+				</Link>
 				<div className="ml-auto d-flex align-items-center">
 					{store.token && <button className="btn my-auto mx-1" onClick={() => actions.logout()}>
 						Logout

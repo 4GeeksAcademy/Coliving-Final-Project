@@ -138,6 +138,17 @@ def create_property():
     
 @api.route('/property', methods=['GET'])
 def get_properties():
+
+    query_params = request.args
+
+    # Si hay parámetros en la URL, filtra las propiedades
+
+    if query_params:
+        properties = Property.query.filter_by(**query_params).all()
+        properties = [ property.serialize() for property in properties ]
+
+        return jsonify(properties), 200
+
     properties = Property.query.all()
     properties = [ property.serialize() for property in properties ]
 
