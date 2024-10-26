@@ -6,14 +6,10 @@ import Filtros from "../component/filtros.js"
 import LandingPage from "./landingPage.jsx";
 import Navbar from "./../component/navbar.js";
 
-
-
 const Home = () => {
   const { store, actions } = useContext(Context);
   return (
-
     <LandingPage />
-
   );
 };
 
