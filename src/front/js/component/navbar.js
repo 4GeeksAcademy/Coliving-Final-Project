@@ -96,7 +96,7 @@ const NavbarGuest = () => {
 						</button>
 						<ul className="dropdown-menu">
 							<li><a className="dropdown-item" href="/registro">Registrate</a></li>
-							<li><a className="dropdown-item" href="#">Filtros</a></li>
+							<li><a className="dropdown-item" href="/filtros">Filtros</a></li>
 							<li><a className="dropdown-item" href="/perfil">Centro de Ayuda</a></li>
 							<li><a className="dropdown-item" href="#">Quienes Somos</a></li>
 						</ul>
