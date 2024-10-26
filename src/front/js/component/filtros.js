@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { Context } from '../store/appContext';
 
-const Habitaciones = (props) => {
-  const [count, setCount] = useState(0);
+
+const Counter = ({ count, setCount, nombre }) => {
   return (
     <div className="d-flex justify-content-between align-items-center" style={{ width: '100%' }}>
-      <p className='filter-label'  style={{ flex: 1, textAlign: 'left' }}>{props.nombre}</p>
+      <p className='filter-label' style={{ flex: 1, textAlign: 'left' }}>{nombre}</p>
       <div className="mb-3 d-flex justify-content-between align-items-center" style={{ flex: 1, maxWidth: '200px' }}>
-        <button onClick={() => {  
+        <button onClick={() => {
           if (count > 0) {
             setCount(count - 1);
           }
@@ -22,9 +23,20 @@ const Habitaciones = (props) => {
 
 const Filtros = () => {
 
+  const { store, actions } = useContext(Context);
+
+  const [laundry, setLaundry] = useState(false);
+  const [parking, setParking] = useState(false);
+  const [freeCancellation, setFreeCancellation] = useState(false);
+  const [airConditioning, setAirConditioning] = useState(false);
+
   const [selectedType, selSelectedType] = useState(null);
   const [minPrice, setMinPrice] = useState('$5200');
   const [maxPrice, setMaxPrice] = useState('$190000+');
+
+  const [habitaciones, setHabitaciones] = useState(0);
+  const [camas, setCamas] = useState(0);
+  const [baños, setBaños] = useState(0);
 
   const handleSelection = (type) => {
     selSelectedType(type);
@@ -50,7 +62,7 @@ const Filtros = () => {
 
   return (
 
-    <div className="container mt-5 col-6 mx-auto p-3" style={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', padding: '20px', borderRadius: '10px', backgroundColor: '#fff'}} >
+    <div className="container mt-5 col-6 mx-auto p-3" style={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', padding: '20px', borderRadius: '10px', backgroundColor: '#fff' }} >
       <div className="d-flex justify-content-center align-items-center my-2 mx-2 position-relative" style={{ position: 'fixed', top: 0, width: '100%', backgroundColor: '#fff', zIndex: 1 }}>
         <h3 className="mx-auto">Filtros</h3>
         <i className="fa-solid fa-x position-absolute start-0 ms-2" style={{ cursor: 'pointer' }}></i>
@@ -62,27 +74,27 @@ const Filtros = () => {
       <div className="d-flex justify-content-center">
         <div className="card-group gap-3">
           <div className="card text-center border-0 bg-transparent">
-            <div className="card-body">
-              <i className="fas fa-parking fa-3x border p-3 rounded-circle" style={{ color: '#f7838d' }}></i>
+            <div className="card-body" onClick={() => setParking(!parking)}>
+              <i className="fas fa-parking fa-3x border p-3 rounded-circle" style={{ color: parking ? '#f7838d' : 'gray' }}></i>
               <p className="card=text mt-3">Estacionamiento Gratuito</p>
             </div>
           </div>
 
           <div className="card text-center border-0 bg-transparent">
-            <div className="card-body">
-              <i className="fas fa-ban fa-3x border p-3 rounded-circle" style={{ color: '#f7838d' }}></i>
+            <div className="card-body" onClick={() => setFreeCancellation(!freeCancellation)}>
+              <i className="fas fa-ban fa-3x border p-3 rounded-circle" style={{ color: freeCancellation ? '#f7838d' : 'gray' }}></i>
               <p className="card-text mt-3">Cancelacion Gratuita</p>
             </div>
           </div>
           <div className="card text-center border-0 bg-transparent">
-            <div className="card-body">
-              <i className="fas fa-wind fa-3x border p-3 rounded-circle" style={{ color: '#f7838d' }}></i>
+            <div className="card-body" onClick={() => setAirConditioning(!airConditioning)}>
+              <i className="fas fa-wind fa-3x border p-3 rounded-circle" style={{ color: airConditioning ? '#f7838d' : 'gray' }}></i>
               <p className="card-text mt-3">Aire Acondicionado</p>
             </div>
           </div>
-          <div className="card text-center border-0 bg-transparent">
+          <div className="card text-center border-0 bg-transparent" onClick={() => setLaundry(!laundry)}>
             <div className="card-body">
-              <i className="fas fa-tint fa-3x border p-3 rounded-circle" style={{ color: '#f7838d' }}></i>
+              <i className="fas fa-tint fa-3x border p-3 rounded-circle" style={{ color: laundry ? '#f7838d' : 'gray' }}></i>
               <p className="card-text mt-3">Lavadora</p>
             </div>
           </div>
@@ -113,25 +125,43 @@ const Filtros = () => {
         <div className="d-flex flex-column align-items-center">
           <label htmlFor="minPrice" className="form-label mt-2">Mínimo</label>
           <input id="minPrice" className="form-control form-control-sm rounded-pill custom-input" type="text" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} />
-          
+
         </div>
         <div className="d-flex flex-column align-items-center">
           <label htmlFor="maxPrice" className="form-label mt-2">Máximo</label>
-          <input id="maxPrice" className="form-control form-control-sm rounded-pill custom-input" type="text" value={maxPrice} onChange={(e) =>setMaxPrice(e.target.value)} />
-          
+          <input id="maxPrice" className="form-control form-control-sm rounded-pill custom-input" type="text" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} />
+
         </div>
       </div>
 
       <hr className="mt-3" />
 
       <h2 className="my-4">Habitaciones y Camas</h2>
-      <Habitaciones nombre="Habitaciones" />
-      <Habitaciones nombre="Camas" />
-      <Habitaciones nombre="Baños" />
+      <Counter nombre="Habitaciones" count={habitaciones} setCount={setHabitaciones} />
+      <Counter nombre="Camas" count={camas} setCount={setCamas} />
+      <Counter nombre="Baños" count={baños} setCount={setBaños} />
 
       <hr className="mt-3" />
 
-      
+
+      <button type="submit" className="btn" style={{
+        backgroundColor: '#b64359', borderColor: '#b64359',
+        color: 'white', borderRadius: '50px', padding: '10px 20px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+      }}
+        onClick={() => actions.setFiltros(
+          {
+            rooms_number: habitaciones,
+            beds: camas,
+            restrooms: baños,
+            laundry,
+            parking,
+            is_cancelable: freeCancellation,
+            air_condition: airConditioning
+          })
+        }
+      >
+        Aplicar Filtros
+      </button>
 
     </div>
   );

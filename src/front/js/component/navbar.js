@@ -29,9 +29,9 @@ const NavbarHost = () => {
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
 
-				<a href="/" className="C-living">
+				<Link to={"/"} className="C-living">
 					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
-				</a>
+				</Link>
 				<div className="ml-auto d-flex align-items-center">
 					{/* <button className="btn btn-link p-0 border-0 my-2 mx-3">
 						<i className="fa-solid fa-globe me-2"></i>
@@ -52,7 +52,7 @@ const NavbarHost = () => {
 							<li><a className="dropdown-item" href="/registro">Registrate</a></li>
 							<li><a className="dropdown-item" href="/property">Espacio en Coliving</a></li>
 							<li><a className="dropdown-item" href="/perfil">Perfil</a></li>
-							<li><a className="dropdown-item" href="/filtros">Filtros</a></li>
+							<li><Link className="dropdown-item" to="/filtros">Filtros</Link></li>
 							<li><a className="dropdown-item" href="#">Centro de Ayuda</a></li>
 							<li><a className="dropdown-item" href="#">Quienes Somos</a></li>
 						</ul>
@@ -75,9 +75,9 @@ const NavbarGuest = () => {
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
 
-				<a href="/" className="C-living">
+				<Link to={"/"} className="C-living">
 					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
-				</a>
+				</Link>
 				<div className="ml-auto d-flex align-items-center">
 					{/* <button className="btn btn-link p-0 border-0 my-2 mx-3">
 						<i className="fa-solid fa-globe me-2"></i>
@@ -96,7 +96,7 @@ const NavbarGuest = () => {
 						</button>
 						<ul className="dropdown-menu">
 							<li><a className="dropdown-item" href="/registro">Registrate</a></li>
-							<li><a className="dropdown-item" href="/filtros">Filtros</a></li>
+							<li><Link className="dropdown-item" to={"/filtros"}>Filtros</Link></li>
 							<li><a className="dropdown-item" href="/perfil">Centro de Ayuda</a></li>
 							<li><a className="dropdown-item" href="#">Quienes Somos</a></li>
 						</ul>

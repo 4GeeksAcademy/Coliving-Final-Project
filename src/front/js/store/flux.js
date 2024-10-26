@@ -22,7 +22,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			properties: []
+			properties: [],
+			filtros: null
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -165,6 +166,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			loadProperties: async () => {
+
+				const store = getStore();
+
+				if (store.filtros) {
+					const query = new URLSearchParams(store.filtros).toString();
+					const response = await fetch(process.env.BACKEND_URL + 'api/property?' + query)
+					const data = await response.json()
+					setStore({
+						properties: data
+					})
+					return
+				}
+
 				const response = await fetch(process.env.BACKEND_URL + 'api/property')
 				const data = await response.json()
 				setStore({
@@ -233,6 +247,62 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 					return false
 				}
+			},
+
+			setFiltros: async (filtros) => {
+
+				const actions = getActions();
+
+				if (filtros.minPrice) {
+					filtros.minPrice = filtros.minPrice.replace('$', '');
+				} else {
+					delete filtros.minPrice;
+				}
+
+				if (filtros.maxPrice) {
+					filtros.maxPrice = filtros.maxPrice.replace('$', '');
+				} else {
+					delete filtros.maxPrice;
+				}
+
+				if (filtros.rooms_number === 0) {
+					delete filtros.rooms_number;
+				} else {
+					filtros.rooms_number = filtros.rooms_number;
+				}
+
+				if (filtros.beds === 0) {
+					delete filtros.beds;
+				}
+
+				if (filtros.restrooms === 0) {
+
+					delete filtros.restrooms;
+				}
+
+				if (filtros.laundry === false) {
+					delete filtros.laundry;
+				}
+
+				if (filtros.parking === false) {
+					delete filtros.parking;
+				}
+
+				if (filtros.air_condition === false) {
+					delete filtros.air_condition;
+				}
+
+				if (filtros.is_cancelable === false) {
+					delete filtros.is_cancelable;
+				}
+
+				setStore({ filtros: filtros });
+
+				await actions.loadProperties();
+			},
+
+			cleanFiltros: () => {
+				setStore({ filtros: null });
 			}
 		}
 	};
