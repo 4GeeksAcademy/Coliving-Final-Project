@@ -44,10 +44,10 @@ class Property(db.Model):
     stay = db.Column(db.String(80), unique=False, nullable=False)
     description = db.Column(db.String(80), unique=False, nullable=False)
     rules = db.Column(db.String(80), unique=False, nullable=False)
-    laundry = db.Column(db.Boolean(), unique=False, nullable=False)
-    parking = db.Column(db.Boolean(), unique=False, nullable=False)
-    air_conditioning = db.Column(db.Boolean(), unique=False, nullable=False)
-    is_cancelable = db.Column(db.Boolean(), unique=False, nullable=False)
+    laundry = db.Column(db.String(100), unique=False, nullable=False)
+    parking = db.Column(db.String(100), unique=False, nullable=False)
+    air_condition = db.Column(db.String(100), unique=False, nullable=False)
+    is_cancelable = db.Column(db.String(100), unique=False, nullable=False)
     floor_type = db.Column(db.String(80), unique=False, nullable=False)
     rooms_number = db.Column(db.Integer, unique=False, nullable=False)
     restrooms = db.Column(db.Integer, unique=False, nullable=False)
@@ -56,7 +56,7 @@ class Property(db.Model):
 
    
 
-    def __init__(self, name, price, address,  stay, description, rules, laundry, parking, air_conditioning, is_cancelable, floor_type, rooms_number, restrooms, beds, files=None,):
+    def __init__(self, name, price, address,  stay, description, rules, laundry, parking, air_condition, is_cancelable, floor_type, rooms_number, restrooms, beds, files=None,):
         self.name = name
         self.price = price
         self.address = address
@@ -66,7 +66,7 @@ class Property(db.Model):
         self.rules = rules
         self.laundry = laundry
         self.parking = parking
-        self.air_conditioning = air_conditioning
+        self.air_condition = air_condition
         self.is_cancelable = is_cancelable
         self.floor_type = floor_type
         self.rooms_number = rooms_number
@@ -89,7 +89,7 @@ class Property(db.Model):
             "rules": self.rules,
             "laundry": self.laundry,
             "parking": self.parking,
-            "air_conditioning": self.air_conditioning,
+            "air_condition": self.air_condition,
             "is_cancelable": self.is_cancelable,
             "floor_type": self.floor_type,
             "rooms_number": self.rooms_number,

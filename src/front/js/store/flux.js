@@ -7,7 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			user: null,
 			token: localStorage.getItem("token") || null,
-			type_user: null,
+			type_user: localStorage.getItem("type_user") || null,
 
 			message: null,
 			demo: [
@@ -118,7 +118,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			publishProperty: async (name, price, address, files, stay, description, rules, laundry, parking, air_conditioning, is_cancelable, floor_type, rooms_number, restrooms, beds) => {
+			publishProperty: async (name, price, address, files, stay, description, rules, laundry, parking, air_condition, is_cancelable, floor_type, rooms_number, restrooms, beds) => {
+
 				const response = await fetch(process.env.BACKEND_URL + 'api/property', {
 					method: 'POST',
 					headers: {
@@ -129,13 +130,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						name: name,
 						price: price,
 						address: address,
-						files: property.imageUrl,
+						files: files,
 						stay: stay,
 						description: description,
 						rules: rules,
 						laundry: laundry,
 						parking: parking,
-						air_conditioning: air_conditioning,
+						air_condition: air_condition,
 						is_cancelable: is_cancelable,
 						floor_type: floor_type,
 						rooms_number: rooms_number,
@@ -144,7 +145,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				})
 				const data = await response.json()
-				toast.success("Publicación exitosa 🎉")
+
+				// setStore({
+				// 	token: data.token,
+				// 	user: data.user,
+				// 	type_user: data.user.type_user
+
+				// });
+
+				if (response.ok) {
+					toast.success("Publicación exitosa 🎉")
+				} else {
+					toast.error("Publicación fallida 🙅🏽")
+				}
 				return data
 			},
 
@@ -174,11 +187,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await resp.json();
 
 				localStorage.setItem("token", data.token);
+				localStorage.setItem("type_user", data.user.type_user);
 
 
 				setStore({
 					token: data.token,
 					user: data.user,
+					type_user: data.user.type_user
 
 				});
 
@@ -188,24 +203,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					toast.error("Login failed 🙅🏽")
 				}
 
-				const repsUser = await fetch(process.env.BACKEND_URL + "api/typeuser", {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						"Authorization": "Bearer " + getStore().token
-					},
-					body: JSON.stringify({
 
-						type_user: type_user
-					})
-
-				});
-
-				const dataUser = await repsUser.json();
-
-				setStore({
-					type_user: dataUser.type_user
-				});
 
 			},
 
@@ -215,24 +213,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				toast.success("Logout success 🎉")
 			},
 
-		 getUserLogged: async () => {
-			try{
-		 	const resp = await fetch(process.env.BACKEND_URL + "api/user", {
-		 		headers: {
-		 			"Authorization": "Bearer " + getStore().token
-					}
-		 	});
+			getUserLogged: async () => {
+				try {
+					const resp = await fetch(process.env.BACKEND_URL + "api/user", {
+						headers: {
+							"Authorization": "Bearer " + getStore().token
+						}
+					});
 
 
-			 	const data = await resp.json();
-				console.log(data)
-			 	setStore({ user: data });
-				return true
-		}catch(error){
-			console.log(error)
-			return false
-		}
-			 }
+					const data = await resp.json();
+					console.log(data)
+					setStore({ user: data });
+					return true
+				} catch (error) {
+					console.log(error)
+					return false
+				}
+			}
 		}
 	};
 };

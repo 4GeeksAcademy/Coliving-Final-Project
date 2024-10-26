@@ -26,15 +26,20 @@ function Publish() {
   const [images, setImages] = useState(null);
   const [laundrys, setLaundrys] = useState('');
   const [parking, setParking] = useState('');
-  const [air_conditioning, setAir_conditioning] = useState('');
+  const [air_condition, setAir_conditioning] = useState('');
   const [can_cancell, setCan_Cancell] = useState('');
 
   const uploadImage = async (image) => {
 
+
+    if (!image) {
+      return null
+    }
+
     const storage = getStorage(firebaseApp);
 
     const metadata = {
-      contentType: image.type
+      contentType: "image/*"
     }
     const storageRef = ref(storage, `property_images/${image.name}`);
     const uploadTask = uploadBytesResumable(storageRef, image, metadata);
@@ -91,7 +96,7 @@ function Publish() {
       property.rules,
       property.laundry,
       property.parking,
-      property.air_conditioning,
+      property.air_condition,
       property.is_cancelable,
       property.floor_type,
       property.rooms_number,
@@ -109,7 +114,7 @@ function Publish() {
         <div className="row">
           <div className="col">
             <h1 className="fw-bold py-4 mb-3 text-center">Publica tu anuncio!</h1>
-            <form>
+            <div >
               <div className="form-floating">
                 <input
                   type="text"
@@ -194,10 +199,10 @@ function Publish() {
                     <input
                       type="radio"
                       className="form-check-input small-radio shadow"
-                      checked={laundrys === 'Si'}
+                      checked={laundrys === "Si"}
                       onChange={(e) => {
                         setProperty({ ...property, laundry: e.target.value })
-                        setLaundrys('Si')
+                        setLaundrys("Si")
 
                       }}
                     />
@@ -208,9 +213,9 @@ function Publish() {
                       type="radio"
                       className="form-check-input small-radio shadow"
 
-                      checked={laundrys === 'No'}
+                      checked={laundrys === "No"}
                       onChange={(e) => {
-                        setLaundrys('No')
+                        setLaundrys("No")
                         setProperty({ ...property, laundry: e.target.value })
                       }}
                     />
@@ -226,26 +231,26 @@ function Publish() {
                       type="radio"
                       className="form-check-input small-radio shadow"
 
-                      checked={parking === 'Si'}
+                      checked={parking === "Si"}
                       onChange={(e) => {
                         setProperty({ ...property, parking: e.target.value })
-                        setParking('Si')
+                        setParking("Si")
                       }}
                     />
-                    <label className="form-check-label" htmlFor="guest">Si</label>
+                    <label className="form-check-label" >Si</label>
                   </div>
                   <div className="form-check d-flex align-items-center">
                     <input
                       type="radio"
                       className="form-check-input small-radio shadow"
 
-                      checked={parking === 'No'}
+                      checked={parking === "No"}
                       onChange={(e) => {
                         setProperty({ ...property, parking: e.target.value })
-                        setParking('No')
+                        setParking("No")
                       }}
                     />
-                    <label className="form-check-label" htmlFor="host">No</label>
+                    <label className="form-check-label" >No</label>
                   </div>
                 </div>
               </div>
@@ -257,23 +262,23 @@ function Publish() {
                       type="radio"
                       className="form-check-input small-radio shadow"
 
-                      checked={air_conditioning === 'Si'}
+                      checked={air_condition === "Si"}
                       onChange={(e) => {
-                        setProperty({ ...property, air_conditioning: e.target.value })
-                        setAir_conditioning('Si')
+                        setProperty({ ...property, air_condition: e.target.value })
+                        setAir_conditioning("Si")
                       }}
                     />
-                    <label className="form-check-label" htmlFor="guest">Si</label>
+                    <label className="form-check-label">Si</label>
                   </div>
                   <div className="form-check d-flex align-items-center">
                     <input
                       type="radio"
                       className="form-check-input small-radio shadow"
 
-                      checked={air_conditioning === 'No'}
+                      checked={air_condition === "No"}
                       onChange={(e) => {
-                        setProperty({ ...property, air_conditioning: e.target.value })
-                        setAir_conditioning('No')
+                        setProperty({ ...property, air_condition: e.target.value })
+                        setAir_conditioning("No")
                       }}
                     />
                     <label className="form-check-label" htmlFor="host">No</label>
@@ -288,10 +293,10 @@ function Publish() {
                       type="radio"
                       className="form-check-input small-radio shadow"
 
-                      checked={can_cancell === 'Si'}
+                      checked={can_cancell === "Si"}
                       onChange={(e) => {
                         setProperty({ ...property, is_cancelable: e.target.value })
-                        setCan_Cancell('Si')
+                        setCan_Cancell("Si")
                       }}
                     />
                     <label className="form-check-label" htmlFor="guest">Si</label>
@@ -300,10 +305,10 @@ function Publish() {
                     <input
                       type="radio"
                       className="form-check-input small-radio shadow"
-                      checked={can_cancell === 'No'}
+                      checked={can_cancell === "No"}
                       onChange={(e) => {
                         setProperty({ ...property, is_cancelable: e.target.value })
-                        setCan_Cancell('No')
+                        setCan_Cancell("No")
                       }}
                     />
                     <label className="form-check-label">No</label>
@@ -327,7 +332,7 @@ function Publish() {
                 </div>
                 <div className="mb-3 col-4">
                   <label className="form-label text-black"><strong>Camas</strong></label>
-                  <input type="number" aria-label="Last name" placeholder="5" className="form-control" required onChange={(e) => setProperty({
+                  <input type="number" placeholder="5" className="form-control" required onChange={(e) => setProperty({
                     ...property,
                     beds: e.target.value
                   })} />
@@ -350,11 +355,11 @@ function Publish() {
               </div>
               <button className="my-5"
                 onClick={() => {
-                  publishProperty(publish);
+                  publishProperty(property);
                   toast.success("Anuncio publicado 🎉")
                 }}
               >Publicar Anuncio</button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
