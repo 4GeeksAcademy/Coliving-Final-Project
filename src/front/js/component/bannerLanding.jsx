@@ -1,5 +1,6 @@
 import "./../../styles/anguibell.css";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BannerLanding = () => {
     return (
