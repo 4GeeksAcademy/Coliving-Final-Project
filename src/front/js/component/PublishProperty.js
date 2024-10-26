@@ -164,7 +164,7 @@ function Publish() {
                   id="file"
                   className="upload-box mt-4"
                   accept="image/*"
-
+                  required
                   onChange={(e) => {
                     setProperty({ ...property, files: [...e.target.files] })
 
