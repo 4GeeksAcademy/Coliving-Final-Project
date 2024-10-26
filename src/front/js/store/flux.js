@@ -118,7 +118,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			publishProperty: async (name, price, address, files, stay, description, rules, laundry, parking, air_condition, is_cancelable, floor_type, rooms_number, restrooms, beds) => {
+			publishProperty: async (name, price, address, files, stay, description, rules, laundry,
+				parking, air_condition, is_cancelable, floor_type, rooms_number, restrooms, beds, imageUrl
+			) => {
 
 				const response = await fetch(process.env.BACKEND_URL + 'api/property', {
 					method: 'POST',
@@ -130,7 +132,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						name: name,
 						price: price,
 						address: address,
-						files: files,
+						files: imageUrl,
 						stay: stay,
 						description: description,
 						rules: rules,
@@ -141,7 +143,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						floor_type: floor_type,
 						rooms_number: rooms_number,
 						restrooms: restrooms,
-						beds: beds
+						beds: beds,
+						imageUrl
 					})
 				})
 				const data = await response.json()

@@ -22,75 +22,48 @@ const firebaseApp = initializeApp(firebaseConfig);
 function Publish() {
 
   const { store, actions } = useContext(Context);
-  const [property, setProperty] = useState({});
-  const [images, setImages] = useState(null);
-  const [laundrys, setLaundrys] = useState('');
-  const [parking, setParking] = useState('');
-  const [air_condition, setAir_conditioning] = useState('');
-  const [can_cancell, setCan_Cancell] = useState('');
+  const [property, setProperty] = useState({
+    parking: true,
+    air_condition: true,
+    is_cancelable: true,
+    laundry: true,
+  });
+  //  const [images, setImages] = useState(null);
+
+  const [laundrys, setLaundrys] = useState(true);
+  const [parking, setParking] = useState(true);
+  const [air_condition, setAir_conditioning] = useState(true);
+  const [can_cancell, setCan_Cancell] = useState(true);
 
   const uploadImage = async (image) => {
 
+    try {
+      if (!image) {
+        throw new Error("No image provided");
+      }
 
-    if (!image) {
-      return null
+      const storage = getStorage(firebaseApp);
+
+      const metadata = {
+        contentType: image.type
+      }
+      const storageRef = ref(storage, `property_images/${image.name}`);
+      const fileData = await uploadBytesResumable(storageRef, image, metadata);
+      const fileUrl = await getDownloadURL(fileData.ref);
+      //console.log("Esta es la direccion de la imagen", fileUrl);
+      return fileUrl;
+    } catch (error) {
+      console.error("Error uploading image: ", error);
+      toast.error("Error uploading image");
     }
-
-    const storage = getStorage(firebaseApp);
-
-    const metadata = {
-      contentType: "image/*"
-    }
-    const storageRef = ref(storage, `property_images/${image.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, image, metadata);
-
-
-
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-        switch (snapshot.state) {
-          case 'paused':
-            console.log('Upload is paused');
-            break;
-          case 'running':
-            console.log('Upload is running');
-            break;
-        }
-      },
-      (error) => {
-        switch (error.code) {
-          case 'storage/unauthorized':
-            console.log('User doesn\'t have permission to access the object');
-            break;
-          case 'storage/canceled':
-            console.log('User canceled the upload');
-            break;
-        }
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log('File available at', downloadURL);
-          toast.success("Imagen cargada con exito 👏🏾");
-          setProperty({
-            ...property,
-            imageUrl: downloadURL
-
-          });
-        });
-      });
-
-
   }
 
   const publishProperty = async (property) => {
-    const imageUrl = await uploadImage(property.image);
     await actions.publishProperty(
       property.name,
       property.price,
       property.address,
+      property.images[0], // <---
       property.stay,
       property.description,
       property.rules,
@@ -102,7 +75,7 @@ function Publish() {
       property.rooms_number,
       property.restrooms,
       property.beds,
-      imageUrl
+      property.images[0]
     )
   };
 
@@ -156,11 +129,12 @@ function Publish() {
                 {
                   property && property.files && <button className="submit"
                     onClick={() => {
-
-                      property.files.forEach((file) => {
-                        uploadImage(file)
+                      let images = [];
+                      property.files.forEach(async (file) => {
+                        let url = await uploadImage(file)
+                        images.push(url);
                       })
-
+                      setProperty({ ...property, images })
                     }}> Upload Image </button>
                 }
                 <input
@@ -187,9 +161,9 @@ function Publish() {
               <div className="form-floating my-4">
                 <select className="form-select" onChange={(e) => setProperty({ ...property, stay: e.target.value })}>
                   <option defaultValue={"Select"}>Seleccione el tiempo de estancia</option>
-                  <option value="1">Estancia Corta</option>
-                  <option value="2">Estancia Larga</option>
-                  <option value="3">Sin preferencias</option>
+                  <option value="corta">Estancia Corta</option>
+                  <option value="larga">Estancia Larga</option>
+                  <option value="sin preferencias">Sin preferencias</option>
                 </select>
               </div>
               <div className="mb-3 d-flex justify-content-between align-items-center">
@@ -199,11 +173,10 @@ function Publish() {
                     <input
                       type="radio"
                       className="form-check-input small-radio shadow"
-                      checked={laundrys === "Si"}
+                      checked={laundrys}
                       onChange={(e) => {
-                        setProperty({ ...property, laundry: e.target.value })
-                        setLaundrys("Si")
-
+                        setProperty({ ...property, laundry: true })
+                        setLaundrys(true)
                       }}
                     />
                     <label className="form-check-label" >Si</label>
@@ -213,10 +186,10 @@ function Publish() {
                       type="radio"
                       className="form-check-input small-radio shadow"
 
-                      checked={laundrys === "No"}
+                      checked={!laundrys}
                       onChange={(e) => {
-                        setLaundrys("No")
-                        setProperty({ ...property, laundry: e.target.value })
+                        setLaundrys(false)
+                        setProperty({ ...property, laundry: false })
                       }}
                     />
                     <label className="form-check-label">No</label>
@@ -231,10 +204,10 @@ function Publish() {
                       type="radio"
                       className="form-check-input small-radio shadow"
 
-                      checked={parking === "Si"}
+                      checked={parking}
                       onChange={(e) => {
-                        setProperty({ ...property, parking: e.target.value })
-                        setParking("Si")
+                        setProperty({ ...property, parking: true })
+                        setParking(true)
                       }}
                     />
                     <label className="form-check-label" >Si</label>
@@ -244,10 +217,10 @@ function Publish() {
                       type="radio"
                       className="form-check-input small-radio shadow"
 
-                      checked={parking === "No"}
+                      checked={!parking}
                       onChange={(e) => {
-                        setProperty({ ...property, parking: e.target.value })
-                        setParking("No")
+                        setProperty({ ...property, parking: false })
+                        setParking(false)
                       }}
                     />
                     <label className="form-check-label" >No</label>
@@ -262,10 +235,10 @@ function Publish() {
                       type="radio"
                       className="form-check-input small-radio shadow"
 
-                      checked={air_condition === "Si"}
+                      checked={air_condition}
                       onChange={(e) => {
-                        setProperty({ ...property, air_condition: e.target.value })
-                        setAir_conditioning("Si")
+                        setProperty({ ...property, air_condition: true })
+                        setAir_conditioning(true)
                       }}
                     />
                     <label className="form-check-label">Si</label>
@@ -275,10 +248,10 @@ function Publish() {
                       type="radio"
                       className="form-check-input small-radio shadow"
 
-                      checked={air_condition === "No"}
+                      checked={!air_condition}
                       onChange={(e) => {
-                        setProperty({ ...property, air_condition: e.target.value })
-                        setAir_conditioning("No")
+                        setProperty({ ...property, air_condition: false })
+                        setAir_conditioning(false)
                       }}
                     />
                     <label className="form-check-label" htmlFor="host">No</label>
@@ -293,10 +266,10 @@ function Publish() {
                       type="radio"
                       className="form-check-input small-radio shadow"
 
-                      checked={can_cancell === "Si"}
+                      checked={can_cancell}
                       onChange={(e) => {
-                        setProperty({ ...property, is_cancelable: e.target.value })
-                        setCan_Cancell("Si")
+                        setProperty({ ...property, is_cancelable: true })
+                        setCan_Cancell(true)
                       }}
                     />
                     <label className="form-check-label" htmlFor="guest">Si</label>
@@ -305,10 +278,10 @@ function Publish() {
                     <input
                       type="radio"
                       className="form-check-input small-radio shadow"
-                      checked={can_cancell === "No"}
+                      checked={!can_cancell}
                       onChange={(e) => {
-                        setProperty({ ...property, is_cancelable: e.target.value })
-                        setCan_Cancell("No")
+                        setProperty({ ...property, is_cancelable: false })
+                        setCan_Cancell(false)
                       }}
                     />
                     <label className="form-check-label">No</label>
@@ -320,21 +293,21 @@ function Publish() {
                   <label className="form-label text-black"><strong>Cuartos</strong></label>
                   <input type="number" placeholder="2" className="form-control" required onChange={(e) => setProperty({
                     ...property,
-                    rooms_number: e.target.value
+                    rooms_number: parseInt(e.target.value)
                   })} />
                 </div>
                 <div className="mb-3 col-4">
                   <label className="form-label text-black"><strong>Baños</strong></label>
                   <input type="number" aria-label="Last name" placeholder="3" className="form-control" required onChange={(e) => setProperty({
                     ...property,
-                    restrooms: e.target.value
+                    restrooms: parseInt(e.target.value)
                   })} />
                 </div>
                 <div className="mb-3 col-4">
                   <label className="form-label text-black"><strong>Camas</strong></label>
                   <input type="number" placeholder="5" className="form-control" required onChange={(e) => setProperty({
                     ...property,
-                    beds: e.target.value
+                    beds: parseInt(e.target.value)
                   })} />
                 </div>
               </div>
@@ -355,6 +328,7 @@ function Publish() {
               </div>
               <button className="my-5"
                 onClick={() => {
+                  console.log(property);
                   publishProperty(property);
                   toast.success("Anuncio publicado 🎉")
                 }}
