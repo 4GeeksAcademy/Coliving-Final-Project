@@ -1,19 +1,20 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import Property, db, User, ContactMessage
-from api.models import Property, db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
-from flask_jwt_extended import create_access_token,get_jwt_identity, jwt_required
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from werkzeug.security import check_password_hash, generate_password_hash
 
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
 CORS(api)
-
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -69,12 +70,10 @@ def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
     
-
     if email == None or password == None:
         return jsonify({"msg": "Houston we've got a problem, it seems that you forgot to enter your email or password"}), 401
 
     user = User.query.filter_by(email=email).first()
-    
     
     if user is None:
         return jsonify({"msg": "We couldn't find your email, but we've got a feeling it's out there having a good time. Join us and create your own adventure!"}), 404
@@ -112,7 +111,7 @@ def create_property():
         required_fields = ['name', 'price', 'address', 'files', 'stay', 'description', 'rules', 'laundry', 'parking', 'air_condition', 'is_cancelable', 'floor_type', 'rooms_number', 'restrooms', 'beds']
         for field in required_fields:
             if field not in body:
-             return jsonify({"msg": f"Please provide the {field} field"}), 400
+                return jsonify({"msg": f"Please provide the {field} field"}), 400
 
         new_property = Property(
             name=body['name'],
@@ -143,8 +142,6 @@ def get_properties():
 
     query_params = request.args
 
-    # Si hay parámetros en la URL, filtra las propiedades
-
     if query_params:
         properties = Property.query.filter_by(**query_params).all()
         properties = [ property.serialize() for property in properties ]
@@ -160,14 +157,11 @@ def get_properties():
 @api.route('/property/<int:property_id>', methods=['GET'])
 def get_property(property_id):
     try:
-        # Busca la propiedad por su ID
         property = Property.query.get(property_id)
         
-        # Si no se encuentra, devuelve un error 404
         if property is None:
             return jsonify({"msg": "Property not found"}), 404
 
-        # Devuelve la propiedad serializada en formato JSON
         return jsonify(property.serialize()), 200
 
     except Exception as e:
@@ -197,6 +191,43 @@ def contact_host():
 
         db.session.add(new_message)
         db.session.commit()
+
+        # Enviar el correo al host utilizando smtplib
+        host = User.query.get(body['host_id'])
+        if not host:
+            return jsonify({"msg": "Host not found"}), 404
+
+        # Configuración de smtplib
+        sender_email = "andyxdjajaja@gmail.com"
+        sender_password = "ngcjxoijtaczsqoz"
+        recipient_email = host.email
+
+        subject = f"Nuevo mensaje de {body['guest_name']}"
+        message_content = f"""
+        Hola {host.first_name},
+
+        Has recibido un nuevo mensaje de {body['guest_name']}:
+
+        Mensaje: {body['message']}
+        Presupuesto: {body['budget']}
+        Correo del invitado: {body['email']}
+        Teléfono: {body.get('phone', 'No proporcionado')}
+        """
+
+        msg = MIMEMultipart()
+        msg['From'] = sender_email
+        msg['To'] = recipient_email
+        msg['Subject'] = subject
+        msg.attach(MIMEText(message_content, 'plain'))
+
+        try:
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.starttls()
+            server.login(sender_email, sender_password)
+            server.sendmail(sender_email, recipient_email, msg.as_string())
+            server.quit()
+        except Exception as e:
+            return jsonify({"msg": f"Error al enviar el correo: {str(e)}"}), 500
 
         return jsonify(new_message.serialize()), 200
 
@@ -236,4 +267,3 @@ def get_user_logged():
     if user is None:
         return jsonify({"msg":"El Usuario no Existe"}), 404
     return jsonify(user.serialize()), 200
-
