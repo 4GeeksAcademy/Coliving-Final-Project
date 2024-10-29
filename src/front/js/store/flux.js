@@ -304,10 +304,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json",
 						"Authorization": "Bearer " + getStore().token
 					},
-					body: JSON.stringify(user)
+					body: JSON.stringify({ user }),
+
 				});
 				const data = await resp.json();
-				console.log(data)
+				// console.log(data)
 				if (resp.ok) {
 					toast.success("Update success 🎉")
 				} else {
