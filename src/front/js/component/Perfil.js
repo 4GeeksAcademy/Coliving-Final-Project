@@ -7,7 +7,7 @@ const Perfil = () => {
   
 
 useEffect(() => {
-  obtenerPerfil()
+  // obtenerPerfil()
 },[])
 
 const obtenerPerfil=async() => {
@@ -16,7 +16,7 @@ const obtenerPerfil=async() => {
     const initialValues = {
       imageUrl: "https://i.pravatar.cc/300",
       nombre: store.user.first_name,
-      apellido:store.user.last_name,
+      apellido: store.user.last_name,
       email: store.user.email,
       telefono: store.user.phone,
       documento: store.user.identity_document,
@@ -35,7 +35,7 @@ const handleChange=(e) => {
 }
 
   return (
-    <form className="container mt-5 col-6 mx-auto" style={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', padding: '20px', borderRadius: '10px', backgroundColor: '#fff' }} >
+    <div className="container mt-5 col-6 mx-auto" style={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', padding: '20px', borderRadius: '10px', backgroundColor: '#fff' }} >
       <fieldset>
         <legend style={{ textAlign: 'center', marginBottom: '20px' }}>Perfil de Usuario</legend>
         <div className="mb-3 d-flex justify-content-center">
@@ -51,7 +51,8 @@ const handleChange=(e) => {
                 type="text"
                 // id="disabledTextInput"
                 className="form-control"
-                value={user.nombre}
+                value={user.nombre || ""}
+                placeholder={store.user.first_name}
                 onChange={(e)=> handleChange(e)}
                 name="nombre"
               // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
@@ -62,7 +63,8 @@ const handleChange=(e) => {
                 type="text"
                 id="disabledTextInput"
                 className="form-control"
-                value={user.apellido}
+                value={user.apellido || ""}
+                placeholder={store.user.first_name}
                 onChange={(e)=> handleChange(e)}
                 name="apellido"
               // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
@@ -78,7 +80,8 @@ const handleChange=(e) => {
             type="text"
             id="disabledTextInput"
             className="form-control"
-            value={user.email}
+            value={user.email || ""}
+            placeholder={store.user.first_name}
             onChange={(e)=> handleChange(e)}
             name="email"
           // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
@@ -92,9 +95,10 @@ const handleChange=(e) => {
             type="text"
             id="disabledTextInput"
             className="form-control"
-            value={user.telefono}
-                onChange={(e)=> handleChange(e)}
-                name="telefono"
+            value={user.telefono || ""}
+            placeholder={store.user.first_name}
+            onChange={(e)=> handleChange(e)}
+            name="telefono"
           // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
           />
         </div>
@@ -106,9 +110,10 @@ const handleChange=(e) => {
             type="text"
             id="disabledTextInput"
             className="form-control"
-            value={user.documento}
-                onChange={(e)=> handleChange(e)}
-                name="documento"
+            value={user.documento || ""}
+            placeholder={store.user.first_name}
+            onChange={(e)=> handleChange(e)}
+            name="documento"
           // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
           />
         </div>
@@ -120,9 +125,10 @@ const handleChange=(e) => {
             type="text"
             id="disabledTextInput"
             className="form-control"
-            value={user.direccion}
-                onChange={(e)=> handleChange(e)}
-                name="direccion"
+            value={user.direccion || ""}
+            placeholder={store.user.first_name}
+            onChange={(e)=> handleChange(e)}
+            name="direccion"
           // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
           />
         </div>
@@ -134,19 +140,20 @@ const handleChange=(e) => {
             type="text"
             id="disabledTextInput"
             className="form-control"
-            value={user.contacto}
-                onChange={(e)=> handleChange(e)}
-                name="contacto"
+            value={user.contacto || ""}
+            placeholder={store.user.first_name}
+            onChange={(e)=> handleChange(e)}
+            name="contacto"
           // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
           />
         </div>
         <div className="text-center">
-          <button type="submit" className="btn" style={{ backgroundColor: '#b64359', borderColor: '#b64359', color: 'white', borderRadius: '50px', padding: '10px 20px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
+          <button type="submit" className="btn" onClick={() => console.log(user)} style={{ backgroundColor: '#b64359', borderColor: '#b64359', color: 'white', borderRadius: '50px', padding: '10px 20px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
             Editar
           </button>
         </div>
       </fieldset>
-    </form>
+    </div>
   );
 };
 export default Perfil;
