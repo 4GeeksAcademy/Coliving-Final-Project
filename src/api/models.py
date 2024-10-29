@@ -14,7 +14,7 @@ class User(db.Model):
     identity_document = db.Column(db.String(20), unique=False)
     address = db.Column(db.String(80), unique=False)
     emergency_phone = db.Column(db.String(20), unique=False)
-    profile_picture = db.Column(db.String(1000), unique=False)
+   
  
 
     def __repr__(self):
@@ -31,7 +31,7 @@ class User(db.Model):
             "identity_document": self.identity_document,
             "address": self.address,
             "emergency_phone": self.emergency_phone,
-            "profile_picture": self.profile_picture
+            
 
             # do not serialize the password, its a security breach
         }

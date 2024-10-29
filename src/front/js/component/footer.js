@@ -1,11 +1,43 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import "./../../styles/footer.css";
 
 export function Footer() {
 	return (
-		<div className="container-fluid p-0">
-			<footer className="bg-dark py-4 mt-0  navbar-expand" >
-				<div className=" text-light text-center">
-					<h4 className="">Copyright © grupo Coliving Latam PT-33 2024</h4>
+		<div className="container-footer mt-5">
+			<footer className="pie-pagina">
+				<div className="grupo-1">
+					<div className="box">
+						<figure className="imagen">
+							<a href="#">
+								<img src="https://i.ibb.co/9TqGZj8/logo.png" alt="Logo de C-Living" />
+							</a>
+						</figure>
+					</div>
+					<div className="box">
+						<h2>Sobre Nosotros</h2>
+						<p>
+							Coliving es una plataforma que permite a los usuarios publicar propiedades en la
+							red. Los usuarios podrán ver propiedades publicadas por otros usuarios y contactar a los propietarios.</p>
+					</div>
+					<div className="box">
+						<h2>Siguenos</h2>
+						<div className="red-social">
+							<a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+								<i className="fa-brands fa-facebook"></i>
+							</a>
+							<a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+								<i className="fa-brands fa-instagram"></i>
+							</a>
+							<a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
+								<i className="fa-brands fa-twitter"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div className="grupo-2">
+					<small>&copy; 2023 <b>Coliving</b> - Todos los derechos reservados.</small>
 				</div>
 			</footer>
 		</div>
