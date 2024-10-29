@@ -263,6 +263,7 @@ def put_user():
     body = request.get_json()
     email = get_jwt_identity()
     exist_user = User.query.filter_by(email=email).first()
+    print(exist_user)
     if not exist_user:    
         return jsonify({"msg":"El usuario no existe"}), 404
     

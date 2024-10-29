@@ -35,15 +35,7 @@ const Perfil = () => {
   }
 
 
-  const updateProfile = async () => await actions.updateUser(
-    user.first_name,
-    user.last_name,
-    user.email,
-    user.phone,
-    user.identity_document,
-    user.address,
-    user.emergency_phone
-  )
+
 
   return (
     <div className="container mt-5 col-6 mx-auto" style={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', padding: '20px', borderRadius: '10px', backgroundColor: '#fff' }} >
@@ -53,7 +45,7 @@ const Perfil = () => {
           <img className="rounded-circle img-fluid" src={user.imageUrl} alt='Foto' style={{ width: '130px', height: '130px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.2' }} />
         </div>
         <div className="mb-3">
-          <label htmlfor="" className="form-label">
+          <label htmlFor="" className="form-label">
             Nombre Completo
           </label>
           <div className='row'>
@@ -84,7 +76,7 @@ const Perfil = () => {
           </div>
         </div>
         <div className="mb-3">
-          <label htmlfor="disabledTextInput" className="form-label">
+          <label htmlFor="disabledTextInput" className="form-label">
             Email
           </label>
           <input
@@ -99,7 +91,7 @@ const Perfil = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlfor="disabledTextInput" className="form-label">
+          <label htmlFor="disabledTextInput" className="form-label">
             Telefono
           </label>
           <input
@@ -114,7 +106,7 @@ const Perfil = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlfor="disabledTextInput" className="form-label">
+          <label htmlFor="disabledTextInput" className="form-label">
             Documento de identidad
           </label>
           <input
@@ -129,7 +121,7 @@ const Perfil = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlfor="disabledTextInput" className="form-label">
+          <label htmlFor="disabledTextInput" className="form-label">
             Direccion
           </label>
           <input
@@ -144,7 +136,7 @@ const Perfil = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlfor="disabledTextInput" className="form-label">
+          <label htmlFor="disabledTextInput" className="form-label">
             Contacto de Emergencia
           </label>
           <input
