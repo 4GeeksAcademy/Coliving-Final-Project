@@ -65,3 +65,8 @@ button:hover {
     position: relative;
     padding-left: 25px;
 }
+
+.cardLanding {
+    border: black; 
+    border-color: black;
+}
