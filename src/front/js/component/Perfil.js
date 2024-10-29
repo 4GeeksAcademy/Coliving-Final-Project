@@ -7,25 +7,25 @@ const Perfil = () => {
   
 
 useEffect(() => {
-  // obtenerPerfil()
+  const obtenerPerfil=async() => {
+    let resp=await actions.getUserLogged()
+    if(resp){
+      const initialValues = {
+        imageUrl: "https://i.pravatar.cc/300",
+        nombre: store.user.first_name,
+        apellido: store.user.last_name,
+        email: store.user.email,
+        telefono: store.user.phone,
+        documento: store.user.identity_document,
+        direccion: store.user.address,
+        contacto: store.user.emergency_phone
+      }
+      setUser(initialValues)
+    }
+  }
+  obtenerPerfil()
 },[])
 
-const obtenerPerfil=async() => {
-  let resp=await actions.getUserLogged()
-  if(resp){
-    const initialValues = {
-      imageUrl: "https://i.pravatar.cc/300",
-      nombre: store.user.first_name,
-      apellido: store.user.last_name,
-      email: store.user.email,
-      telefono: store.user.phone,
-      documento: store.user.identity_document,
-      direccion: store.user.address,
-      contacto: store.user.emergency_phone
-    }
-    setUser(initialValues)
-  }
-}
 
 const handleChange=(e) => {
   setUser({
@@ -51,10 +51,10 @@ const handleChange=(e) => {
                 type="text"
                 // id="disabledTextInput"
                 className="form-control"
-                value={user.nombre || ""}
-                placeholder={store.user.first_name}
+                value={user.first_name || ""}
+                placeholder={user.nombre ? user.nombre : "ingresa tu nombre"}
                 onChange={(e)=> handleChange(e)}
-                name="nombre"
+                name="first_name"
               // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
               />
             </div>
@@ -63,10 +63,10 @@ const handleChange=(e) => {
                 type="text"
                 id="disabledTextInput"
                 className="form-control"
-                value={user.apellido || ""}
-                placeholder={store.user.first_name}
+                value={user.last_name || ""}
+                placeholder={user.apellido ? user.apellido : "ingresa tu apellido"}
                 onChange={(e)=> handleChange(e)}
-                name="apellido"
+                name="last_name"
               // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
               />
             </div>
@@ -81,7 +81,7 @@ const handleChange=(e) => {
             id="disabledTextInput"
             className="form-control"
             value={user.email || ""}
-            placeholder={store.user.first_name}
+            placeholder={user.email ? user.email : "ingresa a tu correo"} 
             onChange={(e)=> handleChange(e)}
             name="email"
           // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
@@ -95,10 +95,10 @@ const handleChange=(e) => {
             type="text"
             id="disabledTextInput"
             className="form-control"
-            value={user.telefono || ""}
-            placeholder={store.user.first_name}
+            value={user.phone || ""}
+            placeholder={user.telefono ? user.telefono : "ingresa tu celular"}
             onChange={(e)=> handleChange(e)}
-            name="telefono"
+            name="phone"
           // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
           />
         </div>
@@ -110,10 +110,10 @@ const handleChange=(e) => {
             type="text"
             id="disabledTextInput"
             className="form-control"
-            value={user.documento || ""}
-            placeholder={store.user.first_name}
+            value={user.identity_document || ""}
+            placeholder={user.documento ? user.documento : "ingresa tu DNI"}
             onChange={(e)=> handleChange(e)}
-            name="documento"
+            name="identity_document"
           // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
           />
         </div>
@@ -125,10 +125,10 @@ const handleChange=(e) => {
             type="text"
             id="disabledTextInput"
             className="form-control"
-            value={user.direccion || ""}
-            placeholder={store.user.first_name}
+            value={user.address || ""}
+            placeholder={user.direccion ? user.direccion : "ingresa tu Direccion"}
             onChange={(e)=> handleChange(e)}
-            name="direccion"
+            name="address"
           // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
           />
         </div>
@@ -140,10 +140,10 @@ const handleChange=(e) => {
             type="text"
             id="disabledTextInput"
             className="form-control"
-            value={user.contacto || ""}
-            placeholder={store.user.first_name}
+            value={user.emergency_phone || ""}
+            placeholder={user.contacto ? user.contacto : "ingresa un constacto de emergencia"}
             onChange={(e)=> handleChange(e)}
-            name="contacto"
+            name="emergency_phone"
           // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
           />
         </div>
