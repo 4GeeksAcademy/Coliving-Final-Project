@@ -107,19 +107,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 
 				const data = await resp.json();
-				
+
 				// Manejo de la respuesta
 				if (resp.ok) {
-					
+
 					localStorage.setItem("token", data.token);
 					localStorage.setItem("type_user", data.user.type_user);
 					setStore({
 						token: data.token,
 						user: data.user,
 						type_user: data.user.type_user
-	
+
 					});
-					
+
 					toast.success("Registro exitoso 🎉");
 				} else {
 					toast.error(data.msg || "Registro fallido 🙅🏽");
@@ -295,6 +295,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			cleanFiltros: () => {
 				setStore({ filtros: null });
+			},
+			updateUser: async (user) => {
+
+				const resp = await fetch(process.env.BACKEND_URL + "api/updateUser", {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": "Bearer " + getStore().token
+					},
+					body: JSON.stringify({ user }),
+
+				});
+				const data = await resp.json();
+				// console.log(data)
+				if (resp.ok) {
+					toast.success("Update success 🎉")
+				} else {
+					toast.error("Update failed 🙅🏽")
+				}
 			}
 		}
 	};

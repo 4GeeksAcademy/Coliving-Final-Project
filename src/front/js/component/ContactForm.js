@@ -13,7 +13,7 @@ const ContactForm = () => {
     email: '',
     phone: '',
     message: '',
-    budget: '',
+    budget: '', // Mantener el presupuesto en blanco inicialmente
   });
 
   const [errors, setErrors] = useState({});
@@ -32,6 +32,9 @@ const ContactForm = () => {
     }
     if (formData.phone && !/^\d+$/.test(formData.phone)) {
       errors.phone = 'El teléfono debe contener solo números';
+    }
+    if (formData.budget && !/^\d+(\.\d{1,2})?$/.test(formData.budget)) {
+      errors.budget = 'El presupuesto debe ser un número válido';
     }
     return errors;
   };
@@ -62,10 +65,6 @@ const ContactForm = () => {
     } else {
       setErrors(validationErrors);
     }
-  };
-
-  const pactions = (name, email, phone, message, budget, hostId) => {
-    actions.contactHost(name, email, phone, message, budget, hostId);
   };
 
   return (
@@ -133,21 +132,20 @@ const ContactForm = () => {
           </div>
 
           <div>
-            <label htmlFor="budget">Presupuesto:</label>
-            <select
+            <label htmlFor="budget">Presupuesto (en dólares):</label>
+            <input
+              type="number"
               name="budget"
               value={formData.budget}
               onChange={handleChange}
-            >
-              <option value="">Selecciona tu rango de presupuesto</option>
-              <option value="0-500">0-500</option>
-              <option value="500-1000">500-1000</option>
-              <option value="1000-1500">1000-1500</option>
-              <option value="1500+">1500+</option>
-            </select>
+              placeholder="Ingresa tu presupuesto"
+              min="0"
+              step="0.01" // Permitir valores decimales si es necesario
+            />
+            {errors.budget && <p className="error">{errors.budget}</p>}
           </div>
 
-          <button onClick={() => pactions(formData.guest_name, formData.email, formData.phone, formData.message, formData.budget, hostId)} type="submit">Contactar al Host</button>
+          <button type="submit">Contactar al Host</button>
         </form>
       )}
     </div>

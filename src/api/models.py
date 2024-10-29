@@ -14,6 +14,7 @@ class User(db.Model):
     identity_document = db.Column(db.String(20), unique=False)
     address = db.Column(db.String(80), unique=False)
     emergency_phone = db.Column(db.String(20), unique=False)
+   
  
 
     def __repr__(self):
@@ -29,7 +30,8 @@ class User(db.Model):
             "phone": self.phone,
             "identity_document": self.identity_document,
             "address": self.address,
-            "emergency_phone": self.emergency_phone
+            "emergency_phone": self.emergency_phone,
+            
 
             # do not serialize the password, its a security breach
         }
