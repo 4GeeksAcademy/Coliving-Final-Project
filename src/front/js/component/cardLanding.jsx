@@ -1,3 +1,4 @@
+import "./../../styles/anguibell.css"
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
@@ -10,7 +11,7 @@ const PropertyCard = ({ property }) => {
         }}
       >
         <Link to={'/hostProperty/' + property.id} className="text-decoration-none text-black">
-          <div className="card border border-success flex flex-column h-100">
+          <div className="card flex flex-column h-100 cardLanding" >
             <img src={property.files} style={{
               minHeight: "200px",
               objectFit: "cover"
@@ -27,7 +28,7 @@ const PropertyCard = ({ property }) => {
               }}
             >
               <h5 className="card-title">{property.name}</h5>
-              <p>{property.description.length > 20 ? `${property.description.substring(0, 17)}...` : property.description}</p>
+              <p>{property.description.length > 40 ? `${property.description.substring(0, 37)}...` : property.description}</p>
               <p>{property.rooms_number} habitaciones - {property.beds} camas - {property.restrooms} baños</p>
               <p><strong>${property.price}</strong></p>
             </div>
