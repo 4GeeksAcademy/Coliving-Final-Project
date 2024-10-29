@@ -257,7 +257,37 @@ def post_user():
     db.session.commit()
     return jsonify({"msg":"El usuario fue creado"}), 201
 
+@api.route('/updateUser', methods=['PUT'])
+@jwt_required()
+def put_user():
+    body = request.get_json()
+    email = get_jwt_identity()
+    exist_user = User.query.filter_by(email=email).first()
+    if not exist_user:    
+        return jsonify({"msg":"El usuario no existe"}), 404
+    
+    if body.get("email", None):
+        exist_user.email = body["email"]
+    if body.get("password", None):
+        exist_user.password = body["password"]
+    if body.get("first_name", None):
+        exist_user.first_name = body["first_name"]
+    if body.get("last_name", None):
+        exist_user.last_name = body["last_name"]
+    if body.get("type_user", None):
+        exist_user.type_user = body["type_user"]
+    if body.get("phone", None):
+        exist_user.phone = body["phone"]
+    if body.get("identity_document", None):
+        exist_user.identity_document = body["identity_document"]
+    if body.get("address", None):
+        exist_user.address = body["address"]
+    if body.get("emergency_phone", None):
+        exist_user.emergency_phone = body["emergency_phone"]
+    
 
+    db.session.commit()
+    return jsonify({"msg":"El usuario fue actualizado"}), 200
  
 @api.route('/user', methods=['GET'])
 @jwt_required()
