@@ -1,10 +1,47 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { Context } from "../store/appContext";
+import { initializeApp } from "firebase/app";
+import { getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable } from "firebase/storage";
+
+const firebaseConfig = {
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+}
+
+const firebaseApp = initializeApp(firebaseConfig);
+
 
 const Perfil = () => {
   const { store, actions } = useContext(Context)
   const [user, setUser] = useState({})
+  const [image, setImage] = useState(null);
 
+  const uploadImage = async (image) => {
+
+    try {
+      if (!image) {
+        throw new Error("No image provided");
+      }
+
+      const storage = getStorage(firebaseApp);
+
+      const metadata = {
+        contentType: image.type
+      }
+      const storageRef = ref(storage, `profile_images/${image.name}`);
+      const fileData = await uploadBytesResumable(storageRef, image, metadata);
+      const fileUrl = await getDownloadURL(fileData.ref);
+      //console.log("Esta es la direccion de la imagen", fileUrl);
+      return fileUrl;
+    } catch (error) {
+      console.error("Error uploading image: ", error);
+      toast.error("Error uploading image");
+    }
+  }
 
   useEffect(() => {
     const obtenerPerfil = async () => {
@@ -148,6 +185,28 @@ const Perfil = () => {
             onChange={(e) => handleChange(e)}
             name="emergency_phone"
           // style={{ border: '1px solid #ced4da', borderRadius: '4px' }}
+          />
+
+
+          <input
+
+            type="file"
+            id="file"
+            className="upload-box mt-4"
+            accept="image/*"
+            required
+            onChange={(e) => {
+              setProperty({ ...property, files: [...e.target.files] })
+
+              const file = e.target.files;
+
+              if (file.length >= 6) {
+                toast.error("No se puede subir mas de 5 imagenes");
+                document.getElementById("file").value = "";
+              }
+
+            }}
+
           />
         </div>
         <div className="text-center">
