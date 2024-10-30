@@ -11,13 +11,13 @@ const Modal = () => {
 
     return (
         <>
-
-            <button type="button" className="btn btn-danger ms-5 " data-bs-toggle="modal" data-bs-target="#exampleModal"
-                onClick={() => setIsOpen(true)}
-            >
-                Filtros
-            </button>
-
+            <div className=''>
+                <button type="button" className="mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    onClick={() => setIsOpen(true)}
+                >
+                    Aplicar filtros <i class="fa-solid fa-caret-down d-flex d-inline-flex"></i>
+                </button>
+            </div>
             <div className="modal fade modal-xl" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
