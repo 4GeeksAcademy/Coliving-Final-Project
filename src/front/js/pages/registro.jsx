@@ -16,10 +16,10 @@ const Registro = () => {
   const [oculto, setOculto] = useState('visually-hidden');
 
   useEffect(() => {
-    if (store.token) {
+    if (store.user) {
       navigate("/");
     }
-  }, [store.token]);
+  }, [store.user]);
 
   const handlePositionChange = (value) => {
     setPosition(value);

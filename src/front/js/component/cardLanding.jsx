@@ -1,4 +1,4 @@
-import "./../../styles/anguibell.css"
+import "../../styles/anguibell.css";
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";

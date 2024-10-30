@@ -10,8 +10,8 @@ const LandingPage = () => {
     return (
         <>
             <BannerLanding />
-            <div>
-                <button className="btn btn-danger" onClick={() =>setIsOpen(!isOpen) }>Filtros</button>
+            <div className="container d-flex justify-content-end">
+                <button className="m-0 mt-5" onClick={() =>setIsOpen(!isOpen) }>Aplicar filtros <i class="fa-solid fa-caret-down"></i></button>
             </div>
             {
                 isOpen && < Filtros />

@@ -241,15 +241,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const resp = await fetch(process.env.BACKEND_URL + "api/user", {
 						headers: {
-							"Authorization": "Bearer " + getStore().token
+							"Authorization": "Bearer " + localStorage.getItem("token")
 						}
 					});
 
 
 					const data = await resp.json();
 					console.log(data)
-					setStore({ user: data });
-					return true
+					if (resp.ok) {
+						setStore({ user: data });
+						return true
+					}
+					return false
 				} catch (error) {
 					console.log(error)
 					return false
@@ -304,7 +307,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json",
 						"Authorization": "Bearer " + getStore().token
 					},
-					body: JSON.stringify({ user }),
+					body: JSON.stringify(user),
 
 				});
 				const data = await resp.json();

@@ -21,7 +21,7 @@ export default function Login() {
 
 
   useEffect(() => {
-    if (store.token) {
+    if (store.user) {
       navigate("/landingPage");
     }
   }, []);
