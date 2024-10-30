@@ -33,7 +33,7 @@ export default function Login() {
       <div className="container-login-form">
         <div className="row">
           <div className="col">
-            <h1 className="fw-bold py-3 text-center">Coliving Login!</h1>
+            <h1 className="fw-bold py-3 text-center">Inicia sesion!</h1>
 
             {/* LOGIN */}
             <form>

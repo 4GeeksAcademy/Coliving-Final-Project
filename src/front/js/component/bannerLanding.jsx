@@ -12,7 +12,7 @@ const BannerLanding = () => {
             src="https://github.com/4GeeksAcademy/Coliving-Final-Project/blob/main/src/front/img/roomies-pink.png?raw=true"
             style={{ width: "300px" }}
           />
-          <strong><p className="ms-5">Tu comunidad universitaria, tu hogar. ¡Encuentra tu roommate ideal!</p></strong>
+          <p className="ms-5">Tu comunidad universitaria, tu hogar. ¡Encuentra tu roommate ideal!</p>
         </div>
 
       </div>
