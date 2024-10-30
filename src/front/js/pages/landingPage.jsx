@@ -13,12 +13,6 @@ const LandingPage = () => {
         <>
             <BannerLanding />
             <Modal />
-            {/* <div>
-                <button className="btn btn-danger ms-4" onClick={() => setIsOpen(!isOpen)}>Filtros</button>
-            </div>
-            {
-                isOpen && <Filtros />
-            } */}
             <CardsLanding />
         </>
     )

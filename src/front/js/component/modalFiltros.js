@@ -16,7 +16,7 @@ const Modal = () => {
             <button type="button" className="btn btn-danger ms-5 btn-filtros my-4" data-bs-toggle="modal" data-bs-target="#exampleModal"
                 onClick={() => setIsOpen(true)}
             >
-                Filtros
+                Aplicar filtros <i class="fa-solid fa-caret-down d-flex d-inline-flex"></i>
             </button>
 
             <div className="modal fade modal-xl" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
