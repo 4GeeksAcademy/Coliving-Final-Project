@@ -1,8 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../store/appContext';
 
-
-
 const Counter = ({ count, setCount, nombre }) => {
   return (
     <div className="d-flex justify-content-between align-items-center" style={{ width: '100%' }}>
@@ -64,8 +62,6 @@ const Filtros = () => {
   return (
 
     <div >
-
-
       <h2 className="my-4">Recomendado para ti</h2>
       <div className="d-flex justify-content-center">
         <div className="card-group gap-3">
@@ -137,44 +133,29 @@ const Filtros = () => {
       <Counter nombre="Camas" count={camas} setCount={setCamas} />
       <Counter nombre="Baños" count={baños} setCount={setBaños} />
 
-
-
       <div className="modal-footer">
-
-        <button type="submit" className="btn" style={{
+        <button type="submit" className="btn" data-bs-dismiss="modal" style={{
           backgroundColor: '#b64359', borderColor: '#b64359',
           color: 'white', borderRadius: '5px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
         }}
-          onClick={() => actions.setFiltros(
-            {
-              rooms_number: habitaciones,
-              beds: camas,
-              restrooms: baños,
-              laundry,
-              parking,
-              is_cancelable: freeCancellation,
-              air_condition: airConditioning
-            })
-          }
-        >
-          Aplicar Filtros
-        </button>
-        <button type="button" className="btn btn-secondary ms-3" data-bs-dismiss="modal" onClick={() => setIsOpen(false)}>Close</button>
+        onClick={() => {
+          actions.setFiltros({
+            rooms_number: habitaciones,
+            beds: camas,
+            restrooms: baños,
+            laundry,
+            parking,
+            is_cancelable: freeCancellation,
+            air_condition: airConditioning
+          });
+          setIsOpen(false); // Cierra el modal después de aplicar los filtros
+        }}
+      >
+        Aplicar Filtros
+      </button>
       </div>
-
     </div>
   );
 };
 
-// export function BtnFiltros() {
-
-//   const { store, actions } = useContext(Context);
-//   return (
-
-//   );
-// }
-
 export default Filtros;
-
-
-
