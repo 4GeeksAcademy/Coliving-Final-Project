@@ -10,7 +10,7 @@ export function Footer() {
 					<div className="box">
 						<figure className="imagen">
 							<a href="#">
-								<img src="https://i.ibb.co/9TqGZj8/logo.png" alt="Logo de C-Living" />
+								<img alt="imagen" src="./../../img/roomies.png" />
 							</a>
 						</figure>
 					</div>
