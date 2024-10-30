@@ -59,11 +59,13 @@ button:hover {
 }
 
 .text-banner {
-    margin-top: -100px;
+    margin-top: -170px;
     color: white;
     z-index: 50;
     position: relative;
-    padding-left: 25px;
+    padding-left: 35px;
+    font-size: 18px;
+
 }
 
 .cardLanding:hover {

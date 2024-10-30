@@ -134,25 +134,26 @@ const Filtros = () => {
       <Counter nombre="Baños" count={baños} setCount={setBaños} />
 
       <div className="modal-footer">
+        <button type="button" className="btn btn-secondary ms-3" data-bs-dismiss="modal" onClick={() => setIsOpen(false)}>Cerrar</button>
         <button type="submit" className="btn" data-bs-dismiss="modal" style={{
           backgroundColor: '#b64359', borderColor: '#b64359',
           color: 'white', borderRadius: '5px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
         }}
-        onClick={() => {
-          actions.setFiltros({
-            rooms_number: habitaciones,
-            beds: camas,
-            restrooms: baños,
-            laundry,
-            parking,
-            is_cancelable: freeCancellation,
-            air_condition: airConditioning
-          });
-          setIsOpen(false); // Cierra el modal después de aplicar los filtros
-        }}
-      >
-        Aplicar Filtros
-      </button>
+          onClick={() => {
+            actions.setFiltros({
+              rooms_number: habitaciones,
+              beds: camas,
+              restrooms: baños,
+              laundry,
+              parking,
+              is_cancelable: freeCancellation,
+              air_condition: airConditioning
+            });
+            setIsOpen(false); // Cierra el modal después de aplicar los filtros
+          }}
+        >
+          Aplicar Filtros
+        </button>
       </div>
     </div>
   );

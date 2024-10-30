@@ -45,14 +45,16 @@ export default function Login() {
               <div className="form-floating">
                 <input type={showPassword ? "text" : "password"} id="password" className="form-control" onChange={(e) => setUser({ ...user, password: e.target.value })} placeholder="Password" required />
                 <label>Password</label>
-                <div id="toggle" onClick={() => setShowPassword(!showPassword)}>{showPassword ? "😵" : "👀"}</div>
+                <div id="toggle" onClick={() => setShowPassword(!showPassword)}>{showPassword ? <i class="fa-regular fa-eye-slash"></i> : <i class="fa-regular fa-eye"></i>}</div>
               </div>
               <div>
                 <button onClick={() => {
                   actions.login(user.email, user.password)
-                  navigate("/landingPage")
+
+                  // navigate("/landingPage")
                   document.getElementById("password").value = "";
                   document.getElementById("email").value = "";
+
                 }}
                   className="submit mt-4" type="button">Log In</button>
               </div>

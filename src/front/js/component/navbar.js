@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "./../../styles/navbar.css";
 import ColivingLogo from "./../../img/coliving.png"
+import { width } from "@fortawesome/free-solid-svg-icons/fa0";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	console.log(store.type_user)
-	// Verifica el rol del usuario si la progra esta correcta
+	// Verifica el rol del usuario si es host o guest le muestra una u otra segun el rol
 	if (store.type_user === "host" && store.user) {
 		return <NavbarHost />
 	} else if (store.type_user === "guest" && store.user) {
@@ -20,15 +21,17 @@ export const Navbar = () => {
 const NavbarPublic = () => {
 	const { store, actions } = useContext(Context);
 	return (
-		<nav className="navbar navbar-light bg-light">
+		<nav className="navbar " style={{ backgroundColor: "#fff" }}>
 			<div className="container">
 				<a href="/" className="C-living">
-					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
+					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>
+						<img alt="imagen" src="https://github.com/4GeeksAcademy/Coliving-Final-Project/blob/main/src/front/img/roomies-pink.png?raw=true" style={{ width: "200px" }} />
+					</span>
 				</a>
 				<div className="ml-auto d-flex align-items-center gap-3">
 					{!store.user &&
 						<Link to="/login">
-							<button className="btn my-auto text-white" style={{ backgroundColor: "#b64359" }}>Login</button>
+							<button className="btn my-auto" style={{ backgroundColor: "#fff", color: "#b64359", border: "1px solid #b64359" }}>Login</button>
 						</Link>
 					}
 					{!store.user && <Link to="/registro">
@@ -48,10 +51,17 @@ const NavbarHost = () => {
 			<div className="container">
 
 				<Link to={"/"} className="C-living">
-					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
+					<span className="navbar-brand mb-0">
+						<img alt="imagen"
+							src="https://github.com/4GeeksAcademy/Coliving-Final-Project/blob/main/src/front/img/roomies-pink.png?raw=true"
+							style={{ width: "200px" }}
+						/>
+					</span>
 				</Link>
 				<div className="ml-auto d-flex align-items-center">
-					{store.user && <button className="btn my-auto mx-1" onClick={() => actions.logout()}>
+					{store.user && <button className="btn my-auto mx-1" onClick={() => {
+						actions.logout()
+					}}>
 						Logout
 					</button>}
 					<div className="dropdown rounded custom-rounded">
@@ -60,8 +70,7 @@ const NavbarHost = () => {
 							<i className="fa-solid fa-user"></i>
 						</button>
 						<ul className="dropdown-menu">
-							<li><a className="dropdown-item" href="/property">Pon tu espacio en Coliving</a></li>
-							<li><a className="dropdown-item" href="/filtros">Filtros</a></li>
+							<li><a className="dropdown-item" href="/property">Pon tu espacio en Roomies</a></li>
 							<li><a className="dropdown-item" href="/perfil">Ver Perfil</a></li>
 						</ul>
 					</div>
@@ -79,7 +88,12 @@ const NavbarGuest = () => {
 			<div className="container">
 
 				<Link to={"/"} className="C-living">
-					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
+					<span className="navbar-brand mb-0">
+						<img alt="imagen"
+							src="https://github.com/4GeeksAcademy/Coliving-Final-Project/blob/main/src/front/img/roomies-pink.png?raw=true"
+							style={{ width: "200px" }}
+						/>
+					</span>
 				</Link>
 				<div className="ml-auto d-flex align-items-center">
 					{store.user && <button className="btn my-auto mx-1" onClick={() => actions.logout()}>
@@ -91,7 +105,6 @@ const NavbarGuest = () => {
 							<i className="fa-solid fa-user"></i>
 						</button>
 						<ul className="dropdown-menu">
-							<li><a className="dropdown-item" href="/filtros">Filtros</a></li>
 							<li><a className="dropdown-item" href="/perfil">Ver Perfil</a></li>
 						</ul>
 					</div>
