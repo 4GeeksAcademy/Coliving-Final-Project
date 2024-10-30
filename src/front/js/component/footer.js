@@ -10,7 +10,7 @@ export function Footer() {
 					<div className="box">
 						<figure className="imagen">
 							<a href="#">
-								<img alt="imagen" src="./../../img/roomies.png" />
+								<img alt="imagen" src="https://github.com/4GeeksAcademy/Coliving-Final-Project/blob/main/src/front/img/roomies.png?raw=true" />
 							</a>
 						</figure>
 					</div>
