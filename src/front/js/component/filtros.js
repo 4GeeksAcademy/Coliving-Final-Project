@@ -61,7 +61,7 @@ const Filtros = () => {
 
   return (
 
-    <div >
+    <div>
       <h2 className="my-4">Recomendado para ti</h2>
       <div className="d-flex justify-content-center">
         <div className="card-group gap-3">
