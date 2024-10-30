@@ -9,10 +9,10 @@ const BannerLanding = () => {
         </div>
         <div className="text-banner">
           <img alt="imagen"
-            src="https://github.com/4GeeksAcademy/Coliving-Final-Project/blob/main/src/front/img/roomies-pink.png?raw=true"
+            src="https://github.com/4GeeksAcademy/Coliving-Final-Project/blob/main/src/front/img/roomies-pink-edited.png?raw=true"
             style={{ width: "300px" }}
           />
-          <p className="ms-5">Tu comunidad universitaria, tu hogar. ¡Encuentra tu roommate ideal!</p>
+          <strong><p className="mt-3 ms-2">Tu comunidad universitaria, tu hogar. ¡Encuentra tu roommate ideal!</p></strong>
         </div>
 
       </div>

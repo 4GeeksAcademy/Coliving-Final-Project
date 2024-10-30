@@ -22,10 +22,10 @@ const NavbarPublic = () => {
 	const { store, actions } = useContext(Context);
 	return (
 		<nav className="navbar " style={{ backgroundColor: "#fff" }}>
-			<div className="container">
+			<div className="container d-flex">
 				<a href="/" className="C-living">
 					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>
-						<img alt="imagen" src="https://github.com/4GeeksAcademy/Coliving-Final-Project/blob/main/src/front/img/roomies-pink.png?raw=true" style={{ width: "200px" }} />
+						<img alt="imagen" src="https://github.com/4GeeksAcademy/Coliving-Final-Project/blob/main/src/front/img/roomies-pink-edited.png?raw=true" style={{ width: "200px" }} />
 					</span>
 				</a>
 				<div className="ml-auto d-flex align-items-center gap-3">
@@ -69,7 +69,7 @@ const NavbarHost = () => {
 							<i className="fa-solid fa-bars me-2"></i>
 							<i className="fa-solid fa-user"></i>
 						</button>
-						<ul className="dropdown-menu">
+						<ul className="dropdown-menu text-start">
 							<li><a className="dropdown-item" href="/property">Pon tu espacio en Roomies</a></li>
 							<li><a className="dropdown-item" href="/perfil">Ver Perfil</a></li>
 						</ul>
