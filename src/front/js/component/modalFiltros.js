@@ -13,7 +13,7 @@ const Modal = () => {
     return (
         <>
 
-            <button type="button" className="btn btn-danger ms-5 btn-filtros" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            <button type="button" className="btn btn-danger ms-5 btn-filtros my-4" data-bs-toggle="modal" data-bs-target="#exampleModal"
                 onClick={() => setIsOpen(true)}
             >
                 Filtros
