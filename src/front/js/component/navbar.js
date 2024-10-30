@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "./../../styles/navbar.css";
 import ColivingLogo from "./../../img/coliving.png"
+import { width } from "@fortawesome/free-solid-svg-icons/fa0";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
@@ -20,15 +21,17 @@ export const Navbar = () => {
 const NavbarPublic = () => {
 	const { store, actions } = useContext(Context);
 	return (
-		<nav className="navbar navbar-light bg-light">
+		<nav className="navbar " style={{ backgroundColor: "#fff" }}>
 			<div className="container">
 				<a href="/" className="C-living">
-					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
+					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>
+						<img alt="imagen" src="https://github.com/4GeeksAcademy/Coliving-Final-Project/blob/main/src/front/img/roomies-pink.png?raw=true" style={{ width: "200px" }} />
+					</span>
 				</a>
 				<div className="ml-auto d-flex align-items-center gap-3">
 					{!store.user &&
 						<Link to="/login">
-							<button className="btn my-auto text-white" style={{ backgroundColor: "#b64359" }}>Login</button>
+							<button className="btn my-auto" style={{ backgroundColor: "#fff", color: "#b64359", border: "1px solid #b64359" }}>Login</button>
 						</Link>
 					}
 					{!store.user && <Link to="/registro">
