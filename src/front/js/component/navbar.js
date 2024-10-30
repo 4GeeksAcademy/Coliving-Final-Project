@@ -8,7 +8,7 @@ import { width } from "@fortawesome/free-solid-svg-icons/fa0";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	console.log(store.type_user)
-	// Verifica el rol del usuario si la progra esta correcta
+	// Verifica el rol del usuario si es host o guest le muestra una u otra segun el rol
 	if (store.type_user === "host" && store.user) {
 		return <NavbarHost />
 	} else if (store.type_user === "guest" && store.user) {
