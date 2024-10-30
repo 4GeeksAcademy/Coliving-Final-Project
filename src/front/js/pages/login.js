@@ -50,9 +50,11 @@ export default function Login() {
               <div>
                 <button onClick={() => {
                   actions.login(user.email, user.password)
-                  navigate("/landingPage")
+
+                  // navigate("/landingPage")
                   document.getElementById("password").value = "";
                   document.getElementById("email").value = "";
+
                 }}
                   className="submit mt-4" type="button">Log In</button>
               </div>

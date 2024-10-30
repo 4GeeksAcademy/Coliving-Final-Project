@@ -9,7 +9,7 @@ const Modal = () => {
     return (
         <>
             <div className="container d-flex justify-content-end">
-                <button className="m-0 mt-5" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                <button className="m-0 mt-5" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ width: "100px", height: "40px", fontSize: "15px" }}
                     onClick={() => setIsOpen(true)}>Filtros <i class="fa-solid fa-caret-down d-flex d-inline-flex"></i></button>
             </div>
 
