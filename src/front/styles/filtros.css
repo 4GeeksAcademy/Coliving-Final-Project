@@ -1,1 +1,10 @@
-
+.btn-filtros {
+    float: right;
+    margin: 20px;
+    
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }

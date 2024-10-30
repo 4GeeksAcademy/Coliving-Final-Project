@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Filtros from './filtros';
 // import { BtnFiltros } from './filtros';
+import "./../../styles/filtros.css";
 
 
 
@@ -12,7 +13,7 @@ const Modal = () => {
     return (
         <>
 
-            <button type="button" className="btn btn-danger ms-5 " data-bs-toggle="modal" data-bs-target="#exampleModal"
+            <button type="button" className="btn btn-danger ms-5 btn-filtros" data-bs-toggle="modal" data-bs-target="#exampleModal"
                 onClick={() => setIsOpen(true)}
             >
                 Filtros
