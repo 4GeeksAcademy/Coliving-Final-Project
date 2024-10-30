@@ -260,7 +260,7 @@ def post_user():
 @api.route('/updateUser', methods=['PUT'])
 @jwt_required()
 def put_user():
-    body = request.get_json()
+    body = request.get_json(force=True)
     email = get_jwt_identity()
     exist_user = User.query.filter_by(email=email).first()
     print(exist_user)

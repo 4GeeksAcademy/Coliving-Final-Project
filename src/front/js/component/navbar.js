@@ -8,9 +8,9 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	console.log(store.type_user)
 	// Verifica el rol del usuario si la progra esta correcta
-	if (store.type_user === "host" && store.token) {
+	if (store.type_user === "host" && store.user) {
 		return <NavbarHost />
-	} else if (store.type_user === "guest" && store.token) {
+	} else if (store.type_user === "guest" && store.user) {
 		return <NavbarGuest />
 	} else {
 		return <NavbarPublic />
@@ -26,12 +26,12 @@ const NavbarPublic = () => {
 					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
 				</a>
 				<div className="ml-auto d-flex align-items-center gap-3">
-					{!store.token &&
+					{!store.user &&
 						<Link to="/login">
 							<button className="btn my-auto text-white" style={{ backgroundColor: "#b64359" }}>Login</button>
 						</Link>
 					}
-					{!store.token && <Link to="/registro">
+					{!store.user && <Link to="/registro">
 						<button className="btn my-auto text-white" style={{ backgroundColor: "#b64359" }}>Registro</button>
 					</Link>}
 				</div>
@@ -51,7 +51,7 @@ const NavbarHost = () => {
 					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
 				</Link>
 				<div className="ml-auto d-flex align-items-center">
-					{store.token && <button className="btn my-auto mx-1" onClick={() => actions.logout()}>
+					{store.user && <button className="btn my-auto mx-1" onClick={() => actions.logout()}>
 						Logout
 					</button>}
 					<div className="dropdown rounded custom-rounded">
@@ -82,7 +82,7 @@ const NavbarGuest = () => {
 					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>Home</span>
 				</Link>
 				<div className="ml-auto d-flex align-items-center">
-					{store.token && <button className="btn my-auto mx-1" onClick={() => actions.logout()}>
+					{store.user && <button className="btn my-auto mx-1" onClick={() => actions.logout()}>
 						Logout
 					</button>}
 					<div className="dropdown rounded custom-rounded">

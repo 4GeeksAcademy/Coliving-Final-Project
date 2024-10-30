@@ -66,7 +66,8 @@ button:hover {
     padding-left: 25px;
 }
 
-.cardLanding {
-    border: black; 
-    border-color: black;
+.cardLanding:hover {
+    transform: scale(1.03);
+    border: 2px solid rgba(0, 0, 0, 0.3); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }

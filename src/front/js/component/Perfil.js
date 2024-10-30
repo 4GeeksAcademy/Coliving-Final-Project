@@ -10,8 +10,6 @@ const Perfil = () => {
   const [user, setUser] = useState({})
 
 
-
-
   useEffect(() => {
     const obtenerPerfil = async () => {
       let resp = await actions.getUserLogged()
@@ -159,14 +157,15 @@ const Perfil = () => {
 
         </div>
         <div className="text-center">
-          <button type="submit" className="btn" onClick={() => actions.updateUser(user.first_name,
-            user.last_name,
-            user.email,
-            user.phone,
-            user.identity_document,
-            user.address,
-            user.emergency_phone
-          )}
+          <button type="submit" className="btn" onClick={() => actions.updateUser({
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email,
+            phone: user.phone,
+            identity_document: user.identity_document,
+            address: user.address,
+            emergency_phone: user.emergency_phone
+          })}
             style={{
               backgroundColor: '#b64359',
               borderColor: '#b64359',
