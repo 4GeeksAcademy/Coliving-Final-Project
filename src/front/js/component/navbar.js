@@ -69,7 +69,7 @@ const NavbarHost = () => {
 							<i className="fa-solid fa-bars me-2"></i>
 							<i className="fa-solid fa-user"></i>
 						</button>
-						<ul className="dropdown-menu text-start">
+						<ul className="dropdown-menu text-start dropdown-menu-end">
 							<li><a className="dropdown-item" href="/property">Pon tu espacio en Roomies</a></li>
 							<li><a className="dropdown-item" href="/perfil">Ver Perfil</a></li>
 						</ul>
@@ -104,7 +104,7 @@ const NavbarGuest = () => {
 							<i className="fa-solid fa-bars me-2"></i>
 							<i className="fa-solid fa-user"></i>
 						</button>
-						<ul className="dropdown-menu">
+						<ul className="dropdown-menu dropdown-menu-end">
 							<li><a className="dropdown-item" href="/perfil">Ver Perfil</a></li>
 						</ul>
 					</div>

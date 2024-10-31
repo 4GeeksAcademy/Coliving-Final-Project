@@ -198,8 +198,8 @@ def contact_host():
             return jsonify({"msg": "Host not found"}), 404
 
         # Configuración de smtplib
-        sender_email = "andyxdjajaja@gmail.com"
-        sender_password = "ngcjxoijtaczsqoz"
+        sender_email = "coliiving23@gmail.com"
+        sender_password = "ghzvzzqcperkuiur"
         recipient_email = host.email
 
         subject = f"Nuevo mensaje de {body['guest_name']}"

@@ -17,7 +17,16 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-
+  const logIn = async () => {
+    let resp = await actions.login(user.email, user.password)
+    if (resp) {
+    navigate("/landingPage")
+    document.getElementById("password").value = "";
+    document.getElementById("email").value = "";
+    } else {
+      alert('Datos incorrectos')
+    }
+  }
 
 
   useEffect(() => {
@@ -49,12 +58,7 @@ export default function Login() {
               </div>
               <div>
                 <button onClick={() => {
-                  actions.login(user.email, user.password)
-
-                  // navigate("/landingPage")
-                  document.getElementById("password").value = "";
-                  document.getElementById("email").value = "";
-
+                  logIn()
                 }}
                   className="submit mt-4" type="button">Log In</button>
               </div>

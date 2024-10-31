@@ -37,7 +37,7 @@ export function Footer() {
 				</div>
 
 				<div className="grupo-2">
-					<small>&copy; 2023 <b>Coliving</b> - Todos los derechos reservados.</small>
+					<small>&copy; 2024 <b>Roomies</b> - Todos los derechos reservados.</small>
 				</div>
 			</footer>
 		</div>

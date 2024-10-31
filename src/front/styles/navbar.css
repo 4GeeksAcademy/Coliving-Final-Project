@@ -11,7 +11,5 @@
 }
 
 button:hover {
-    transform: scale(1.03);
-    border: 2px solid #b64359; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }

@@ -42,14 +42,14 @@ const CardsLanding = () => {
 
   const { store, actions } = useContext(Context)
   const [show, setShow] = useState(false)
-  const itemsPerPage = 12
+  const itemsPerPage = 4
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
   const [currentData, setCurrentData] = useState([])
   
   useEffect(()=> {
     if (store.properties) {
-      if (store.properties.length <= 12) {
+      if (store.properties.length <= itemsPerPage) {
         setCurrentData(store.properties)
         setShow(false)
       } else {
@@ -72,7 +72,7 @@ const CardsLanding = () => {
               })
             }
           </div>
-          <button className={show ? `d-flex justify-content-center rounded-pill bg-light p-3 mb-4 border shadow w-25 text-black` : "d-none"} onClick={
+          <button className={show ? `siguiente-card d-flex justify-content-center rounded px-5 py-3 mb-4` : "d-none"} onClick={
             ()=> setCurrentPage(currentPage==totalPages ? 1 : currentPage+1)
           }>Siguiente</button>
         </div>

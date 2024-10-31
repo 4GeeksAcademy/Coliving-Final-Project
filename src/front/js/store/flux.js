@@ -126,10 +126,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			publishProperty: async (name, price, address, files, stay, description, rules, laundry,
+			publishProperty: async (name, price, address, stay, description, rules, laundry,
 				parking, air_condition, is_cancelable, floor_type, rooms_number, restrooms, beds, imageUrl
 			) => {
-
+				console.log(name, price, address, stay, description, rules, laundry,
+					parking, air_condition, is_cancelable, floor_type, rooms_number, restrooms, beds, imageUrl)
+					try {
 				const response = await fetch(process.env.BACKEND_URL + 'api/property', {
 					method: 'POST',
 					headers: {
@@ -152,24 +154,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 						rooms_number: rooms_number,
 						restrooms: restrooms,
 						beds: beds,
-						imageUrl
+						//imageUrl
 					})
 				})
-				const data = await response.json()
-
-				// setStore({
-				// 	token: data.token,
-				// 	user: data.user,
-				// 	type_user: data.user.type_user
-
-				// });
-
-				if (response.ok) {
-					toast.success("Publicación exitosa 🎉")
-				} else {
-					toast.error("Publicación fallida 🙅🏽")
+				if (response.status == 200){
+					getActions().loadProperties()
+					return true
 				}
-				return data
+					} catch (error) {
+						console.log(error)
+						return false
+					}
 			},
 
 			loadProperties: async () => {
@@ -194,7 +189,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			login: async (email, password, type_user) => {
-
+				try {
 				// fetching data from the backend 
 				const resp = await fetch(process.env.BACKEND_URL + "api/login", {
 					method: "POST",
@@ -221,19 +216,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				});
 
-				if (resp.ok) {
-					toast.success("Login success 🎉")
-				} else {
-					toast.error("Login failed 🙅🏽")
-				}
-
-
+				return true
+			} catch (error) {
+				console.log(error)
+				return false
+			}
 
 			},
 
 			logout: () => {
 				localStorage.removeItem("token");
-				setStore({ token: null });
+				setStore({
+					token: null,
+					user: null,
+					type_user: null
+				});
 				toast.success("Logout success 🎉")
 			},
 

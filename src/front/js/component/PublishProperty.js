@@ -27,6 +27,7 @@ function Publish() {
     air_condition: true,
     is_cancelable: true,
     laundry: true,
+    stay: "corta"
   });
   //  const [images, setImages] = useState(null);
 
@@ -34,6 +35,8 @@ function Publish() {
   const [parking, setParking] = useState(true);
   const [air_condition, setAir_conditioning] = useState(true);
   const [can_cancell, setCan_Cancell] = useState(true);
+  const [stay, setStay] = useState("corta")
+  const [imagen, setImagen] = useState("")
 
   const uploadImage = async (image) => {
 
@@ -51,7 +54,7 @@ function Publish() {
       const fileData = await uploadBytesResumable(storageRef, image, metadata);
       const fileUrl = await getDownloadURL(fileData.ref);
       //console.log("Esta es la direccion de la imagen", fileUrl);
-      return fileUrl;
+      setImagen(fileUrl);
     } catch (error) {
       console.error("Error uploading image: ", error);
       toast.error("Error uploading image");
@@ -59,11 +62,13 @@ function Publish() {
   }
 
   const publishProperty = async (property) => {
+    console.log(property)
+    // let imgURL = await uploadImage()
+    console.log(imagen)
     await actions.publishProperty(
       property.name,
       property.price,
       property.address,
-      property.images[0], // <---
       property.stay,
       property.description,
       property.rules,
@@ -75,10 +80,10 @@ function Publish() {
       property.rooms_number,
       property.restrooms,
       property.beds,
-      property.images[0]
+      imagen
+      //property.images[0]
     )
   };
-
 
   return (
     <>

@@ -8,9 +8,9 @@ const Modal = () => {
 
     return (
         <>
-            <div className="container d-flex justify-content-end">
-                <button className="m-0 mt-5" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ width: "100px", height: "40px", fontSize: "15px" }}
-                    onClick={() => setIsOpen(true)}>Filtros <i class="fa-solid fa-caret-down d-flex d-inline-flex"></i></button>
+            <div className="container d-flex justify-content-end mt-5">
+                <button className="m-0 mt-5" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    onClick={() => setIsOpen(true)}>Aplicar filtros <i class="fa-solid fa-caret-down d-flex d-inline-flex"></i></button>
             </div>
 
             <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
