@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../store/appContext'; // Importar el contexto del flux
-import { useLocation } from 'react-router-dom'; // Importar para recibir estado de la navegación
+import { useLocation, useParams } from 'react-router-dom'; // Importar para recibir estado de la navegación
 import "./../../styles/ContactForm.css";
 
 const ContactForm = () => {
+  // const {hostId} = useParams();
   const { state } = useLocation(); // Obtener el estado pasado por navigate
   const { hostName = "John Doe", hostId = 1, location = "Monterrey" } = state || {};  // Valores por defecto si no se pasan desde la navegación
   const [contact, setContact] = useState({});

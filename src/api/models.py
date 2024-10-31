@@ -14,6 +14,8 @@ class User(db.Model):
     identity_document = db.Column(db.String(20), unique=False)
     address = db.Column(db.String(80), unique=False)
     emergency_phone = db.Column(db.String(20), unique=False)
+
+    properties = db.relationship('Property', back_populates = "host", lazy = True)
    
  
 
@@ -56,9 +58,10 @@ class Property(db.Model):
     beds = db.Column(db.Integer, unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+    host = db.relationship(User)
    
 
-    def __init__(self, name, price, address,  stay, description, rules, laundry, parking, air_condition, is_cancelable, floor_type, rooms_number, restrooms, beds, files=None,):
+    def __init__(self, name, price, address,  stay, description, rules, laundry, parking, air_condition, is_cancelable, floor_type, rooms_number, restrooms, beds, files=None, user_id=None, user=None):
         self.name = name
         self.price = price
         self.address = address
@@ -74,6 +77,8 @@ class Property(db.Model):
         self.rooms_number = rooms_number
         self.restrooms = restrooms
         self.beds = beds
+        self.user_id = user_id
+        self.user = user
 
 
     def __repr__(self):
@@ -96,7 +101,8 @@ class Property(db.Model):
             "floor_type": self.floor_type,
             "rooms_number": self.rooms_number,
             "restrooms": self.restrooms,
-            "beds": self.beds
+            "beds": self.beds, 
+            "host": self.host.serialize()
 
         }
     

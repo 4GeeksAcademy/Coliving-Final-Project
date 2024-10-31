@@ -84,7 +84,7 @@ const HostProperty = () => {
       </div>
 
       <div className="host-contact-host">
-        <button onClick={() => navigate('/contact', { state: { hostId: property.user_id, hostName: property.name, location: property.address } })}>
+        <button onClick={() => navigate('/contact', { state: { hostId: property.host.id, hostName: property.host.first_name, location: property.address } })}>
           Contactar Host
         </button>
       </div>

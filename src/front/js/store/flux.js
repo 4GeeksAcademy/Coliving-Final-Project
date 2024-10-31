@@ -142,7 +142,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						name: name,
 						price: price,
 						address: address,
-						files: imageUrl,
+						files: imageUrl ? imageUrl : "",
 						stay: stay,
 						description: description,
 						rules: rules,

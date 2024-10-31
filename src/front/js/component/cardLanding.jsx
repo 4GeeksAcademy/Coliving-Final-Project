@@ -42,7 +42,7 @@ const CardsLanding = () => {
 
   const { store, actions } = useContext(Context)
   const [show, setShow] = useState(false)
-  const itemsPerPage = 4
+  const itemsPerPage = 15
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
   const [currentData, setCurrentData] = useState([])

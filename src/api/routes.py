@@ -101,12 +101,17 @@ def get_type_user():
 
 
 @api.route('/property', methods=['POST'])
+@jwt_required()
 def create_property():
     try:
+        email = get_jwt_identity()
         body = request.get_json()
-
+        host = User.query.filter_by(email = email).first()
+        if host is None:
+            return jsonify({"msg": "host not found"}), 404
         if body is None:    
             return jsonify({"msg": "Please send a request body"}), 400
+        
     
         required_fields = ['name', 'price', 'address', 'files', 'stay', 'description', 'rules', 'laundry', 'parking', 'air_condition', 'is_cancelable', 'floor_type', 'rooms_number', 'restrooms', 'beds']
         for field in required_fields:
@@ -128,7 +133,8 @@ def create_property():
             floor_type=body['floor_type'],
             rooms_number=body['rooms_number'],
             restrooms=body['restrooms'],
-            beds=body['beds']
+            beds=body['beds'],
+            user_id=host.id
         )
     
         db.session.add(new_property)
