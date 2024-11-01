@@ -6,23 +6,27 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f0f2f5;
+  background-color: #f8f9fb;
 }
 
-/* Estilos específicos para HostProperty */
 .host-property {
   max-width: 800px;
   margin: 20px auto;
-  padding: 20px;
+  padding: 25px;
   background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   border: 1px solid #e6e6e6;
   text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.host-property:hover {
+  transform: scale(1.02);
 }
 
 .host-property-title {
-  font-size: 2em;
+  font-size: 2.2em;
   margin-bottom: 20px;
   color: #333;
   text-align: center;
@@ -31,18 +35,18 @@ body {
 
 .host-property-gallery {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 20px;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
 .host-property-image {
   width: 100%;
-  max-width: 220px;
-  height: 150px;
+  max-width: 240px;
+  height: 160px;
   object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
@@ -51,9 +55,10 @@ body {
 }
 
 .host-property-info p {
-  margin: 10px 0;
+  margin: 12px 0;
   font-size: 1.1em;
   color: #555;
+  line-height: 1.4;
 }
 
 .host-property-info strong {
@@ -61,43 +66,44 @@ body {
 }
 
 .host-property-rules h2 {
-  margin-top: 20px;
-  font-size: 1.5em;
-  color: #333;
+  margin-top: 25px;
+  font-size: 1.6em;
+  color: #b64359;
 }
 
 .host-property-rules ul {
   list-style-type: disc;
-  margin-left: 20px;
+  margin-left: 25px;
   color: #666;
 }
 
 .host-property-rules ul li {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-size: 1em;
 }
 
 .host-contact-host {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 35px;
 }
 
 .host-contact-host button {
-  padding: 12px 25px;
-  background-color: #007bff;
+  padding: 14px 30px;
+  background-color: #b64359;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 1.2em;
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .host-contact-host button:hover {
-  background-color: #b64359;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  background-color: #a33e50;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
+
 .loading-spinner {
   text-align: center;
   margin-top: 50px;

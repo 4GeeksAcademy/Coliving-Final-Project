@@ -12,7 +12,6 @@ const HostProperty = () => {
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        // Cambiar la URL directamente para que use el backend preestablecido
         const response = await fetch(process.env.BACKEND_URL + `/api/property/${id}`);
         
         if (!response.ok) {
