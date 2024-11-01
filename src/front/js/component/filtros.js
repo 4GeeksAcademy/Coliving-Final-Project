@@ -113,7 +113,7 @@ const Filtros = () => {
 
       <h2 className="my-4">Rango de Precios</h2>
       <p>Precios por noches sin incluir impuestos y tarifas</p>
-      <div className="d-flex justify-content-between gap-5">
+      <div className="d-flex justify-content-evenly gap-5">
         <div className="d-flex flex-column align-items-center">
           <label htmlFor="minPrice" className="form-label mt-2">Mínimo</label>
           <input id="minPrice" className="form-control form-control-sm rounded-pill custom-input" type="text" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} />
