@@ -72,3 +72,16 @@ button:hover {
     background-color: #b64359;
 
 }
+
+.cardLanding {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.card-img-top {
+    height: 200px; 
+    width: 100%;
+    object-fit: cover;
+}
