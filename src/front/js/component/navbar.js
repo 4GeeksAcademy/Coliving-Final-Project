@@ -21,7 +21,7 @@ export const Navbar = () => {
 const NavbarPublic = () => {
 	const { store, actions } = useContext(Context);
 	return (
-		<nav className="navbar " style={{ backgroundColor: "#fff" }}>
+		<nav className="navbar" style={{ backgroundColor: "#fff" }}>
 			<div className="container d-flex">
 				<a href="/" className="C-living">
 					<span className="navbar-brand mb-0" style={{ color: "#b64359" }}>
@@ -58,16 +58,16 @@ const NavbarHost = () => {
 						/>
 					</span>
 				</Link>
-				<div className="ml-auto d-flex align-items-center">
-					{store.user && <button className="btn my-auto mx-1" onClick={() => {
+				<div className="ml-auto d-flex align-items-center"> 
+					{store.user && <button className="btn my-auto mx-1" style={{ backgroundColor: "#fff", color: "#b64359", border: "1px solid #b64359" }} onClick={() => {
 						actions.logout()
 					}}>
 						Logout
 					</button>}
-					<div className="dropdown rounded custom-rounded">
-						<button className="btn btn-secondary dropdown-toggle m-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<i className="fa-solid fa-bars me-2"></i>
-							<i className="fa-solid fa-user"></i>
+					<div className="dropdown rounded custom-rounded " >
+						<button className="btn dropdown-toggle m-2 text-white" style={{ backgroundColor: "#b64359" }} type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i className="fa-solid fa-bars me-2 text-white"></i>
+							<i className="fa-solid fa-user text-white"></i>
 						</button>
 						<ul className="dropdown-menu text-start dropdown-menu-end">
 							<li><a className="dropdown-item" href="/property">Pon tu espacio en Roomies</a></li>
@@ -96,15 +96,15 @@ const NavbarGuest = () => {
 					</span>
 				</Link>
 				<div className="ml-auto d-flex align-items-center">
-					{store.user && <button className="btn my-auto mx-1" onClick={() => actions.logout()}>
+					{store.user && <button className="btn my-auto mx-1" style={{ backgroundColor: "#fff", color: "#b64359", border: "1px solid #b64359" }} onClick={() => actions.logout()}>
 						Logout
 					</button>}
-					<div className="dropdown rounded custom-rounded">
-						<button className="btn btn-secondary dropdown-toggle m-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<i className="fa-solid fa-bars me-2"></i>
-							<i className="fa-solid fa-user"></i>
+					<div className="dropdown rounded custom-rounded " >
+						<button className="btn dropdown-toggle m-2 text-white" style={{ backgroundColor: "#b64359" }} type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i className="fa-solid fa-bars me-2 text-white"></i>
+							<i className="fa-solid fa-user text-white"></i>
 						</button>
-						<ul className="dropdown-menu dropdown-menu-end">
+						<ul className="dropdown-menu text-start dropdown-menu-end">
 							<li><a className="dropdown-item" href="/perfil">Ver Perfil</a></li>
 						</ul>
 					</div>
