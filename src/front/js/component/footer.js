@@ -17,7 +17,7 @@ export function Footer() {
 					<div className="box">
 						<h2>Sobre Nosotros</h2>
 						<p>
-							Coliving es una plataforma que permite a los usuarios publicar propiedades en la
+							Roomies es una plataforma que permite a los usuarios publicar propiedades en la
 							red. Los usuarios podrán ver propiedades publicadas por otros usuarios y contactar a los propietarios.</p>
 					</div>
 					<div className="box">

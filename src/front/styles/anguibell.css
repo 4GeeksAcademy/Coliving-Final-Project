@@ -45,7 +45,7 @@ button:hover {
     filter: brightness(50%);
     background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
     background-position: center; /* Centra la imagen en el contenedor */
-    height: 100vh;
+    height: 90vh;
     display: flex;
     justify-content: end;
     flex-direction: column;
