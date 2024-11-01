@@ -29,6 +29,7 @@ const Registro = () => {
 
   return (
     <>
+    
       <div className="container-registro-form">
         <div className="row">
           <div className="col">

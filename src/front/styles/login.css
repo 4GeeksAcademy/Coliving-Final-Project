@@ -6,7 +6,9 @@
       max-width: 600px;
       margin: 30px auto;
       padding: 20px;
-      background-color: #ffffff;
+      background-image: url('https://i.pinimg.com/564x/df/36/45/df3645c16e9871adb24e543199fc7418.jpg');
+      background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+      background-position: bottom; /* Centra la imagen en el contenedor */
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       border: 1px solid #e6e6e6;
